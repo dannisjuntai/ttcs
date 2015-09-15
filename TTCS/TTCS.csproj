@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0CC08F2C-CF65-42E7-923C-10E98B42E7C2}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TTCS</RootNamespace>
+    <AssemblyName>TTCS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Def.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\Helper.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\EmailSrv\Common\CommonUtilities.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\AccountController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\CustomerCategoryController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\CustomersManagementController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\EmailAdminController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\EmailContactsController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\EmailDispatchRuleController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\EmailFilterRuleController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\EmailReplyTemplateController.cs" />
+    <Compile Include="Areas\EmailSrv\Controllers\SystemSettingController.cs" />
+    <Compile Include="Areas\EmailSrv\EmailSrvAreaRegistration.cs" />
+    <Compile Include="Areas\EmailSrv\Models\AccountModels.cs" />
+    <Compile Include="Areas\EmailSrv\Models\EAgent.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ECustomerCategory.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ECustomers.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailAgentWeight.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailContacts.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailDispatchRule.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailFilterRule.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailRawBody.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailRawHeader.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailRecord.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailRejectReason.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailReplyCan.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailSavedAttachment.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailSavedBody.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EEmailScheduleSetting.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EMailGroup.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EMailMember.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EmailSrvModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailSrvModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EmailSrvModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EmailSrvModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailSrvModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EPhoneRecord.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ERecordCloseApproach.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ERecords.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ERecordServiceMap.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ERecordStatus.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ERecordType.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EServiceGroup.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\EServiceItem.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\Partials\CustomerCategoryPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\CustomersPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailAgentWeightPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailContactsPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailDispatchRulePartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailFilterRulePartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailRawHeaderPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailRecordPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailRejectReasonPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailReplyCanPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\EmailScheduleSettingPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\RecordCloseApproachPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\RecordsPartial.cs" />
+    <Compile Include="Areas\EmailSrv\Models\Partials\ServiceItemPartialr.cs" />
+    <Compile Include="Areas\EmailSrv\Models\RecordSerial.cs">
+      <DependentUpon>EmailSrvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\EmailSrv\Models\ViewModels\CustomersView.cs" />
+    <Compile Include="Areas\EmailSrv\Models\ViewModels\EmailAdmin_SearchCondition.cs" />
+    <Compile Include="Areas\EmailSrv\Models\ViewModels\EmailReplyTemplateView.cs" />
+    <Compile Include="Areas\EmailSrv\Models\ViewModels\SystemSettingView.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\PhoneRecordController.cs" />
+    <Compile Include="Controllers\RecordController.cs" />
+    <Compile Include="Controllers\ServiceItemController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ErrorCheck.cs" />
+    <Compile Include="Helpers\OptSelectListHelpers.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Agent.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTIAgentLog.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerCategory.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customers.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailAgentWeight.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailContacts.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailDispatchRule.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailFilterRule.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailRawBody.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailRawHeader.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailRecord.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailRejectReason.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailReplyCan.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailSavedAttachment.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailSavedBody.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailScheduleSetting.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailSentAttachment.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmailSentBox.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailGroup.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailMember.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Partials\EmailReplyCanPartial.cs" />
+    <Compile Include="Models\PhoneRecord.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecordCloseApproach.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Records.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecordServiceMap.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecordStatus.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecordType.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceGroup.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceItem.cs">
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTCSModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTCSModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTCSModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTCSModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTCSModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTCSModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\default\32px.png" />
+    <Content Include="Content\default\40px.png" />
+    <Content Include="Content\default\style.css" />
+    <Content Include="Content\default\style.min.css" />
+    <Content Include="Content\default\throbber.gif" />
+    <Content Include="Content\EmailSrvSite.css" />
+    <Content Include="Content\EmailSrvTable.css" />
+    <Content Include="Content\images\buttons.gif" />
+    <Content Include="Content\images\toolbar.gif" />
+    <Content Include="Content\jquery.cleditor.css" />
+    <Content Include="Content\main_themes.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\icons-rtl.gif" />
+    <Content Include="Content\themes\base\icons.gif" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\treeview-default.gif" />
+    <Content Include="Content\themes\base\images\treeview-line.gif" />
+    <Content Include="Content\themes\base\images\treeview-vertical-line.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_0_a1d1f9_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_1980cc_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_0_1E4DA9_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\themes\base\jquery-treeview.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\loading.gif" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\base\vline-rtl.gif" />
+    <Content Include="Content\themes\base\vline.gif" />
+    <Content Include="Content\themes\dynatree-skin\icons-rtl.gif" />
+    <Content Include="Content\themes\dynatree-skin\icons.gif" />
+    <Content Include="Content\themes\dynatree-skin\loading.gif" />
+    <Content Include="Content\themes\dynatree-skin\ui.dynatree.css" />
+    <Content Include="Content\themes\dynatree-skin\vline-rtl.gif" />
+    <Content Include="Content\themes\dynatree-skin\vline.gif" />
+    <Content Include="Content\yuicssreset.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\menuhover.jpg" />
+    <Content Include="Areas\EmailSrv\Views\Web.config" />
+    <Content Include="Areas\EmailSrv\Views\Account\Login.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\Shared\_Layout.cshtml" />
+    <EntityDeploy Include="Areas\EmailSrv\Models\EmailSrvModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EmailSrvModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\EmailSrv\Models\EmailSrvModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmailSrvModel.edmx</DependentUpon>
+      <LastGenOutput>EmailSrvModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\EmailSrv\Models\EmailSrvModel.edmx.diagram">
+      <DependentUpon>EmailSrvModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmailSrv\Models\EmailSrvModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmailSrvModel.edmx</DependentUpon>
+      <LastGenOutput>EmailSrvModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\Detail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialDetail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialEmailContent.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\Customers\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\Customers\_PartialOpenPopup.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\Customers\_PartialSearchBox.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailDispatchRule\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailDispatchRule\_PartialDetail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailDispatchRule\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailFilterRule\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailFilterRule\_PartialDetail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailFilterRule\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailFilterRule\_PartialSearchBox.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialSearchBox.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailContacts\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailContacts\_PartialDetail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailContacts\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialRejectReason.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialScheduleSetting.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialOpenPopupReject.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailContacts\_PartialSearchBox.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\IndexWait.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\Details.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\Create.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\Edit.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\Delete.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\_PartialSearchBox.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialOpenPopupAgentWeight.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialOpenPopupAgentWeightDetail.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\IndexQueue.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialListQueue.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\DetailQueue.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialEmailContentQueue.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialDetailQueue.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailReplyTemplate\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailReplyTemplate\_PartialSearchBoxReplyCan.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailReplyTemplate\_PartialReplyCan.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailReplyTemplate\_PartialOpenPopupReply.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailReplyTemplate\_PartialTemplateVariable.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomersManagement\DeleteOk.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialServiceMap.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\EmailAdmin\_PartialDetailTelphone.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialCloseApproach.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\SystemSetting\_PartialOpenPopupApproach.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\Create.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\Delete.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\DeleteOk.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\Details.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\Edit.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\Index.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\_PartialList.cshtml" />
+    <Content Include="Areas\EmailSrv\Views\CustomerCategory\_PartialSearchBox.cshtml" />
+    <EntityDeploy Include="Models\TTCSModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TTCSModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TTCSModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTCSModels.edmx</DependentUpon>
+      <LastGenOutput>TTCSModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TTCSModels.edmx.diagram">
+      <DependentUpon>TTCSModels.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\TTCSModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTCSModels.edmx</DependentUpon>
+      <LastGenOutput>TTCSModels.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\TTCS.pubxml" />
+    <None Include="Properties\PublishProfiles\TTCS_Local.pubxml" />
+    <None Include="Properties\PublishProfiles\TTCS_Release.pubxml" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\app.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-image.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-process.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload-video.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\main.js" />
+    <Content Include="Scripts\jquery-file-upload-jquery-ui\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\log4javascript\*" />
+    <Content Include="Scripts\jquery-treeview-1.0.1.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.cleditor.js" />
+    <Content Include="Scripts\jquery.cleditor.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.dynatree.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\TTCS_API.js" />
+    <Content Include="Scripts\TTCS_Const.js" />
+    <Content Include="Scripts\TTCS_Customer.js" />
+    <Content Include="Scripts\TTCS_EmailRecord.js" />
+    <Content Include="Scripts\TTCS_Init.js" />
+    <Content Include="Scripts\TTCS_Login.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\TTCS_Record.js" />
+    <Content Include="Scripts\TTCS_RecordList.js" />
+    <Content Include="Scripts\TTCS_TelphoneRecord.js" />
+    <Content Include="Scripts\TTCS_Utils.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Record\Show.cshtml" />
+    <Content Include="Views\Agent\Index.cshtml" />
+    <Content Include="Views\Agent\Details.cshtml" />
+    <Content Include="Views\Agent\Create.cshtml" />
+    <Content Include="Views\Agent\Edit.cshtml" />
+    <Content Include="Views\Agent\Delete.cshtml" />
+    <Content Include="Views\Record\_PartialOpenPopupReply.cshtml" />
+    <Content Include="Views\Record\_PartialOpenPopupContacts.cshtml" />
+    <Content Include="Views\Record\_PartialOpenPopupReject.cshtml" />
+    <Content Include="Views\Record\_PartialOpenPopupForwards.cshtml" />
+    <Content Include="Views\Record\_PartialOpenPopupForwardDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Customer\" />
+    <Folder Include="Views\PhoneRecord\" />
+    <Folder Include="Views\ServiceItem\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4510</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

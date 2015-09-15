@@ -1,0 +1,142 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailScheduleSetting
+
+@using (Html.BeginForm("ScheduleSetting", "SystemSetting"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend style="font-size: large;">派送週期設定<span id="msg" style="color: red;">@ViewBag.ScheduleTaskResult</span></legend>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+
+
+        <input type="submit" id="saveScheduleTask" name="save" value="儲存" class="buttonright" disabled="disabled" />
+        <input type="button" id="editScheduleTask" name="edit" class="buttonright" value="編輯" />
+        <br />
+        <br />
+        @Html.DisplayNameFor(model => model.Period) ：
+        @Html.TextBoxFor(model => model.Period, new { @disabled = "true", @style = "width:40px;" })
+        @Html.DropDownList("Frequency", null, new { @disabled = "true" })
+        @Html.ValidationMessageFor(model => model.Period)
+        <br />
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;派送基數：
+        @Html.TextBoxFor(model => model.Value, new { @disabled = "true" })
+        @Html.ValidationMessageFor(model => model.Value)
+        <input id="agentWeight" type="button" value="客服權重設定" />
+        <br />
+        <br />
+        @Html.DisplayNameFor(model => model.Active) ：
+        @Html.CheckBoxFor(model => model.Active, new { @disabled = "true" })
+    </fieldset>
+}
+
+<span id="msgExpire" style="color: red;"></span>
+<br />
+逾期期限：<input id="expirelen" type="text" value="@ViewBag.ExpireLen" disabled="disabled" style="width:40px;" />
+小時
+<input type="button" id="saveExpireLen" name="save" value="儲存" class="buttonright" disabled="disabled" />
+<input type="button" id="editExpireLen" name="edit" class="buttonright" value="編輯" />
+
+<div id="dialog-modal-agentweight" title="客服人員派送權重設定"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#dialog-modal-agentweight").dialog({
+            autoOpen: false,
+            width: 600,
+            height: 250,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $("#agentWeight").click(function () {
+            $.ajax({
+                url: '@Url.Action("_PartialOpenPopupAgentWeight", "SystemSetting")',
+                type: 'Get',
+                data: "",
+                datatype: "html",
+                cache: false,
+                success: function (data) {
+                    $("#dialog-modal-agentweight").dialog("open");
+                    $("#dialog-modal-agentweight").empty().append(data);
+                },
+                error: function () {
+                    alert("something seems wrong");
+                }
+            });
+        });
+    });
+
+    $('#editExpireLen').click(function () {
+        $('#saveExpireLen').removeAttr('disabled');
+        $('#expirelen').removeAttr('disabled');
+        $('#expirelen').focus();
+        $('#editExpireLen').attr("disabled", true);
+        $('#msgExpire').text("");
+    });
+
+    $('#saveExpireLen').click(function () {
+        if ($('#expirelen').val() < 1) {
+            alert("逾期期限必需大於0");
+            return false;
+        }
+        $.ajax({
+            url: '@Url.Action("_AjaxUpdateExpireLen", "SystemSetting")',
+            type: 'Get',
+            data: "expirelen=" + escape($('#expirelen').val()),
+            datatype: "html",
+            cache: false,
+            success: function (data) {
+
+                if (data['result'] == 1) {
+                    $('#msgExpire').text("儲存成功");
+                    $('#saveExpireLen').attr("disabled", true);
+                    $('#editExpireLen').removeAttr('disabled');
+                    $('#expirelen').attr("disabled", true);
+
+                } else {
+                    $('#msgExpire').text("儲存失敗[" + data['err'] + "]");
+                }
+
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+    });
+
+    $('#editScheduleTask').click(function () {
+        $('#saveScheduleTask').removeAttr('disabled');
+        $('#Period').removeAttr('disabled');
+        $('#Value').removeAttr('disabled');
+        $('#Frequency').removeAttr('disabled');
+        $('#Active').removeAttr('disabled');
+        $('#editScheduleTask').attr("disabled", true);
+        $('#msg').text("");
+    });
+
+    $('#saveScheduleTask').click(function () {
+        if ($('#Frequency option:selected').val() == "0" && ($('#Period').val() > 24 || $('#Period').val() < 1)) {
+            alert("如果選擇 '小時'，請輸入1到24之間的數字");
+            return false;
+        }
+        if ($('#Frequency option:selected').val() == "1" && ($('#Period').val() > 60 || $('#Period').val() < 1)) {
+            alert("如果選擇 '分鐘'，請輸入1到60之間的數字");
+            return false;
+        }
+
+        if ($('#Value').val() < 1) {
+            alert("派送基數必需大於0");
+            return false;
+        }
+    });
+</script>
+

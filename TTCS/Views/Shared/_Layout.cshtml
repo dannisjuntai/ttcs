@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - 我的 ASP.NET MVC 應用程式</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        
+        @Styles.Render("~/Content/main_themes")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/jquery.cleditor.css" rel="stylesheet" />
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/fileupload")
+        @RenderSection("scripts", required: false)
+
+        <script src="~/Scripts/TTCS_Init.js"></script>
+        <script src="~/Scripts/TTCS_Login.js"></script>
+        <script src="~/Scripts/TTCS_RecordList.js"></script>
+        <script src="~/Scripts/TTCS_Record.js"></script>
+        <script src="~/Scripts/TTCS_Customer.js"></script>
+        <script src="~/Scripts/TTCS_TelphoneRecord.js"></script>
+        <script src="~/Scripts/TTCS_EmailRecord.js"></script>
+        <script src="~/Scripts/TTCS_Utils.js"></script>
+        <script src="~/Scripts/TTCS_API.js"></script>
+        <script src="~/Scripts/TTCS_Const.js"></script>
+        <script type="text/javascript" src="~/Scripts/log4javascript/log4javascript.js"></script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+        </footer>
+
+    </body>
+</html>

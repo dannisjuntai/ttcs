@@ -1,0 +1,24 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailRecord
+
+<table>
+    <tr>
+        <td class="fieldname">內容</td>
+        <td class="fieldvalue">
+            @Html.Raw(Model.EmailRawHeader.MsgReplyBody)
+        </td>
+    </tr>
+    <tr>
+        <td class="seperate"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="fieldname">附件</td>
+        <td class="fieldvalue">
+            @foreach (var attachment in (List<SelectListItem>)ViewBag.Attachments)
+            { 
+                @Html.ActionLink(attachment.Text, "Download", new { id = attachment.Value })<br />
+            }
+        </td>
+    </tr>
+</table>
+

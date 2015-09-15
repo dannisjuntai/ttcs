@@ -1,0 +1,18 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailContacts
+
+@{    
+    int nType = Convert.ToInt32((string)ViewBag.Type);    
+}
+
+@using (Html.BeginForm("Index", "EmailContacts", FormMethod.Get))
+{
+    <fieldset>
+        <legend>查詢條件</legend>
+        @Html.RadioButton("type", "1", nType == 1)@Html.DisplayNameFor(model => model.ContactGroup)
+        @Html.RadioButton("type", "2", nType == 2)@Html.DisplayNameFor(model => model.ContactName)
+        @Html.RadioButton("type", "3", nType == 3) @Html.DisplayNameFor(model => model.ContactEmail)
+
+        @Html.TextBox("condition", (string)ViewBag.Condition)
+        <input type="submit" value="查詢" class="button" />
+    </fieldset>
+}

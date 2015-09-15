@@ -1,0 +1,1831 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TTCS.Areas.EmailSrv.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TTCSAreasEmailSrvModelsStoreContainer">
+          <EntitySet Name="Agent" EntityType="TTCS.Areas.EmailSrv.Models.Store.Agent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerCategory" EntityType="TTCS.Areas.EmailSrv.Models.Store.CustomerCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customers" EntityType="TTCS.Areas.EmailSrv.Models.Store.Customers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailAgentWeight" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailAgentWeight" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailContacts" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailContacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailDispatchRule" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailDispatchRule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailFilterRule" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailFilterRule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRawBody" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailRawBody" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRawHeader" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailRawHeader" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRecord" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRejectReason" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailRejectReason" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailReplyCan" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailReplyCan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSavedAttachment" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailSavedAttachment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSavedBody" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailSavedBody" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailScheduleSetting" EntityType="TTCS.Areas.EmailSrv.Models.Store.EmailScheduleSetting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MailGroup" EntityType="TTCS.Areas.EmailSrv.Models.Store.MailGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MailMember" EntityType="TTCS.Areas.EmailSrv.Models.Store.MailMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PhoneRecord" EntityType="TTCS.Areas.EmailSrv.Models.Store.PhoneRecord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordCloseApproach" EntityType="TTCS.Areas.EmailSrv.Models.Store.RecordCloseApproach" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Records" EntityType="TTCS.Areas.EmailSrv.Models.Store.Records" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordServiceMap" EntityType="TTCS.Areas.EmailSrv.Models.Store.RecordServiceMap" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordStatus" EntityType="TTCS.Areas.EmailSrv.Models.Store.RecordStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordType" EntityType="TTCS.Areas.EmailSrv.Models.Store.RecordType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceGroup" EntityType="TTCS.Areas.EmailSrv.Models.Store.ServiceGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceItem" EntityType="TTCS.Areas.EmailSrv.Models.Store.ServiceItem" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Customers_CustomerCategory" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Customers_CustomerCategory">
+            <End Role="CustomerCategory" EntitySet="CustomerCategory" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailDispatchRule_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent1" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailDispatchRule_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent2" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailDispatchRule_Agent2">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Customers" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailDispatchRule_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRawBody_EmailRawHeader" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRawBody_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRawBody" EntitySet="EmailRawBody" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRecord_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent1" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRecord_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailRawHeader" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRecord_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailSavedBody" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRecord_EmailSavedBody">
+            <End Role="EmailSavedBody" EntitySet="EmailSavedBody" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Records" Association="TTCS.Areas.EmailSrv.Models.Store.FK_EmailRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneRecord_Records" Association="TTCS.Areas.EmailSrv.Models.Store.FK_PhoneRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="PhoneRecord" EntitySet="PhoneRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Customers" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_MailGroup" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_MailGroup">
+            <End Role="MailGroup" EntitySet="MailGroup" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordCloseApproach" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_RecordCloseApproach">
+            <End Role="RecordCloseApproach" EntitySet="RecordCloseApproach" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Records" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_Records">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordStatus" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_RecordStatus">
+            <End Role="RecordStatus" EntitySet="RecordStatus" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordType" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_RecordType">
+            <End Role="RecordType" EntitySet="RecordType" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_ServiceItem" Association="TTCS.Areas.EmailSrv.Models.Store.FK_Records_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_Records" Association="TTCS.Areas.EmailSrv.Models.Store.FK_RecordServiceMap_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_ServiceItem" Association="TTCS.Areas.EmailSrv.Models.Store.FK_RecordServiceMap_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceItem_ServiceGroup" Association="TTCS.Areas.EmailSrv.Models.Store.FK_ServiceItem_ServiceGroup">
+            <End Role="ServiceGroup" EntitySet="ServiceGroup" />
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="32" />
+          <Property Name="AgentPWD" Type="varchar" MaxLength="8" />
+          <Property Name="VMPWD" Type="varchar" MaxLength="8" />
+          <Property Name="HasVoiceMail" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="GW32" Type="varchar" MaxLength="6" />
+          <Property Name="Authority" Type="int" />
+          <Property Name="CTILoginID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CTILoginPWD" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoLogin" Type="int" />
+          <Property Name="AutoLogout" Type="int" />
+          <Property Name="DefaultExten" Type="varchar" MaxLength="10" />
+          <Property Name="AutoLoginTime" Type="datetime" />
+          <Property Name="AutoLogoutTime" Type="datetime" />
+          <Property Name="LocalDistance" Type="tinyint" />
+          <Property Name="LongDistance" Type="tinyint" />
+          <Property Name="Mobil" Type="tinyint" />
+          <Property Name="International" Type="tinyint" />
+          <Property Name="DialContext" Type="varchar" MaxLength="32" />
+          <Property Name="Active" Type="tinyint" />
+          <Property Name="DeptID" Type="varchar" MaxLength="32" />
+          <Property Name="SMSEnable" Type="tinyint" />
+          <Property Name="FaxEnable" Type="tinyint" />
+          <Property Name="EmailEnable" Type="tinyint" />
+          <Property Name="ChatEnable" Type="tinyint" />
+          <Property Name="GrpRecBoxEnable" Type="tinyint" />
+          <Property Name="EmailIsLogin" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="CustomerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="EName" Type="nvarchar" MaxLength="128" />
+          <Property Name="Category" Type="int" />
+          <Property Name="ID2" Type="nvarchar" MaxLength="32" />
+          <Property Name="Region" Type="nvarchar" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" MaxLength="256" />
+          <Property Name="Address" Type="nvarchar" MaxLength="256" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Marketer" Type="varchar" MaxLength="64" />
+          <Property Name="AgentID1" Type="nvarchar" MaxLength="64" />
+          <Property Name="AgentID2" Type="nvarchar" MaxLength="64" />
+          <Property Name="GroupID" Type="varchar" MaxLength="32" />
+          <Property Name="Contact1_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact1_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact1_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Contact2_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact2_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact2_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Contact3_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact3_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact3_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="64" />
+          <Property Name="ModifiedDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailAgentWeight">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContactGroup" Type="nvarchar(max)" />
+          <Property Name="ContactName" Type="nvarchar(max)" />
+          <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailDispatchRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ConditionType" Type="int" />
+          <Property Name="CustomerId" Type="uniqueidentifier" />
+          <Property Name="Condition" Type="nvarchar(max)" />
+          <Property Name="AgentId1" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="AgentId2" Type="varchar" MaxLength="8" />
+          <Property Name="AgentId3" Type="varchar" MaxLength="8" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="ModifyBy" Type="nchar" MaxLength="8" />
+          <Property Name="AutoDispatch" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailFilterRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MsgSubject" Type="nvarchar(max)" />
+          <Property Name="MsgBody" Type="nvarchar(max)" />
+          <Property Name="MsgFrom" Type="nvarchar(max)" />
+          <Property Name="MsgReceivedBy" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRawBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RawHeaderId" Type="int" Nullable="false" />
+          <Property Name="PlaceHolder" Type="nvarchar" MaxLength="2" />
+          <Property Name="CntMedia" Type="nvarchar" MaxLength="20" />
+          <Property Name="CodePage" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="256" />
+          <Property Name="BinaryCnt" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EmailRawHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MsgId" Type="nvarchar(max)" />
+          <Property Name="MsgFrom" Type="nvarchar(max)" />
+          <Property Name="MsgTo" Type="nvarchar(max)" />
+          <Property Name="MsgCc" Type="nvarchar(max)" />
+          <Property Name="MsgBcc" Type="nvarchar(max)" />
+          <Property Name="MsgReplyTo" Type="nvarchar(max)" />
+          <Property Name="MsgReceivedBy" Type="nvarchar(max)" />
+          <Property Name="MsgInReplyTo" Type="nvarchar(max)" />
+          <Property Name="MsgSubject" Type="nvarchar(max)" />
+          <Property Name="MsgSentOn" Type="datetime" Nullable="false" />
+          <Property Name="Completed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RawHeaderId" Type="int" />
+          <Property Name="ExpireOn" Type="datetime" />
+          <Property Name="ReplyOn" Type="datetime" />
+          <Property Name="IncomeOn" Type="datetime" />
+          <Property Name="AssignOn" Type="datetime" />
+          <Property Name="InitAgentId" Type="varchar" MaxLength="8" />
+          <Property Name="CurrAgentId" Type="varchar" MaxLength="8" />
+          <Property Name="AssignCount" Type="int" />
+          <Property Name="Garbage" Type="int" />
+          <Property Name="RejectReason" Type="nvarchar(max)" />
+          <Property Name="ProcessStatus" Type="nvarchar(max)" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="SaveCntIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="ForwardCount" Type="int" />
+          <Property Name="UnRead" Type="int" />
+          <Property Name="MsgSubjectModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailRejectReason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailReplyCan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TempCnt" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSavedAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailRecordId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CntMedia" Type="nvarchar(max)" />
+          <Property Name="CntBody" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EmailSavedBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="CodePage" Type="int" />
+          <Property Name="BodyCnt" Type="varbinary(max)" />
+          <Property Name="SendTo" Type="nvarchar(max)" />
+          <Property Name="Cc" Type="nvarchar(max)" />
+          <Property Name="Bcc" Type="nvarchar(max)" />
+          <Property Name="MailSignature" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailScheduleSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MailGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="32" />
+          <Property Name="Mailbox" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="MailMember">
+          <Key>
+            <PropertyRef Name="CTILoginID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="CTILoginID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="GroupID" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="PhoneRecord">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PhoneNum" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="QueueName" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordCloseApproach">
+          <Key>
+            <PropertyRef Name="ApproachID" />
+          </Key>
+          <Property Name="ApproachID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ApproachName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="AgentID" Type="varchar" MaxLength="8" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="ServiceGroupID" Type="int" />
+          <Property Name="ServiceItemID" Type="int" />
+          <Property Name="CloseApproachID" Type="int" />
+          <Property Name="GroupID" Type="varchar" MaxLength="32" />
+          <Property Name="IncomingDT" Type="datetime" />
+          <Property Name="FinishDT" Type="datetime" />
+          <Property Name="Uniqueid" Type="varchar" MaxLength="20" />
+          <Property Name="QueueName" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordServiceMap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecordStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="ServiceGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="GroupDesc" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="DispNo" Type="int" />
+          <Property Name="DeptID" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="ServiceItem">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ItemDesc" Type="varchar" MaxLength="64" />
+          <Property Name="DispNo" Type="int" />
+          <Property Name="CRM_ID" Type="varbinary" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK_Customers_CustomerCategory">
+          <End Role="CustomerCategory" Type="TTCS.Areas.EmailSrv.Models.Store.CustomerCategory" Multiplicity="0..1" />
+          <End Role="Customers" Type="TTCS.Areas.EmailSrv.Models.Store.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="1" />
+          <End Role="EmailDispatchRule" Type="TTCS.Areas.EmailSrv.Models.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent1">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="TTCS.Areas.EmailSrv.Models.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent2">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="TTCS.Areas.EmailSrv.Models.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Customers">
+          <End Role="Customers" Type="TTCS.Areas.EmailSrv.Models.Store.Customers" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="TTCS.Areas.EmailSrv.Models.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRawBody_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRawHeader" Multiplicity="1" />
+          <End Role="EmailRawBody" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRawBody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRawBody">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="InitAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent1">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="CurrAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRawHeader" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailSavedBody">
+          <End Role="EmailSavedBody" Type="TTCS.Areas.EmailSrv.Models.Store.EmailSavedBody" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSavedBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="SaveCntIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Records">
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="TTCS.Areas.EmailSrv.Models.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneRecord_Records">
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhoneRecord" Type="TTCS.Areas.EmailSrv.Models.Store.PhoneRecord" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="PhoneRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Customers">
+          <End Role="Customers" Type="TTCS.Areas.EmailSrv.Models.Store.Customers" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_MailGroup">
+          <End Role="MailGroup" Type="TTCS.Areas.EmailSrv.Models.Store.MailGroup" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordCloseApproach">
+          <End Role="RecordCloseApproach" Type="TTCS.Areas.EmailSrv.Models.Store.RecordCloseApproach" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordCloseApproach">
+              <PropertyRef Name="ApproachID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CloseApproachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Records">
+          <End Role="Agent" Type="TTCS.Areas.EmailSrv.Models.Store.Agent" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordStatus">
+          <End Role="RecordStatus" Type="TTCS.Areas.EmailSrv.Models.Store.RecordStatus" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordType">
+          <End Role="RecordType" Type="TTCS.Areas.EmailSrv.Models.Store.RecordType" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_ServiceItem">
+          <End Role="ServiceItem" Type="TTCS.Areas.EmailSrv.Models.Store.ServiceItem" Multiplicity="0..1" />
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="ServiceGroupID" />
+              <PropertyRef Name="ServiceItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_Records">
+          <End Role="Records" Type="TTCS.Areas.EmailSrv.Models.Store.Records" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="TTCS.Areas.EmailSrv.Models.Store.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_ServiceItem">
+          <End Role="ServiceItem" Type="TTCS.Areas.EmailSrv.Models.Store.ServiceItem" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="TTCS.Areas.EmailSrv.Models.Store.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceItem_ServiceGroup">
+          <End Role="ServiceGroup" Type="TTCS.Areas.EmailSrv.Models.Store.ServiceGroup" Multiplicity="1" />
+          <End Role="ServiceItem" Type="TTCS.Areas.EmailSrv.Models.Store.ServiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TTCS.Areas.EmailSrv.Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EmailSrvEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Agent" EntityType="TTCS.Areas.EmailSrv.Models.EAgent" />
+          <EntitySet Name="Customers" EntityType="TTCS.Areas.EmailSrv.Models.ECustomers" />
+          <EntitySet Name="EmailDispatchRule" EntityType="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule" />
+          <EntitySet Name="EmailFilterRule" EntityType="TTCS.Areas.EmailSrv.Models.EEmailFilterRule" />
+          <EntitySet Name="EmailRawBody" EntityType="TTCS.Areas.EmailSrv.Models.EEmailRawBody" />
+          <EntitySet Name="EmailRawHeader" EntityType="TTCS.Areas.EmailSrv.Models.EEmailRawHeader" />
+          <EntitySet Name="EmailRecord" EntityType="TTCS.Areas.EmailSrv.Models.EEmailRecord" />
+          <EntitySet Name="Records" EntityType="TTCS.Areas.EmailSrv.Models.ERecords" />
+          <EntitySet Name="RecordStatus" EntityType="TTCS.Areas.EmailSrv.Models.ERecordStatus" />
+          <EntitySet Name="RecordType" EntityType="TTCS.Areas.EmailSrv.Models.ERecordType" />
+          <EntitySet Name="ServiceGroup" EntityType="TTCS.Areas.EmailSrv.Models.EServiceGroup" />
+          <EntitySet Name="ServiceItem" EntityType="TTCS.Areas.EmailSrv.Models.EServiceItem" />
+          <AssociationSet Name="FK_EmailDispatchRule_Agent" Association="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent">
+            <End Role="EAgent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent1" Association="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent1">
+            <End Role="EAgent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent2" Association="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent2">
+            <End Role="EAgent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent">
+            <End Role="EAgent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent1" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent1">
+            <End Role="EAgent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Customers" Association="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Customers" Association="TTCS.Areas.EmailSrv.Models.FK_Records_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRawBody_EmailRawHeader" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRawBody_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRawBody" EntitySet="EmailRawBody" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailRawHeader" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordStatus" Association="TTCS.Areas.EmailSrv.Models.FK_Records_RecordStatus">
+            <End Role="RecordStatus" EntitySet="RecordStatus" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordType" Association="TTCS.Areas.EmailSrv.Models.FK_Records_RecordType">
+            <End Role="RecordType" EntitySet="RecordType" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_ServiceItem" Association="TTCS.Areas.EmailSrv.Models.FK_Records_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceItem_ServiceGroup" Association="TTCS.Areas.EmailSrv.Models.FK_ServiceItem_ServiceGroup">
+            <End Role="ServiceGroup" EntitySet="ServiceGroup" />
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+          </AssociationSet>
+          <EntitySet Name="EmailSavedBody" EntityType="TTCS.Areas.EmailSrv.Models.EEmailSavedBody" />
+          <AssociationSet Name="FK_EmailRecord_EmailSavedBody" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailSavedBody">
+            <End Role="EmailSavedBody" EntitySet="EmailSavedBody" />
+            <End Role="EEmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Records" Association="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Records">
+            <End Role="ERecords" EntitySet="Records" />
+            <End Role="EEmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="ERecordsEAgent" Association="TTCS.Areas.EmailSrv.Models.ERecordsEAgent">
+            <End Role="ERecords" EntitySet="Records" />
+            <End Role="EAgent" EntitySet="Agent" />
+          </AssociationSet>
+          <EntitySet Name="EmailContacts" EntityType="TTCS.Areas.EmailSrv.Models.EEmailContacts" />
+          <EntitySet Name="EmailRejectReason" EntityType="TTCS.Areas.EmailSrv.Models.EEmailRejectReason" />
+          <EntitySet Name="EmailReplyCan" EntityType="TTCS.Areas.EmailSrv.Models.EEmailReplyCan" />
+          <EntitySet Name="EmailScheduleSetting" EntityType="TTCS.Areas.EmailSrv.Models.EEmailScheduleSetting" />
+          <EntitySet Name="MailGroup" EntityType="TTCS.Areas.EmailSrv.Models.EMailGroup" />
+          <EntitySet Name="MailMember" EntityType="TTCS.Areas.EmailSrv.Models.EMailMember" />
+          <EntitySet Name="EmailAgentWeight" EntityType="TTCS.Areas.EmailSrv.Models.EEmailAgentWeight" />
+          <EntitySet Name="EmailSavedAttachment" EntityType="TTCS.Areas.EmailSrv.Models.EEmailSavedAttachment" />
+          <EntitySet Name="RecordServiceMap" EntityType="TTCS.Areas.EmailSrv.Models.ERecordServiceMap" />
+          <AssociationSet Name="FK_RecordServiceMap_Records" Association="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_Records">
+            <End Role="ERecords" EntitySet="Records" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_ServiceItem" Association="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_ServiceItem">
+            <End Role="EServiceItem" EntitySet="ServiceItem" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <EntitySet Name="PhoneRecord" EntityType="TTCS.Areas.EmailSrv.Models.EPhoneRecord" />
+          <EntitySet Name="RecordCloseApproach" EntityType="TTCS.Areas.EmailSrv.Models.ERecordCloseApproach" />
+          <AssociationSet Name="FK_PhoneRecord_Records" Association="TTCS.Areas.EmailSrv.Models.FK_PhoneRecord_Records">
+            <End Role="ERecords" EntitySet="Records" />
+            <End Role="PhoneRecord" EntitySet="PhoneRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordCloseApproach" Association="TTCS.Areas.EmailSrv.Models.FK_Records_RecordCloseApproach">
+            <End Role="ERecordCloseApproach" EntitySet="RecordCloseApproach" />
+            <End Role="ERecords" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_MailGroup" Association="TTCS.Areas.EmailSrv.Models.FK_Records_MailGroup">
+            <End Role="EMailGroup" EntitySet="MailGroup" />
+            <End Role="ERecords" EntitySet="Records" />
+          </AssociationSet>
+          <EntitySet Name="CustomerCategory" EntityType="TTCS.Areas.EmailSrv.Models.ECustomerCategory" />
+          <AssociationSet Name="FK_Customers_CustomerCategory" Association="TTCS.Areas.EmailSrv.Models.FK_Customers_CustomerCategory">
+            <End Role="CustomerCategory" EntitySet="CustomerCategory" />
+            <End Role="ECustomers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EAgent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="AgentName" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="AgentPWD" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="VMPWD" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="HasVoiceMail" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="GW32" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="Authority" Type="Int32" />
+          <Property Name="CTILoginID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CTILoginPWD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoLogin" Type="Int32" />
+          <Property Name="AutoLogout" Type="Int32" />
+          <Property Name="DefaultExten" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="AutoLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="AutoLogoutTime" Type="DateTime" Precision="3" />
+          <Property Name="LocalDistance" Type="Byte" />
+          <Property Name="LongDistance" Type="Byte" />
+          <Property Name="Mobil" Type="Byte" />
+          <Property Name="International" Type="Byte" />
+          <Property Name="DialContext" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Byte" />
+          <Property Name="DeptID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SMSEnable" Type="Byte" />
+          <Property Name="FaxEnable" Type="Byte" />
+          <Property Name="EmailEnable" Type="Byte" />
+          <Property Name="ChatEnable" Type="Byte" />
+          <Property Name="GrpRecBoxEnable" Type="Byte" />
+          <NavigationProperty Name="EmailDispatchRule" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent" FromRole="EAgent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailDispatchRule1" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent1" FromRole="EAgent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailDispatchRule2" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent2" FromRole="EAgent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailRecord" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent" FromRole="EAgent" ToRole="EmailRecord" />
+          <NavigationProperty Name="EmailRecord1" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent1" FromRole="EAgent" ToRole="EmailRecord" />
+          <NavigationProperty Name="ERecords" Relationship="TTCS.Areas.EmailSrv.Models.ERecordsEAgent" FromRole="EAgent" ToRole="ERecords" />
+          <Property Type="Byte" Name="EmailIsLogin" />
+        </EntityType>
+        <EntityType Name="ECustomers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="CName" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EName" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Category" />
+          <Property Type="String" Name="ID2" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Region" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Marketer" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgentID1" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AgentID2" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Name" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Title" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Tel1" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Tel2" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Email1" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_Email2" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact1_DoSend" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Contact2_Name" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_Title" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_Tel1" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_Tel2" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_Email1" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_Email2" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact2_DoSend" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Contact3_Name" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_Title" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_Tel1" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_Tel2" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_Email1" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_Email2" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact3_DoSend" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="EmailDispatchRule" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Customers" FromRole="Customers" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_Customers" FromRole="Customers" ToRole="Records" />
+          <Property Type="String" Name="Modifier" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDT" Precision="3" />
+          <Property Type="String" Name="GroupID" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CustomerCategory" Relationship="TTCS.Areas.EmailSrv.Models.FK_Customers_CustomerCategory" FromRole="ECustomers" ToRole="CustomerCategory" />
+        </EntityType>
+        <EntityType Name="EEmailDispatchRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="CustomerId" />
+          <Property Type="String" Name="AgentId1" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgentId2" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgentId3" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ModifyOn" Precision="3" />
+          <Property Type="String" Name="ModifyBy" MaxLength="8" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Agent" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent" FromRole="EmailDispatchRule" ToRole="EAgent" />
+          <NavigationProperty Name="Agent1" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent1" FromRole="EmailDispatchRule" ToRole="EAgent" />
+          <NavigationProperty Name="Agent2" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Agent2" FromRole="EmailDispatchRule" ToRole="EAgent" />
+          <NavigationProperty Name="Customers" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailDispatchRule_Customers" FromRole="EmailDispatchRule" ToRole="Customers" />
+          <Property Type="Int32" Name="ConditionType" />
+          <Property Type="String" Name="Condition" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AutoDispatch" />
+        </EntityType>
+        <EntityType Name="EEmailFilterRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MsgSubject" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgBody" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgFrom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgReceivedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EEmailRawBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RawHeaderId" Nullable="false" />
+          <Property Type="String" Name="PlaceHolder" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CntMedia" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CodePage" Nullable="false" />
+          <Property Type="String" Name="FileName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="BinaryCnt" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EmailRawHeader" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRawBody_EmailRawHeader" FromRole="EmailRawBody" ToRole="EmailRawHeader" />
+        </EntityType>
+        <EntityType Name="EEmailRawHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MsgId" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgFrom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgCc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgBcc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgReplyTo" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgReceivedBy" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgInReplyTo" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MsgSubject" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MsgSentOn" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Completed" Nullable="false" />
+          <NavigationProperty Name="EmailRawBody" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRawBody_EmailRawHeader" FromRole="EmailRawHeader" ToRole="EmailRawBody" />
+          <NavigationProperty Name="EmailRecord" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailRawHeader" FromRole="EmailRawHeader" ToRole="EmailRecord" />
+          <Property Type="String" Name="MsgTo" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EEmailRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="RID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RawHeaderId" />
+          <Property Type="DateTime" Name="ExpireOn" Precision="3" />
+          <Property Type="DateTime" Name="ReplyOn" Precision="3" />
+          <Property Type="DateTime" Name="IncomeOn" Precision="3" />
+          <Property Type="DateTime" Name="AssignOn" Precision="3" />
+          <Property Type="String" Name="InitAgentId" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CurrAgentId" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AssignCount" />
+          <Property Type="Int32" Name="Garbage" />
+          <NavigationProperty Name="Agent" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent" FromRole="EmailRecord" ToRole="EAgent" />
+          <NavigationProperty Name="Agent1" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Agent1" FromRole="EmailRecord" ToRole="EAgent" />
+          <NavigationProperty Name="EmailRawHeader" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailRawHeader" FromRole="EmailRecord" ToRole="EmailRawHeader" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RejectReason" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="ProcessStatus" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="OrderNo" />
+          <Property Type="String" Name="SaveCntIn" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="EmailSavedBody" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailSavedBody" FromRole="EEmailRecord" ToRole="EmailSavedBody" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Records" FromRole="EEmailRecord" ToRole="ERecords" />
+          <Property Type="Int32" Name="ForwardCount" />
+          <Property Type="Int32" Name="UnRead" />
+          <Property Type="String" Name="MsgSubjectModifiedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ERecords">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Type="String" Name="RID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="CustomerID" />
+          <Property Type="Int32" Name="TypeID" />
+          <Property Type="String" Name="AgentID" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StatusID" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ServiceGroupID" />
+          <Property Type="Int32" Name="ServiceItemID" />
+          <Property Type="DateTime" Name="IncomingDT" Precision="3" />
+          <Property Type="DateTime" Name="FinishDT" Precision="3" />
+          <NavigationProperty Name="Customers" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_Customers" FromRole="Records" ToRole="Customers" />
+          <NavigationProperty Name="RecordStatus" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordStatus" FromRole="Records" ToRole="RecordStatus" />
+          <NavigationProperty Name="RecordType" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordType" FromRole="Records" ToRole="RecordType" />
+          <NavigationProperty Name="ServiceItem" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_ServiceItem" FromRole="Records" ToRole="ServiceItem" />
+          <NavigationProperty Name="EmailRecord" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_Records" FromRole="ERecords" ToRole="EEmailRecord" />
+          <NavigationProperty Name="EAgent" Relationship="TTCS.Areas.EmailSrv.Models.ERecordsEAgent" FromRole="ERecords" ToRole="EAgent" />
+          <NavigationProperty Name="RecordServiceMap" Relationship="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_Records" FromRole="ERecords" ToRole="RecordServiceMap" />
+          <NavigationProperty Name="PhoneRecord" Relationship="TTCS.Areas.EmailSrv.Models.FK_PhoneRecord_Records" FromRole="ERecords" ToRole="PhoneRecord" />
+          <Property Type="Int32" Name="CloseApproachID" />
+          <NavigationProperty Name="RecordCloseApproach" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordCloseApproach" FromRole="ERecords" ToRole="ERecordCloseApproach" />
+          <Property Type="String" Name="GroupID" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Uniqueid" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QueueName" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MailGroup" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_MailGroup" FromRole="ERecords" ToRole="EMailGroup" />
+        </EntityType>
+        <EntityType Name="ERecordStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordStatus" FromRole="RecordStatus" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="ERecordType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordType" FromRole="RecordType" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="EServiceGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupDesc" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DispNo" />
+          <Property Type="String" Name="DeptID" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceItem" Relationship="TTCS.Areas.EmailSrv.Models.FK_ServiceItem_ServiceGroup" FromRole="ServiceGroup" ToRole="ServiceItem" />
+        </EntityType>
+        <EntityType Name="EServiceItem">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="String" Name="ItemDesc" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DispNo" />
+          <Property Type="Binary" Name="CRM_ID" MaxLength="8" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_ServiceItem" FromRole="ServiceItem" ToRole="Records" />
+          <NavigationProperty Name="ServiceGroup" Relationship="TTCS.Areas.EmailSrv.Models.FK_ServiceItem_ServiceGroup" FromRole="ServiceItem" ToRole="ServiceGroup" />
+          <NavigationProperty Name="RecordServiceMap" Relationship="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_ServiceItem" FromRole="EServiceItem" ToRole="RecordServiceMap" />
+        </EntityType>
+        <Association Name="FK_EmailDispatchRule_Agent">
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule" Role="EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent1">
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule" Role="EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent2">
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule" Role="EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent">
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRecord" Role="EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="InitAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent1">
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRecord" Role="EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="CurrAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Customers">
+          <End Type="TTCS.Areas.EmailSrv.Models.ECustomers" Role="Customers" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule" Role="EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Customers">
+          <End Type="TTCS.Areas.EmailSrv.Models.ECustomers" Role="Customers" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRawBody_EmailRawHeader">
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRawHeader" Role="EmailRawHeader" Multiplicity="1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRawBody" Role="EmailRawBody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRawBody">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailRawHeader">
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRawHeader" Role="EmailRawHeader" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRecord" Role="EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordStatus">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecordStatus" Role="RecordStatus" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordType">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecordType" Role="RecordType" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_ServiceItem">
+          <End Type="TTCS.Areas.EmailSrv.Models.EServiceItem" Role="ServiceItem" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="ServiceGroupID" />
+              <PropertyRef Name="ServiceItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceItem_ServiceGroup">
+          <End Type="TTCS.Areas.EmailSrv.Models.EServiceGroup" Role="ServiceGroup" Multiplicity="1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EServiceItem" Role="ServiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EEmailSavedBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="FileName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CodePage" />
+          <Property Type="Binary" Name="BodyCnt" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EmailRecord" Relationship="TTCS.Areas.EmailSrv.Models.FK_EmailRecord_EmailSavedBody" FromRole="EmailSavedBody" ToRole="EEmailRecord" />
+          <Property Type="String" Name="SendTo" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bcc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MailSignature" />
+        </EntityType>
+        <Association Name="FK_EmailRecord_EmailSavedBody">
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailSavedBody" Role="EmailSavedBody" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRecord" Role="EEmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSavedBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EEmailRecord">
+              <PropertyRef Name="SaveCntIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Records">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EEmailRecord" Role="EEmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ERecords">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EEmailRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ERecordsEAgent">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="*" />
+          <End Type="TTCS.Areas.EmailSrv.Models.EAgent" Role="EAgent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EAgent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="ERecords">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EEmailContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ContactName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactEmail" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactGroup" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EEmailRejectReason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Reason" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EEmailReplyCan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="TempCnt" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EEmailScheduleSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EMailGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="String" Name="GroupID" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GroupName" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mailbox" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_MailGroup" FromRole="EMailGroup" ToRole="ERecords" />
+        </EntityType>
+        <EntityType Name="EMailMember">
+          <Key>
+            <PropertyRef Name="CTILoginID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="String" Name="CTILoginID" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GroupID" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EEmailAgentWeight">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Type="String" Name="AgentId" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Weight" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EEmailSavedAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EmailRecordId" Nullable="false" />
+          <Property Type="String" Name="FileName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CntMedia" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="CntBody" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ERecordServiceMap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_Records" FromRole="RecordServiceMap" ToRole="ERecords" />
+          <NavigationProperty Name="ServiceItem" Relationship="TTCS.Areas.EmailSrv.Models.FK_RecordServiceMap_ServiceItem" FromRole="RecordServiceMap" ToRole="EServiceItem" />
+        </EntityType>
+        <Association Name="FK_RecordServiceMap_Records">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecordServiceMap" Role="RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ERecords">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_ServiceItem">
+          <End Type="TTCS.Areas.EmailSrv.Models.EServiceItem" Role="EServiceItem" Multiplicity="1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecordServiceMap" Role="RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EPhoneRecord">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Type="String" Name="RID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNum" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QueueName" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IndexID" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_PhoneRecord_Records" FromRole="PhoneRecord" ToRole="ERecords" />
+        </EntityType>
+        <EntityType Name="ERecordCloseApproach">
+          <Key>
+            <PropertyRef Name="ApproachID" />
+          </Key>
+          <Property Type="Int32" Name="ApproachID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ApproachName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Records" Relationship="TTCS.Areas.EmailSrv.Models.FK_Records_RecordCloseApproach" FromRole="ERecordCloseApproach" ToRole="ERecords" />
+        </EntityType>
+        <Association Name="FK_PhoneRecord_Records">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TTCS.Areas.EmailSrv.Models.EPhoneRecord" Role="PhoneRecord" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ERecords">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="PhoneRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordCloseApproach">
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecordCloseApproach" Role="ERecordCloseApproach" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ERecordCloseApproach">
+              <PropertyRef Name="ApproachID" />
+            </Principal>
+            <Dependent Role="ERecords">
+              <PropertyRef Name="CloseApproachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_MailGroup">
+          <End Type="TTCS.Areas.EmailSrv.Models.EMailGroup" Role="EMailGroup" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ERecords" Role="ERecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMailGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="ERecords">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ECustomerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Desc" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="TTCS.Areas.EmailSrv.Models.FK_Customers_CustomerCategory" FromRole="CustomerCategory" ToRole="ECustomers" />
+        </EntityType>
+        <Association Name="FK_Customers_CustomerCategory">
+          <End Type="TTCS.Areas.EmailSrv.Models.ECustomerCategory" Role="CustomerCategory" Multiplicity="0..1" />
+          <End Type="TTCS.Areas.EmailSrv.Models.ECustomers" Role="ECustomers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ECustomers">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TTCSAreasEmailSrvModelsStoreContainer" CdmEntityContainer="EmailSrvEntities">
+          <EntitySetMapping Name="Agent">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EAgent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="EmailIsLogin" ColumnName="EmailIsLogin" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="AgentPWD" ColumnName="AgentPWD" />
+                <ScalarProperty Name="VMPWD" ColumnName="VMPWD" />
+                <ScalarProperty Name="HasVoiceMail" ColumnName="HasVoiceMail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GW32" ColumnName="GW32" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+                <ScalarProperty Name="CTILoginID" ColumnName="CTILoginID" />
+                <ScalarProperty Name="CTILoginPWD" ColumnName="CTILoginPWD" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AutoLogin" ColumnName="AutoLogin" />
+                <ScalarProperty Name="AutoLogout" ColumnName="AutoLogout" />
+                <ScalarProperty Name="DefaultExten" ColumnName="DefaultExten" />
+                <ScalarProperty Name="AutoLoginTime" ColumnName="AutoLoginTime" />
+                <ScalarProperty Name="AutoLogoutTime" ColumnName="AutoLogoutTime" />
+                <ScalarProperty Name="LocalDistance" ColumnName="LocalDistance" />
+                <ScalarProperty Name="LongDistance" ColumnName="LongDistance" />
+                <ScalarProperty Name="Mobil" ColumnName="Mobil" />
+                <ScalarProperty Name="International" ColumnName="International" />
+                <ScalarProperty Name="DialContext" ColumnName="DialContext" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="SMSEnable" ColumnName="SMSEnable" />
+                <ScalarProperty Name="FaxEnable" ColumnName="FaxEnable" />
+                <ScalarProperty Name="EmailEnable" ColumnName="EmailEnable" />
+                <ScalarProperty Name="ChatEnable" ColumnName="ChatEnable" />
+                <ScalarProperty Name="GrpRecBoxEnable" ColumnName="GrpRecBoxEnable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ECustomers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ModifiedDT" ColumnName="ModifiedDT" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="Contact3_DoSend" ColumnName="Contact3_DoSend" />
+                <ScalarProperty Name="Contact3_Email2" ColumnName="Contact3_Email2" />
+                <ScalarProperty Name="Contact3_Email1" ColumnName="Contact3_Email1" />
+                <ScalarProperty Name="Contact3_Tel2" ColumnName="Contact3_Tel2" />
+                <ScalarProperty Name="Contact3_Tel1" ColumnName="Contact3_Tel1" />
+                <ScalarProperty Name="Contact3_Title" ColumnName="Contact3_Title" />
+                <ScalarProperty Name="Contact3_Name" ColumnName="Contact3_Name" />
+                <ScalarProperty Name="Contact2_DoSend" ColumnName="Contact2_DoSend" />
+                <ScalarProperty Name="Contact2_Email2" ColumnName="Contact2_Email2" />
+                <ScalarProperty Name="Contact2_Email1" ColumnName="Contact2_Email1" />
+                <ScalarProperty Name="Contact2_Tel2" ColumnName="Contact2_Tel2" />
+                <ScalarProperty Name="Contact2_Tel1" ColumnName="Contact2_Tel1" />
+                <ScalarProperty Name="Contact2_Title" ColumnName="Contact2_Title" />
+                <ScalarProperty Name="Contact2_Name" ColumnName="Contact2_Name" />
+                <ScalarProperty Name="Contact1_DoSend" ColumnName="Contact1_DoSend" />
+                <ScalarProperty Name="Contact1_Email2" ColumnName="Contact1_Email2" />
+                <ScalarProperty Name="Contact1_Email1" ColumnName="Contact1_Email1" />
+                <ScalarProperty Name="Contact1_Tel2" ColumnName="Contact1_Tel2" />
+                <ScalarProperty Name="Contact1_Tel1" ColumnName="Contact1_Tel1" />
+                <ScalarProperty Name="Contact1_Title" ColumnName="Contact1_Title" />
+                <ScalarProperty Name="Contact1_Name" ColumnName="Contact1_Name" />
+                <ScalarProperty Name="AgentID2" ColumnName="AgentID2" />
+                <ScalarProperty Name="AgentID1" ColumnName="AgentID1" />
+                <ScalarProperty Name="Marketer" ColumnName="Marketer" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="ID2" ColumnName="ID2" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailDispatchRule">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailDispatchRule">
+              <MappingFragment StoreEntitySet="EmailDispatchRule">
+                <ScalarProperty Name="AutoDispatch" ColumnName="AutoDispatch" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="ConditionType" ColumnName="ConditionType" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="AgentId3" ColumnName="AgentId3" />
+                <ScalarProperty Name="AgentId2" ColumnName="AgentId2" />
+                <ScalarProperty Name="AgentId1" ColumnName="AgentId1" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailFilterRule">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailFilterRule">
+              <MappingFragment StoreEntitySet="EmailFilterRule">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MsgReceivedBy" ColumnName="MsgReceivedBy" />
+                <ScalarProperty Name="MsgFrom" ColumnName="MsgFrom" />
+                <ScalarProperty Name="MsgBody" ColumnName="MsgBody" />
+                <ScalarProperty Name="MsgSubject" ColumnName="MsgSubject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRawBody">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailRawBody">
+              <MappingFragment StoreEntitySet="EmailRawBody">
+                <ScalarProperty Name="BinaryCnt" ColumnName="BinaryCnt" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CodePage" ColumnName="CodePage" />
+                <ScalarProperty Name="CntMedia" ColumnName="CntMedia" />
+                <ScalarProperty Name="PlaceHolder" ColumnName="PlaceHolder" />
+                <ScalarProperty Name="RawHeaderId" ColumnName="RawHeaderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRawHeader">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailRawHeader">
+              <MappingFragment StoreEntitySet="EmailRawHeader">
+                <ScalarProperty Name="MsgTo" ColumnName="MsgTo" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="MsgSentOn" ColumnName="MsgSentOn" />
+                <ScalarProperty Name="MsgSubject" ColumnName="MsgSubject" />
+                <ScalarProperty Name="MsgInReplyTo" ColumnName="MsgInReplyTo" />
+                <ScalarProperty Name="MsgReceivedBy" ColumnName="MsgReceivedBy" />
+                <ScalarProperty Name="MsgReplyTo" ColumnName="MsgReplyTo" />
+                <ScalarProperty Name="MsgBcc" ColumnName="MsgBcc" />
+                <ScalarProperty Name="MsgCc" ColumnName="MsgCc" />
+                <ScalarProperty Name="MsgFrom" ColumnName="MsgFrom" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRecord">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailRecord">
+              <MappingFragment StoreEntitySet="EmailRecord">
+                <ScalarProperty Name="MsgSubjectModifiedBy" ColumnName="MsgSubjectModifiedBy" />
+                <ScalarProperty Name="UnRead" ColumnName="UnRead" />
+                <ScalarProperty Name="ForwardCount" ColumnName="ForwardCount" />
+                <ScalarProperty Name="SaveCntIn" ColumnName="SaveCntIn" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="RejectReason" ColumnName="RejectReason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Garbage" ColumnName="Garbage" />
+                <ScalarProperty Name="AssignCount" ColumnName="AssignCount" />
+                <ScalarProperty Name="CurrAgentId" ColumnName="CurrAgentId" />
+                <ScalarProperty Name="InitAgentId" ColumnName="InitAgentId" />
+                <ScalarProperty Name="AssignOn" ColumnName="AssignOn" />
+                <ScalarProperty Name="IncomeOn" ColumnName="IncomeOn" />
+                <ScalarProperty Name="ReplyOn" ColumnName="ReplyOn" />
+                <ScalarProperty Name="ExpireOn" ColumnName="ExpireOn" />
+                <ScalarProperty Name="RawHeaderId" ColumnName="RawHeaderId" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ERecords">
+              <MappingFragment StoreEntitySet="Records">
+                <ScalarProperty Name="QueueName" ColumnName="QueueName" />
+                <ScalarProperty Name="Uniqueid" ColumnName="Uniqueid" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="CloseApproachID" ColumnName="CloseApproachID" />
+                <ScalarProperty Name="FinishDT" ColumnName="FinishDT" />
+                <ScalarProperty Name="IncomingDT" ColumnName="IncomingDT" />
+                <ScalarProperty Name="ServiceItemID" ColumnName="ServiceItemID" />
+                <ScalarProperty Name="ServiceGroupID" ColumnName="ServiceGroupID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordStatus">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ERecordStatus">
+              <MappingFragment StoreEntitySet="RecordStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordType">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ERecordType">
+              <MappingFragment StoreEntitySet="RecordType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceGroup">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EServiceGroup">
+              <MappingFragment StoreEntitySet="ServiceGroup">
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DispNo" ColumnName="DispNo" />
+                <ScalarProperty Name="GroupDesc" ColumnName="GroupDesc" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceItem">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EServiceItem">
+              <MappingFragment StoreEntitySet="ServiceItem">
+                <ScalarProperty Name="CRM_ID" ColumnName="CRM_ID" />
+                <ScalarProperty Name="DispNo" ColumnName="DispNo" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSavedBody">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailSavedBody">
+              <MappingFragment StoreEntitySet="EmailSavedBody">
+                <ScalarProperty Name="MailSignature" ColumnName="MailSignature" />
+                <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="SendTo" ColumnName="SendTo" />
+                <ScalarProperty Name="BodyCnt" ColumnName="BodyCnt" />
+                <ScalarProperty Name="CodePage" ColumnName="CodePage" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailContacts">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailContacts">
+              <MappingFragment StoreEntitySet="EmailContacts">
+                <ScalarProperty Name="ContactGroup" ColumnName="ContactGroup" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRejectReason">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailRejectReason">
+              <MappingFragment StoreEntitySet="EmailRejectReason">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailReplyCan">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailReplyCan">
+              <MappingFragment StoreEntitySet="EmailReplyCan">
+                <ScalarProperty Name="TempCnt" ColumnName="TempCnt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailScheduleSetting">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailScheduleSetting">
+              <MappingFragment StoreEntitySet="EmailScheduleSetting">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailGroup">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EMailGroup">
+              <MappingFragment StoreEntitySet="MailGroup">
+                <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailMember">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EMailMember">
+              <MappingFragment StoreEntitySet="MailMember">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="CTILoginID" ColumnName="CTILoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailAgentWeight">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailAgentWeight">
+              <MappingFragment StoreEntitySet="EmailAgentWeight">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSavedAttachment">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EEmailSavedAttachment">
+              <MappingFragment StoreEntitySet="EmailSavedAttachment">
+                <ScalarProperty Name="CntBody" ColumnName="CntBody" />
+                <ScalarProperty Name="CntMedia" ColumnName="CntMedia" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="EmailRecordId" ColumnName="EmailRecordId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordServiceMap">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ERecordServiceMap">
+              <MappingFragment StoreEntitySet="RecordServiceMap">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneRecord">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.EPhoneRecord">
+              <MappingFragment StoreEntitySet="PhoneRecord">
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="QueueName" ColumnName="QueueName" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordCloseApproach">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ERecordCloseApproach">
+              <MappingFragment StoreEntitySet="RecordCloseApproach">
+                <ScalarProperty Name="ApproachName" ColumnName="ApproachName" />
+                <ScalarProperty Name="ApproachID" ColumnName="ApproachID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerCategory">
+            <EntityTypeMapping TypeName="TTCS.Areas.EmailSrv.Models.ECustomerCategory">
+              <MappingFragment StoreEntitySet="CustomerCategory">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

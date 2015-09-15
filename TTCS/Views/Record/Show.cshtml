@@ -1,0 +1,442 @@
+﻿@model TTCS.Models.Records
+
+@{
+    ViewBag.Title = "主框架";
+}
+
+@*@Scripts.Render("~/bundles/TTCS")*@
+<div id="Unlogin">
+    <div style="text-align: center;">
+        <div>尚未登入</div>
+        <div>
+            Agent ID
+            <input id="AgentId" type="text">
+        </div>
+        <div>
+            Ext NO
+            <input id="ExtNo" type="text">
+        </div>
+        <div>
+            <input id="LoginButton" type="button" value="Login" onclick="login();">
+        </div>
+    </div>
+</div>
+
+
+<div id="Tabs">
+    <ul style="border: 0px solid white !important;">
+        <li id="TabRecordBrowser"><a href="#RecordList">案件瀏覽</a></li>
+        <li id="TabTelphoneRecord"><a href="#TelphoneRecord">來電案件</a></li>
+        <li id="TabEmailRecord"><a href="#EmailRecord">郵件案件</a></li>
+        <li id="TabQueryRecord"><a href="#QueryRecord">案件查詢</a></li>
+    </ul>
+
+    <div id="RecordList">
+        案件狀態：
+        <select id="RecordListDisplayStatus">
+            <option value="1">未處理</option>
+            <option value="2">處理中</option>
+            <option value="3">已結案</option>
+        </select>
+        <!--<input type="button" id="TESTINCOME" value="test">-->
+        <input type="button" id="btnCreateEmailCase" value="建立新郵件案件">
+        <input id="RecordListBtnRefresh" type="button" value="更新"/>
+        <input id="OpenLogWindow" type="button" value="開啟除錯視窗"/>
+        <table class="pagination">
+            <tr class="pagination">
+                <td style="text-align:left;" class="pagination">
+                    <input id="RecordListBtnFirstPage" type="button" value="|<" />
+                    <input id="RecordListBtnPrevPage" type="button" value="<<" />
+                </td>
+                <td style="text-align:center;" class="pagination">
+                    <input id="RecordListCurrentPage" size="3" /> / <label id="RecordListTotalPage">0</label><input id="RecordListBtnGotoPage" type="button" value="移至" />
+                </td>
+                <td style="text-align:right;" class="pagination">
+                    <input id="RecordListBtnNextPage" type="button" value=">>" />
+                    <input id="RecordListBtnLastPage" type="button" value=">|" />
+                </td>
+            </tr>
+        </table>
+        <table id="RecordTable">
+        </table>
+    </div>
+
+    <div id="TelphoneRecord">
+        <div class="CustomerInfo block">
+            <div class="block_title">客戶資料</div>
+            <div class="inner_block">
+                <input id="TelphoneRecordAddButton" class="CustomerAdd" type="button" value="新增" />
+                <input id="TelphoneRecordEditButton" class="CustomerEdit" type="button" value="修改" />
+                <input id="TelphoneRecordConfirmButton" class="CustomerConfirm" type="button" value="確認" /><br />
+                <div id="TelphoneRecordSearchBar" class="CustomerSearchBar">
+                    <input id="TelphoneRecordSearchName" type="radio" value="Name" name="search_type" class="CustomerSearchType" checked="checked">姓名
+                    <input id="TelphoneRecordSearchID2" type="radio" value="ID2" name="search_type" class="CustomerSearchType">證號
+                    <input id="TelphoneRecordSearchTel" type="radio" value="Tel" name="search_type" class="CustomerSearchType">電話
+                    <input id="TelphoneRecordSearchEmail" type="radio" value="EMail" name="search_type" class="CustomerSearchType">郵件
+                    <input id="TelphoneRecordSearchText" type="text" class="CustomerSearchText">
+                    <input id="TelphoneRecordSearchButton" class="CustomerSearch" type="button" value="搜尋">
+                </div>
+            </div>
+            <div class="inner_block">
+                <div class="inner_block_title">基本資料</div>
+                <div>
+                    <span class="data_pair">中　　文：<input type="text" class="CustomerFiled Customer_CName" /></span>
+                    <span class="data_pair">英　　文：<input type="text" class="CustomerFiled Customer_EName" /></span>
+                    <span class="data_pair">等　　級：@Html.DropDownList("CustomerCategory", (SelectList)ViewBag.CustomerCategory, new { @class = "CustomerFiled Customer_Category"})</span>
+                    <span class="data_pair">證　　號：<input type="text" class="CustomerFiled Customer_ID2" /></span>
+                    <span class="data_pair">區　　域：<input type="text" class="CustomerFiled Customer_Region" /></span>
+                    <span class="data_pair">城　　市：<input type="text" class="CustomerFiled Customer_City" /></span>
+                    <span class="data_pair">住　　址：<input type="text" class="CustomerFiled Customer_Address" style="width: 70%" /></span>
+                    <span class="data_pair">群　　組：<select class="CustomerFiled Customer_Group""></select></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">銷售資訊</div>
+                <div>
+                    <span class="data_pair">銷售人員：<input type="text" class="CustomerFiled Customer_Marketer" /></span>
+                    <span class="data_pair">主要客服：<input type="text" class="CustomerFiled Customer_AgentID1" /></span>
+                    <span class="data_pair">代理客服：<input type="text" class="CustomerFiled Customer_AgentID2" /></span>
+                    <!--<span class="data_pair"><客戶註記：<input type="text" class="CustomerFiled Customer_EName" /></span>-->
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人1</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact1_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact1_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact1_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact1_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact1_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact1_Email2" /></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人2</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact2_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact2_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact2_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact2_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact2_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact2_Email2" /></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人3</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact3_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact3_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact3_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact3_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact3_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact3_Email2" /></span>
+                </div>
+            </div>
+        </div>
+        <div class="RecordInfo block">
+            <div class="block_title">目前案件</div>
+            <div class="inner_block">
+                <input id="TelphoneRecodSaveButton" class="RecordSave" type="button" value="儲存" />
+                <input id="TelphoneRecodFinishButton" class="RecordFinish" type="button" value="結案" />
+            </div>
+            <div class="inner_block">
+                <div class="inner_block_title">案件基本資料</div>
+                案件編號：<label id="TelphoneRecordRID" class="RecordID"></label><br />
+                案件類型：<label id="TelphoneRecordType" class="RecordType"></label><br />
+                案件狀態：<label id="TelphoneRecordStatus" class="RecordStatus"></label><br />
+                連絡電話：<label id="TelphoneRecordPhoneNum" class="RecordPhoneNum"></label><br />
+                進件時間：<label id="TelphoneRecordIncomingDT" class="RecordIncomingDT"></label><br />
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">案件內容編修</div>
+                處理方式：<select id="TelphoneRecordCloseApproach" class="RecordCloseApproach"></select><br />
+                小　　結：<label id="TelphoneRecordServiceItem" class="RecordServiceItem"></label>
+                <input id="TelphoneRecordServiceItemPicker" class="RecordServiceItemPicker" type="button" value="選擇"><br />
+                案件內容敘述：<br />
+                <textarea id="TelphoneRecordComment" class="RecordComment" style="width: 99%; height: 330px;"></textarea><br />
+            </div>
+        </div>
+        <div class="RecordInfo" style="min-width: 100%; max-width: 100%">
+            <table id="TelphoneRecordRecordLlist" class="RecordListTable"></table>
+        </div>
+    </div>
+
+    <div id="EmailRecord">
+        <div class="CustomerInfo block">
+            <div class="block_title">客戶資料</div>
+            <div class="inner_block">
+                <input id="EmailRecordAddButton" class="CustomerAdd" type="button" value="新增" />
+                <input id="EmailRecordEditButton" class="CustomerEdit" type="button" value="修改" />
+                <input id="EmailRecordConfirmButton" class="CustomerConfirm" type="button" value="確認" /><br />
+                <div id="EmailRecordSearchBar" class="CustomerSearchBar">
+                    <input id="EmailRecordSearchName" type="radio" value="Name" name="search_type" class="CustomerSearchType" checked="checked">姓名
+                    <input id="EmailRecordSearchID2" type="radio" value="ID2" name="search_type" class="CustomerSearchType">證號
+                    <input id="EmailRecordSearchTel" type="radio" value="Tel" name="search_type" class="CustomerSearchType">電話
+                    <input id="EmailRecordSearchEmail" type="radio" value="EMail" name="search_type" class="CustomerSearchType">郵件
+                    <input id="EmailRecordSearchText" type="text" class="CustomerSearchText">
+                    <input id="EmailRecordSearchButton" class="CustomerSearch" type="button" value="搜尋">
+                </div>
+            </div>
+            <div class="inner_block">
+                <div class="inner_block_title">基本資料</div>
+                <div>
+                    <span class="data_pair">中　　文：<input type="text" class="CustomerFiled Customer_CName" /></span>
+                    <span class="data_pair">英　　文：<input type="text" class="CustomerFiled Customer_EName" /></span>
+                    <span class="data_pair">等　　級：@Html.DropDownList("CustomerCategory", (SelectList)ViewBag.CustomerCategory, new { @class = "CustomerFiled Customer_Category"})</span>
+                    <span class="data_pair">證　　號：<input type="text" class="CustomerFiled Customer_ID2" /></span>
+                    <span class="data_pair">區　　域：<input type="text" class="CustomerFiled Customer_Region" /></span>
+                    <span class="data_pair">城　　市：<input type="text" class="CustomerFiled Customer_City" /></span>
+                    <span class="data_pair">住　　址：<input type="text" class="CustomerFiled Customer_Address" style="width: 70%" /></span>
+                    <span class="data_pair">群　　組：<select class="CustomerFiled Customer_Group""></select></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">銷售資訊</div>
+                <div>
+                    <span class="data_pair">銷售人員：<input type="text" class="CustomerFiled Customer_Marketer" /></span>
+                    <span class="data_pair">主要客服：<input type="text" class="CustomerFiled Customer_AgentID1" /></span>
+                    <span class="data_pair">代理客服：<input type="text" class="CustomerFiled Customer_AgentID2" /></span>
+                    <!--<span class="data_pair"><客戶註記：<input type="text" class="CustomerFiled Customer_EName" /></span>-->
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人1</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact1_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact1_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact1_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact1_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact1_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact1_Email2" /></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人2</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact2_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact2_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact2_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact2_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact2_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact2_Email2" /></span>
+                </div>
+            </div>
+
+            <div class="inner_block">
+                <div class="inner_block_title">聯絡人3</div>
+                <div>
+                    <span class="data_pair">名　　稱：<input type="text" class="CustomerFiled Customer_Contact3_Name" /></span>
+                    <span class="data_pair">職　　位：<input type="text" class="CustomerFiled Customer_Contact3_Title" /></span>
+                    <span class="data_pair">主要電話：<input type="text" class="CustomerFiled Customer_Contact3_Tel1" /></span>
+                    <span class="data_pair">次要電話：<input type="text" class="CustomerFiled Customer_Contact3_Tel2" /></span>
+                    <span class="data_pair">主要郵件：<input type="text" class="CustomerFiled Customer_Contact3_Email1" /></span>
+                    <span class="data_pair">次要郵件：<input type="text" class="CustomerFiled Customer_Contact3_Email2" /></span>
+                </div>
+            </div>
+        </div>
+        <div class="RecordInfo block">
+            <div class="block_title">目前案件</div>
+            <div class="inner_block">
+                <input id="EmailRecodSave" class="RecordSave" type="button" value="儲存" />
+                <input id="EmailRecodReject" class="RecodReject" type="button" value="退回" />
+                <input id="EmailRecodReply" class="RecordReply" type="button" value="回覆" />
+                <input id="EmailRecodForward" class="RecordForward" type="button" value="轉寄" />
+                <input id="EmailRecodFinish" class="RecordFinish" type="button" value="結案" />                
+                <input id="EmailRecordBCase" class="RecordBCase" type="button" value="相關案件" />
+            </div>
+            <div class="inner_block">
+                <div class="inner_block_title">案件基本資料</div>
+                案件編號：<label id="EmailRecordRID" class="RecordID"></label><br />
+                案件類型：<label id="EmailRecordType" class="RecordType"></label><br />
+                案件狀態：<label id="EmailRecordStatus" class="RecordStatus"></label><br />
+                處理狀況：
+                <select id="EmailRecordProcessStatus">
+                    <option value="">--請選擇--</option>
+                    <option value="轉經銷商">轉經銷商</option>
+                    <option value="轉第三方等待回音">轉第三方等待回音</option>
+                    <option value="等待客戶回音">等待客戶回音</option>
+                </select>
+                <br />
+                進件時間：<label id="EmailRecordIncomingDT" class="RecordIncomingDT"></label><br />
+                處理期限：<label id="EmailRecordExpireOn" class="RecordExpireOn"></label><br />
+                轉派次數：<label id="EmailRecordAssignCount" class="RecordAssignCount"></label>
+            </div>            
+            <div class="inner_block">
+                <div class="inner_block_title">郵件內容<span id="EmailRecordDraft"></span></div>                
+                <input id="EmailReplyCan" class="ReplyCan" type="button" value="插入回覆範本" style="float:right;" />
+                <input id="EmailRecodSend" class="RecordSend" type="button" value="寄送" style="float:right;" />
+                客戶信箱：<input type="text" id="EmailRecordMsgFrom" class="RecordMsgFrom" size="40" /><br />
+                轉寄名單：<input id="forward" type="text" size="40" /><input id="EmailContacts" class="Contacts" type="button" value="清單" /><br />
+                副本名單：<input id="EmailCC" type="text" size="40" /><br />
+                密件副本：<input id="EmailBCC" type="text" size="40" /><br />                
+                郵件主旨：<input type="text" id="EmailRecordMsgSubject" class="RecordMsgSubject" size="60"  /><span id="EmailRecordMsgSubjectWarn"></span><br />
+                寄送日期：<label id="EmailRecordMsgReceivedOn" class="RecordMsgReceivedOn"></label><br />
+                郵件內容：<br />                
+                <textarea id='EmailRecordMsgBody' name='EmailRecordMsgBody' style="height:196px;"></textarea>
+                郵件附件：<label id="EmailRecordMsgAttachments" class="RecordMsgAttachments"></label><br />
+                草稿附件：<br />
+                <form id="fileupload" method="POST" enctype="multipart/form-data">  
+                    <span>   
+                        <span style="font-family: inherit;"> </span><input id="uploadattach" name="uploadattach" type="file" title="上傳檔案" />  <input type="checkbox" id="mailsignature" name="mailsignature" checked="checked">寄送時,夾帶簽名稱<br>
+                    </span> 
+                </form>                 
+                <div id="uploadfiles"></div>
+            </div>
+            <div class="inner_block">
+                <div class="inner_block_title">案件內容編修</div>
+                處理方式：<select id="EmailRecordCloseApproach" class="RecordCloseApproach"></select><br />
+                小　　結：<label id="EmailRecordServiceItem" class="RecordServiceItem"></label>
+                <input id="EmailRecordServiceItemPicker" class="RecordServiceItemPicker" type="button" value="選擇"><br />
+                案件內容敘述：<br />
+                <textarea id="EmailRecordComment" class="RecordComment" style="width: 99%; height: 180px;"></textarea><br />
+            </div>
+            <div id="dialog-reject" title="退回原因">
+                <input type="radio" name="RejectReason" value="指派錯誤" checked>指派錯誤<br />
+                <input type="radio" name="RejectReason" value="超出能力範圍">超出能力範圍<br />
+                <input type="radio" name="RejectReason" value="非服務內容">非服務內容<br />
+                <input type="radio" name="RejectReason" value="拒絕服務">拒絕服務<br />
+                <br />
+                <input id="EmailRecodRejectConfirm" class="RecodRejectConfirm" type="button" value="送出" />
+            </div>
+            <div id="dialog-modal-reply" title="回覆範本" style="text-align: left;"></div>
+            <div id="dialog-modal-contacts" title="第三方連絡清單" style="text-align: left;"></div>
+            <div id="dialog-modal-forward" title="相關連郵件" style="text-align: left;"></div>
+            <div id="dialog-modal-uploadfiles" title="夾帶檔案" style="text-align: left;"></div>
+        </div>
+        <div class="RecordInfo" style="float: left; min-width: 100%; max-width: 100%">
+            <table id="EmailRecordRecordLlist" class="RecordListTable"></table>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $("#QueryRecordBtnQuery").click(function () {
+                QueryRecord();
+            });
+        })
+    </script>
+    <div id="QueryRecord">
+        <div class="block">
+            <div class="block_title">查詢條件</div>
+            <span class="data_pair"><label>客戶名稱：</label><input id="QueryRecordQueryName"/></span>
+            <span class="data_pair"><label>客戶電話：</label><input id="QueryRecordQueryTel"/></span>
+            <span class="data_pair"><label>客戶郵件：</label><input id="QueryRecordQueryEmail" /></span>
+            <span class="data_pair"><label>客戶證號：</label><input id="QueryRecordQueryID2" /></span>
+            <span class="data_pair"><label>案件編號：</label><input id="QueryRecordQueryRID" /></span>
+            <span class="data_pair"><label>郵件主旨：</label><input id="QueryRecordQuerySubject" /></span>
+            <span class="data_pair"><label>案件類型：</label>
+                <select id="QueryRecordQueryType">
+                    <option value="0"></option>
+                    <option value="1">來電</option>
+                    <option value="2">外撥</option>
+                    <option value="3">郵件</option>
+                </select>
+            </span>
+            <span class="data_pair"><label>案件狀態：</label>
+                <select id="QueryRecordQueryStatus">
+                    <option value="0"></option>
+                    <option value="1">未處理</option>
+                    <option value="2">處理中</option>
+                    <option value="3">已結案</option>
+                </select>
+            </span>
+            <span class="data_pair"><label>進件時間：</label><input id="QueryRecordQueryIncomingDTStart" />至<input id="QueryRecordQueryIncomingDTEnd" /></span>
+            <span class="data_pair"><label>處理方式：</label>
+                <select id="QueryRecordQueryApproach">
+                    <option value="0"></option>
+                    <option value="1">電話處理</option>
+                    <option value="2">郵件處理</option>
+                    <option value="3">遠端處理</option>
+                    <option value="4">到場處理</option>
+                </select>
+            </span>
+            <span class="data_pair"><label>客服人員：</label><input id="QueryRecordQueryAgent" /></span>
+            <input id="QueryRecordBtnQuery" type="button" value="查詢"/>
+        </div>
+        <div id="QueryRecordContent" class="block HorizontalContainer">
+            <div class="block_title">案件內容</div>
+            <div class="inner_block Horizontal" style="width: 39.5%">
+                <div class="inner_block_title">案件基本資料</div>
+                案件編號：<label id="QueryRecordRID" class="RecordID"></label><br />
+                案件類型：<label id="QueryRecordType" class="RecordType"></label><br />
+                案件狀態：<label id="QueryRecordStatus" class="RecordStatus"></label><br />
+                客戶名稱：<label id="QueryRecordCustomer" class="RecordCustomer"></label><br />
+                客服人員：<label id="QueryRecordAgent" class="RecordAgent"></label><br />
+                進件時間：<label id="QueryRecordIncomingDT" class="RecordIncomingDT"></label><br />
+                結案時間：<label id="QueryRecordFinishDT" class="RecordFinishDT"></label><br />
+                小　　結：<label id="QueryRecordServiceItem" class="RecordServiceItem"></label><br />
+                案件描述：<p id="QueryRecordComment" class="RecordComment" style="word-wrap:break-word"></p><br />
+            </div>
+
+            <div class="inner_block Horizontal" style="width: 57%">
+                <div class="inner_block_title">案件詳細內容</div>
+                <div id="QueryRecordDetail" class="RecordDetail">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('#QueryRecordQueryIncomingDTStart').datetimepicker({
+                dateFormat: 'yy/mm/dd',
+                showSecond: true,
+                timeFormat: 'HH:mm:ss'
+            });
+            $('#QueryRecordQueryIncomingDTEnd').datetimepicker({
+                dateFormat: 'yy/mm/dd',
+                showSecond: true,
+                timeFormat: 'HH:mm:ss'
+            });
+        })
+    </script>
+</div>
+
+<div id="ServiceItemPicker">
+    <input id="ServiceItemSubmit" type="button" value="確定"/>
+    <div id="ServiceItemPickerTree"></div>    
+</div>
+
+
+<div id="CusomterSearchResult" title="客戶搜尋結果">
+    <table id="CustomerResultList">
+    </table>
+</div>
+
+<div id="RecordQueryResult" title="案件搜尋結果">
+    <table id="RecordQueryResultList">
+    </table>
+</div>
+
+<div id="HistoryRecordDialog" title="歷史案件內容">
+    <div id="HistoryRecordContent" class="block HorizontalContainer">
+        <div class="block_title">案件內容</div>
+        <div class="inner_block Horizontal" style="width: 40%">
+            <div class="inner_block_title">案件基本資料</div>
+            案件編號：<label id="RecordDetailRID" class="RecordID"></label><br />
+            案件類型：<label id="RecordDetailType" class="RecordType"></label><br />
+            案件狀態：<label id="RecordDetailStatus" class="RecordStatus"></label><br />
+            客戶名稱：<label id="RecordDetailCustomer" class="RecordStatus"></label><br />
+            客服人員：<label id="RecordDetailAgent" class="RecordStatus"></label><br />
+            進件時間：<label id="RecordDetailIncomingDT" class="RecordIncomingDT"></label><br />
+            結案時間：<label id="RecordDetailFinishDT" class="RecordFinishDT"></label><br />
+            小　　結：<label id="RecordDetailServiceItem" class="RecordServiceItem"></label><br />
+            案件描述：<p id="RecordDetailComment" class="RecordComment" style="word-wrap:break-word;"></p><br />
+        </div>
+
+        <div class="inner_block Horizontal" style="width: 54%">
+            <div class="inner_block_title">案件詳細內容</div>
+            <div id="RecordDetailDetail" class="RecordDetail">
+
+            </div>
+        </div>
+    </div>
+</div>

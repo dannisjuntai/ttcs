@@ -1,0 +1,1952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="kskyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="kskyModelStoreContainer">
+          <EntitySet Name="Agent" EntityType="kskyModel.Store.Agent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CTIAgentLog" EntityType="kskyModel.Store.CTIAgentLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerCategory" EntityType="kskyModel.Store.CustomerCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customers" EntityType="kskyModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailAgentWeight" EntityType="kskyModel.Store.EmailAgentWeight" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailContacts" EntityType="kskyModel.Store.EmailContacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailDispatchRule" EntityType="kskyModel.Store.EmailDispatchRule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailFilterRule" EntityType="kskyModel.Store.EmailFilterRule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRawBody" EntityType="kskyModel.Store.EmailRawBody" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRawHeader" EntityType="kskyModel.Store.EmailRawHeader" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRecord" EntityType="kskyModel.Store.EmailRecord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailRejectReason" EntityType="kskyModel.Store.EmailRejectReason" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailReplyCan" EntityType="kskyModel.Store.EmailReplyCan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSavedAttachment" EntityType="kskyModel.Store.EmailSavedAttachment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSavedBody" EntityType="kskyModel.Store.EmailSavedBody" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailScheduleSetting" EntityType="kskyModel.Store.EmailScheduleSetting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSentAttachment" EntityType="kskyModel.Store.EmailSentAttachment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailSentBox" EntityType="kskyModel.Store.EmailSentBox" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MailGroup" EntityType="kskyModel.Store.MailGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MailMember" EntityType="kskyModel.Store.MailMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PhoneRecord" EntityType="kskyModel.Store.PhoneRecord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordCloseApproach" EntityType="kskyModel.Store.RecordCloseApproach" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Records" EntityType="kskyModel.Store.Records" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordServiceMap" EntityType="kskyModel.Store.RecordServiceMap" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordStatus" EntityType="kskyModel.Store.RecordStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecordType" EntityType="kskyModel.Store.RecordType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceGroup" EntityType="kskyModel.Store.ServiceGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceItem" EntityType="kskyModel.Store.ServiceItem" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Customers_CustomerCategory" Association="kskyModel.Store.FK_Customers_CustomerCategory">
+            <End Role="CustomerCategory" EntitySet="CustomerCategory" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent" Association="kskyModel.Store.FK_EmailDispatchRule_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent1" Association="kskyModel.Store.FK_EmailDispatchRule_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent2" Association="kskyModel.Store.FK_EmailDispatchRule_Agent2">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Customers" Association="kskyModel.Store.FK_EmailDispatchRule_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRawBody_EmailRawHeader" Association="kskyModel.Store.FK_EmailRawBody_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRawBody" EntitySet="EmailRawBody" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent" Association="kskyModel.Store.FK_EmailRecord_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent1" Association="kskyModel.Store.FK_EmailRecord_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailRawHeader" Association="kskyModel.Store.FK_EmailRecord_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailSavedBody" Association="kskyModel.Store.FK_EmailRecord_EmailSavedBody">
+            <End Role="EmailSavedBody" EntitySet="EmailSavedBody" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Records" Association="kskyModel.Store.FK_EmailRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneRecord_Records" Association="kskyModel.Store.FK_PhoneRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="PhoneRecord" EntitySet="PhoneRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Customers" Association="kskyModel.Store.FK_Records_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_MailGroup" Association="kskyModel.Store.FK_Records_MailGroup">
+            <End Role="MailGroup" EntitySet="MailGroup" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordCloseApproach" Association="kskyModel.Store.FK_Records_RecordCloseApproach">
+            <End Role="RecordCloseApproach" EntitySet="RecordCloseApproach" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Records" Association="kskyModel.Store.FK_Records_Records">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordStatus" Association="kskyModel.Store.FK_Records_RecordStatus">
+            <End Role="RecordStatus" EntitySet="RecordStatus" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordType" Association="kskyModel.Store.FK_Records_RecordType">
+            <End Role="RecordType" EntitySet="RecordType" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_ServiceItem" Association="kskyModel.Store.FK_Records_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_Records" Association="kskyModel.Store.FK_RecordServiceMap_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_ServiceItem" Association="kskyModel.Store.FK_RecordServiceMap_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceItem_ServiceGroup" Association="kskyModel.Store.FK_ServiceItem_ServiceGroup">
+            <End Role="ServiceGroup" EntitySet="ServiceGroup" />
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="32" />
+          <Property Name="AgentPWD" Type="varchar" MaxLength="8" />
+          <Property Name="VMPWD" Type="varchar" MaxLength="8" />
+          <Property Name="HasVoiceMail" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="64" />
+          <Property Name="GW32" Type="varchar" MaxLength="6" />
+          <Property Name="Authority" Type="int" />
+          <Property Name="CTILoginID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CTILoginPWD" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoLogin" Type="int" />
+          <Property Name="AutoLogout" Type="int" />
+          <Property Name="DefaultExten" Type="varchar" MaxLength="10" />
+          <Property Name="AutoLoginTime" Type="datetime" />
+          <Property Name="AutoLogoutTime" Type="datetime" />
+          <Property Name="LocalDistance" Type="tinyint" />
+          <Property Name="LongDistance" Type="tinyint" />
+          <Property Name="Mobil" Type="tinyint" />
+          <Property Name="International" Type="tinyint" />
+          <Property Name="DialContext" Type="varchar" MaxLength="32" />
+          <Property Name="Active" Type="tinyint" />
+          <Property Name="DeptID" Type="varchar" MaxLength="32" />
+          <Property Name="SMSEnable" Type="tinyint" />
+          <Property Name="FaxEnable" Type="tinyint" />
+          <Property Name="EmailEnable" Type="tinyint" />
+          <Property Name="ChatEnable" Type="tinyint" />
+          <Property Name="GrpRecBoxEnable" Type="tinyint" />
+          <Property Name="EmailIsLogin" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="CTIAgentLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Level" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Message" Type="text" Nullable="false" />
+          <Property Name="LogDT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="EName" Type="nvarchar" MaxLength="128" />
+          <Property Name="Category" Type="int" />
+          <Property Name="ID2" Type="nvarchar" MaxLength="32" />
+          <Property Name="Region" Type="nvarchar" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" MaxLength="256" />
+          <Property Name="Address" Type="nvarchar" MaxLength="256" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Marketer" Type="varchar" MaxLength="64" />
+          <Property Name="AgentID1" Type="nvarchar" MaxLength="64" />
+          <Property Name="AgentID2" Type="nvarchar" MaxLength="64" />
+          <Property Name="GroupID" Type="varchar" MaxLength="32" />
+          <Property Name="Contact1_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact1_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact1_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact1_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Contact2_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact2_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact2_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact2_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Contact3_Name" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Title" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Tel1" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Tel2" Type="nvarchar" MaxLength="16" />
+          <Property Name="Contact3_Email1" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact3_Email2" Type="nvarchar" MaxLength="64" />
+          <Property Name="Contact3_DoSend" Type="char" MaxLength="1" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="64" />
+          <Property Name="ModifiedDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailAgentWeight">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContactGroup" Type="nvarchar(max)" />
+          <Property Name="ContactName" Type="nvarchar(max)" />
+          <Property Name="ContactEmail" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailDispatchRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ConditionType" Type="int" />
+          <Property Name="CustomerId" Type="uniqueidentifier" />
+          <Property Name="Condition" Type="nvarchar(max)" />
+          <Property Name="AgentId1" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="AgentId2" Type="varchar" MaxLength="8" />
+          <Property Name="AgentId3" Type="varchar" MaxLength="8" />
+          <Property Name="ModifyOn" Type="datetime" />
+          <Property Name="ModifyBy" Type="nchar" MaxLength="8" />
+          <Property Name="AutoDispatch" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailFilterRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MsgSubject" Type="nvarchar(max)" />
+          <Property Name="MsgBody" Type="nvarchar(max)" />
+          <Property Name="MsgFrom" Type="nvarchar(max)" />
+          <Property Name="MsgReceivedBy" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRawBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RawHeaderId" Type="int" Nullable="false" />
+          <Property Name="PlaceHolder" Type="nvarchar" MaxLength="2" />
+          <Property Name="CntMedia" Type="nvarchar" MaxLength="20" />
+          <Property Name="CodePage" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="256" />
+          <Property Name="BinaryCnt" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EmailRawHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MsgId" Type="nvarchar(max)" />
+          <Property Name="MsgFrom" Type="nvarchar(max)" />
+          <Property Name="MsgTo" Type="nvarchar(max)" />
+          <Property Name="MsgCc" Type="nvarchar(max)" />
+          <Property Name="MsgBcc" Type="nvarchar(max)" />
+          <Property Name="MsgReplyTo" Type="nvarchar(max)" />
+          <Property Name="MsgReceivedBy" Type="nvarchar(max)" />
+          <Property Name="MsgInReplyTo" Type="nvarchar(max)" />
+          <Property Name="MsgSubject" Type="nvarchar(max)" />
+          <Property Name="MsgSentOn" Type="datetime" Nullable="false" />
+          <Property Name="Completed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RawHeaderId" Type="int" />
+          <Property Name="ExpireOn" Type="datetime" />
+          <Property Name="ReplyOn" Type="datetime" />
+          <Property Name="IncomeOn" Type="datetime" />
+          <Property Name="AssignOn" Type="datetime" />
+          <Property Name="InitAgentId" Type="varchar" MaxLength="8" />
+          <Property Name="CurrAgentId" Type="varchar" MaxLength="8" />
+          <Property Name="AssignCount" Type="int" />
+          <Property Name="Garbage" Type="int" />
+          <Property Name="RejectReason" Type="nvarchar(max)" />
+          <Property Name="ProcessStatus" Type="nvarchar(max)" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="SaveCntIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="ForwardCount" Type="int" />
+          <Property Name="UnRead" Type="int" />
+          <Property Name="MsgSubjectModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailRejectReason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailReplyCan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TempCnt" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSavedAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailRecordId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CntMedia" Type="nvarchar(max)" />
+          <Property Name="CntBody" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EmailSavedBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="CodePage" Type="int" />
+          <Property Name="BodyCnt" Type="varbinary(max)" />
+          <Property Name="SendTo" Type="nvarchar(max)" />
+          <Property Name="Cc" Type="nvarchar(max)" />
+          <Property Name="Bcc" Type="nvarchar(max)" />
+          <Property Name="MailSignature" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailScheduleSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSentAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailRecordId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CntMedia" Type="nvarchar(max)" />
+          <Property Name="CntBody" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EmailSentBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="CodePage" Type="int" />
+          <Property Name="BodyCnt" Type="varbinary(max)" />
+          <Property Name="SendTo" Type="nvarchar(max)" />
+          <Property Name="SentOn" Type="datetime" />
+          <Property Name="SentBy" Type="nvarchar(max)" />
+          <Property Name="MsgSubject" Type="nvarchar(max)" />
+          <Property Name="Cc" Type="nvarchar(max)" />
+          <Property Name="Bcc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MailGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="32" />
+          <Property Name="Mailbox" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="MailMember">
+          <Key>
+            <PropertyRef Name="CTILoginID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="CTILoginID" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="GroupID" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="PhoneRecord">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PhoneNum" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="QueueName" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="IndexID" Type="varchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordCloseApproach">
+          <Key>
+            <PropertyRef Name="ApproachID" />
+          </Key>
+          <Property Name="ApproachID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ApproachName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="AgentID" Type="varchar" MaxLength="8" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="ServiceGroupID" Type="int" />
+          <Property Name="ServiceItemID" Type="int" />
+          <Property Name="CloseApproachID" Type="int" />
+          <Property Name="GroupID" Type="varchar" MaxLength="32" />
+          <Property Name="IncomingDT" Type="datetime" />
+          <Property Name="FinishDT" Type="datetime" />
+          <Property Name="Uniqueid" Type="varchar" MaxLength="20" />
+          <Property Name="QueueName" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordServiceMap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecordStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="RecordType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="ServiceGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="GroupDesc" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="DispNo" Type="int" />
+          <Property Name="DeptID" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="ServiceItem">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ItemDesc" Type="varchar" MaxLength="64" />
+          <Property Name="DispNo" Type="int" />
+          <Property Name="CRM_ID" Type="varbinary" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK_Customers_CustomerCategory">
+          <End Role="CustomerCategory" Type="kskyModel.Store.CustomerCategory" Multiplicity="0..1" />
+          <End Role="Customers" Type="kskyModel.Store.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent1">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent2">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Customers">
+          <End Role="Customers" Type="kskyModel.Store.Customers" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.Store.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRawBody_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="kskyModel.Store.EmailRawHeader" Multiplicity="1" />
+          <End Role="EmailRawBody" Type="kskyModel.Store.EmailRawBody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRawBody">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="InitAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent1">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="CurrAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="kskyModel.Store.EmailRawHeader" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailSavedBody">
+          <End Role="EmailSavedBody" Type="kskyModel.Store.EmailSavedBody" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSavedBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="SaveCntIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Records">
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.Store.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneRecord_Records">
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhoneRecord" Type="kskyModel.Store.PhoneRecord" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="PhoneRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Customers">
+          <End Role="Customers" Type="kskyModel.Store.Customers" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_MailGroup">
+          <End Role="MailGroup" Type="kskyModel.Store.MailGroup" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordCloseApproach">
+          <End Role="RecordCloseApproach" Type="kskyModel.Store.RecordCloseApproach" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordCloseApproach">
+              <PropertyRef Name="ApproachID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CloseApproachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Records">
+          <End Role="Agent" Type="kskyModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordStatus">
+          <End Role="RecordStatus" Type="kskyModel.Store.RecordStatus" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordType">
+          <End Role="RecordType" Type="kskyModel.Store.RecordType" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_ServiceItem">
+          <End Role="ServiceItem" Type="kskyModel.Store.ServiceItem" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="ServiceGroupID" />
+              <PropertyRef Name="ServiceItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_Records">
+          <End Role="Records" Type="kskyModel.Store.Records" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="kskyModel.Store.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_ServiceItem">
+          <End Role="ServiceItem" Type="kskyModel.Store.ServiceItem" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="kskyModel.Store.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceItem_ServiceGroup">
+          <End Role="ServiceGroup" Type="kskyModel.Store.ServiceGroup" Multiplicity="1" />
+          <End Role="ServiceItem" Type="kskyModel.Store.ServiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kskyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Agent" EntityType="kskyModel.Agent" />
+          <EntitySet Name="CTIAgentLog" EntityType="kskyModel.CTIAgentLog" />
+          <EntitySet Name="CustomerCategory" EntityType="kskyModel.CustomerCategory" />
+          <EntitySet Name="Customers" EntityType="kskyModel.Customers" />
+          <EntitySet Name="EmailAgentWeight" EntityType="kskyModel.EmailAgentWeight" />
+          <EntitySet Name="EmailContacts" EntityType="kskyModel.EmailContacts" />
+          <EntitySet Name="EmailDispatchRule" EntityType="kskyModel.EmailDispatchRule" />
+          <EntitySet Name="EmailFilterRule" EntityType="kskyModel.EmailFilterRule" />
+          <EntitySet Name="EmailRawBody" EntityType="kskyModel.EmailRawBody" />
+          <EntitySet Name="EmailRawHeader" EntityType="kskyModel.EmailRawHeader" />
+          <EntitySet Name="EmailRecord" EntityType="kskyModel.EmailRecord" />
+          <EntitySet Name="EmailRejectReason" EntityType="kskyModel.EmailRejectReason" />
+          <EntitySet Name="EmailReplyCan" EntityType="kskyModel.EmailReplyCan" />
+          <EntitySet Name="EmailSavedAttachment" EntityType="kskyModel.EmailSavedAttachment" />
+          <EntitySet Name="EmailSavedBody" EntityType="kskyModel.EmailSavedBody" />
+          <EntitySet Name="EmailScheduleSetting" EntityType="kskyModel.EmailScheduleSetting" />
+          <EntitySet Name="EmailSentAttachment" EntityType="kskyModel.EmailSentAttachment" />
+          <EntitySet Name="EmailSentBox" EntityType="kskyModel.EmailSentBox" />
+          <EntitySet Name="MailGroup" EntityType="kskyModel.MailGroup" />
+          <EntitySet Name="MailMember" EntityType="kskyModel.MailMember" />
+          <EntitySet Name="PhoneRecord" EntityType="kskyModel.PhoneRecord" />
+          <EntitySet Name="RecordCloseApproach" EntityType="kskyModel.RecordCloseApproach" />
+          <EntitySet Name="Records" EntityType="kskyModel.Records" />
+          <EntitySet Name="RecordServiceMap" EntityType="kskyModel.RecordServiceMap" />
+          <EntitySet Name="RecordStatus" EntityType="kskyModel.RecordStatus" />
+          <EntitySet Name="RecordType" EntityType="kskyModel.RecordType" />
+          <EntitySet Name="ServiceGroup" EntityType="kskyModel.ServiceGroup" />
+          <EntitySet Name="ServiceItem" EntityType="kskyModel.ServiceItem" />
+          <AssociationSet Name="FK_EmailDispatchRule_Agent" Association="kskyModel.FK_EmailDispatchRule_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent1" Association="kskyModel.FK_EmailDispatchRule_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Agent2" Association="kskyModel.FK_EmailDispatchRule_Agent2">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent" Association="kskyModel.FK_EmailRecord_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Agent1" Association="kskyModel.FK_EmailRecord_Agent1">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Records" Association="kskyModel.FK_Records_Records">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_CustomerCategory" Association="kskyModel.FK_Customers_CustomerCategory">
+            <End Role="CustomerCategory" EntitySet="CustomerCategory" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailDispatchRule_Customers" Association="kskyModel.FK_EmailDispatchRule_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="EmailDispatchRule" EntitySet="EmailDispatchRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Customers" Association="kskyModel.FK_Records_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRawBody_EmailRawHeader" Association="kskyModel.FK_EmailRawBody_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRawBody" EntitySet="EmailRawBody" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailRawHeader" Association="kskyModel.FK_EmailRecord_EmailRawHeader">
+            <End Role="EmailRawHeader" EntitySet="EmailRawHeader" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_EmailSavedBody" Association="kskyModel.FK_EmailRecord_EmailSavedBody">
+            <End Role="EmailSavedBody" EntitySet="EmailSavedBody" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailRecord_Records" Association="kskyModel.FK_EmailRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="EmailRecord" EntitySet="EmailRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_MailGroup" Association="kskyModel.FK_Records_MailGroup">
+            <End Role="MailGroup" EntitySet="MailGroup" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneRecord_Records" Association="kskyModel.FK_PhoneRecord_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="PhoneRecord" EntitySet="PhoneRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordCloseApproach" Association="kskyModel.FK_Records_RecordCloseApproach">
+            <End Role="RecordCloseApproach" EntitySet="RecordCloseApproach" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordStatus" Association="kskyModel.FK_Records_RecordStatus">
+            <End Role="RecordStatus" EntitySet="RecordStatus" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_RecordType" Association="kskyModel.FK_Records_RecordType">
+            <End Role="RecordType" EntitySet="RecordType" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_ServiceItem" Association="kskyModel.FK_Records_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_Records" Association="kskyModel.FK_RecordServiceMap_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordServiceMap_ServiceItem" Association="kskyModel.FK_RecordServiceMap_ServiceItem">
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+            <End Role="RecordServiceMap" EntitySet="RecordServiceMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceItem_ServiceGroup" Association="kskyModel.FK_ServiceItem_ServiceGroup">
+            <End Role="ServiceGroup" EntitySet="ServiceGroup" />
+            <End Role="ServiceItem" EntitySet="ServiceItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="AgentName" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="AgentPWD" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="VMPWD" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="HasVoiceMail" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="GW32" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="Authority" Type="Int32" />
+          <Property Name="CTILoginID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CTILoginPWD" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoLogin" Type="Int32" />
+          <Property Name="AutoLogout" Type="Int32" />
+          <Property Name="DefaultExten" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="AutoLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="AutoLogoutTime" Type="DateTime" Precision="3" />
+          <Property Name="LocalDistance" Type="Byte" />
+          <Property Name="LongDistance" Type="Byte" />
+          <Property Name="Mobil" Type="Byte" />
+          <Property Name="International" Type="Byte" />
+          <Property Name="DialContext" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Byte" />
+          <Property Name="DeptID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SMSEnable" Type="Byte" />
+          <Property Name="FaxEnable" Type="Byte" />
+          <Property Name="EmailEnable" Type="Byte" />
+          <Property Name="ChatEnable" Type="Byte" />
+          <Property Name="GrpRecBoxEnable" Type="Byte" />
+          <Property Name="EmailIsLogin" Type="Byte" />
+          <NavigationProperty Name="EmailDispatchRule" Relationship="kskyModel.FK_EmailDispatchRule_Agent" FromRole="Agent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailDispatchRule1" Relationship="kskyModel.FK_EmailDispatchRule_Agent1" FromRole="Agent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailDispatchRule2" Relationship="kskyModel.FK_EmailDispatchRule_Agent2" FromRole="Agent" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="EmailRecord" Relationship="kskyModel.FK_EmailRecord_Agent" FromRole="Agent" ToRole="EmailRecord" />
+          <NavigationProperty Name="EmailRecord1" Relationship="kskyModel.FK_EmailRecord_Agent1" FromRole="Agent" ToRole="EmailRecord" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_Records" FromRole="Agent" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="CTIAgentLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="LogDT" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CustomerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Customers" Relationship="kskyModel.FK_Customers_CustomerCategory" FromRole="CustomerCategory" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="EName" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="ID2" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Region" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Marketer" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="AgentID1" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="AgentID2" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="GroupID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Contact1_Name" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_Title" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_Tel1" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_Tel2" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_Email1" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_Email2" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact1_DoSend" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Contact2_Name" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_Title" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_Tel1" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_Tel2" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_Email1" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_Email2" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact2_DoSend" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Contact3_Name" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_Title" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_Tel1" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_Tel2" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_Email1" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_Email2" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Contact3_DoSend" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Modifier" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CustomerCategory" Relationship="kskyModel.FK_Customers_CustomerCategory" FromRole="Customers" ToRole="CustomerCategory" />
+          <NavigationProperty Name="EmailDispatchRule" Relationship="kskyModel.FK_EmailDispatchRule_Customers" FromRole="Customers" ToRole="EmailDispatchRule" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_Customers" FromRole="Customers" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="EmailAgentWeight">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactGroup" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ContactName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ContactEmail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EmailDispatchRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ConditionType" Type="Int32" />
+          <Property Name="CustomerId" Type="Guid" />
+          <Property Name="Condition" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AgentId1" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="AgentId2" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="AgentId3" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+          <Property Name="AutoDispatch" Type="Boolean" />
+          <NavigationProperty Name="Agent" Relationship="kskyModel.FK_EmailDispatchRule_Agent" FromRole="EmailDispatchRule" ToRole="Agent" />
+          <NavigationProperty Name="Agent1" Relationship="kskyModel.FK_EmailDispatchRule_Agent1" FromRole="EmailDispatchRule" ToRole="Agent" />
+          <NavigationProperty Name="Agent2" Relationship="kskyModel.FK_EmailDispatchRule_Agent2" FromRole="EmailDispatchRule" ToRole="Agent" />
+          <NavigationProperty Name="Customers" Relationship="kskyModel.FK_EmailDispatchRule_Customers" FromRole="EmailDispatchRule" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="EmailFilterRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MsgSubject" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgBody" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgFrom" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgReceivedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRawBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RawHeaderId" Type="Int32" Nullable="false" />
+          <Property Name="PlaceHolder" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="CntMedia" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CodePage" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="BinaryCnt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EmailRawHeader" Relationship="kskyModel.FK_EmailRawBody_EmailRawHeader" FromRole="EmailRawBody" ToRole="EmailRawHeader" />
+        </EntityType>
+        <EntityType Name="EmailRawHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MsgId" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgFrom" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgCc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgBcc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgReplyTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgReceivedBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgInReplyTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgSubject" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgSentOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Completed" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmailRawBody" Relationship="kskyModel.FK_EmailRawBody_EmailRawHeader" FromRole="EmailRawHeader" ToRole="EmailRawBody" />
+          <NavigationProperty Name="EmailRecord" Relationship="kskyModel.FK_EmailRecord_EmailRawHeader" FromRole="EmailRawHeader" ToRole="EmailRecord" />
+        </EntityType>
+        <EntityType Name="EmailRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="RawHeaderId" Type="Int32" />
+          <Property Name="ExpireOn" Type="DateTime" Precision="3" />
+          <Property Name="ReplyOn" Type="DateTime" Precision="3" />
+          <Property Name="IncomeOn" Type="DateTime" Precision="3" />
+          <Property Name="AssignOn" Type="DateTime" Precision="3" />
+          <Property Name="InitAgentId" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="CurrAgentId" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="AssignCount" Type="Int32" />
+          <Property Name="Garbage" Type="Int32" />
+          <Property Name="RejectReason" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ProcessStatus" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="SaveCntIn" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ForwardCount" Type="Int32" />
+          <Property Name="UnRead" Type="Int32" />
+          <Property Name="MsgSubjectModifiedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Agent" Relationship="kskyModel.FK_EmailRecord_Agent" FromRole="EmailRecord" ToRole="Agent" />
+          <NavigationProperty Name="Agent1" Relationship="kskyModel.FK_EmailRecord_Agent1" FromRole="EmailRecord" ToRole="Agent" />
+          <NavigationProperty Name="EmailRawHeader" Relationship="kskyModel.FK_EmailRecord_EmailRawHeader" FromRole="EmailRecord" ToRole="EmailRawHeader" />
+          <NavigationProperty Name="EmailSavedBody" Relationship="kskyModel.FK_EmailRecord_EmailSavedBody" FromRole="EmailRecord" ToRole="EmailSavedBody" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_EmailRecord_Records" FromRole="EmailRecord" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="EmailRejectReason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EmailReplyCan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TempCnt" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSavedAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailRecordId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CntMedia" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CntBody" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EmailSavedBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CodePage" Type="Int32" />
+          <Property Name="BodyCnt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SendTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bcc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MailSignature" Type="Int32" />
+          <NavigationProperty Name="EmailRecord" Relationship="kskyModel.FK_EmailRecord_EmailSavedBody" FromRole="EmailSavedBody" ToRole="EmailRecord" />
+        </EntityType>
+        <EntityType Name="EmailScheduleSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSentAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailRecordId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CntMedia" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CntBody" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EmailSentBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CodePage" Type="Int32" />
+          <Property Name="BodyCnt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SendTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SentOn" Type="DateTime" Precision="3" />
+          <Property Name="SentBy" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MsgSubject" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Bcc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MailGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="GroupName" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Mailbox" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_MailGroup" FromRole="MailGroup" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="MailMember">
+          <Key>
+            <PropertyRef Name="CTILoginID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="CTILoginID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="GroupID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PhoneRecord">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="QueueName" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="IndexID" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_PhoneRecord_Records" FromRole="PhoneRecord" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="RecordCloseApproach">
+          <Key>
+            <PropertyRef Name="ApproachID" />
+          </Key>
+          <Property Name="ApproachID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ApproachName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_RecordCloseApproach" FromRole="RecordCloseApproach" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="Records">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerID" Type="Guid" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="AgentID" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServiceGroupID" Type="Int32" />
+          <Property Name="ServiceItemID" Type="Int32" />
+          <Property Name="CloseApproachID" Type="Int32" />
+          <Property Name="GroupID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="IncomingDT" Type="DateTime" Precision="3" />
+          <Property Name="FinishDT" Type="DateTime" Precision="3" />
+          <Property Name="Uniqueid" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="QueueName" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Agent" Relationship="kskyModel.FK_Records_Records" FromRole="Records" ToRole="Agent" />
+          <NavigationProperty Name="Customers" Relationship="kskyModel.FK_Records_Customers" FromRole="Records" ToRole="Customers" />
+          <NavigationProperty Name="EmailRecord" Relationship="kskyModel.FK_EmailRecord_Records" FromRole="Records" ToRole="EmailRecord" />
+          <NavigationProperty Name="MailGroup" Relationship="kskyModel.FK_Records_MailGroup" FromRole="Records" ToRole="MailGroup" />
+          <NavigationProperty Name="PhoneRecord" Relationship="kskyModel.FK_PhoneRecord_Records" FromRole="Records" ToRole="PhoneRecord" />
+          <NavigationProperty Name="RecordCloseApproach" Relationship="kskyModel.FK_Records_RecordCloseApproach" FromRole="Records" ToRole="RecordCloseApproach" />
+          <NavigationProperty Name="RecordStatus" Relationship="kskyModel.FK_Records_RecordStatus" FromRole="Records" ToRole="RecordStatus" />
+          <NavigationProperty Name="RecordType" Relationship="kskyModel.FK_Records_RecordType" FromRole="Records" ToRole="RecordType" />
+          <NavigationProperty Name="ServiceItem" Relationship="kskyModel.FK_Records_ServiceItem" FromRole="Records" ToRole="ServiceItem" />
+          <NavigationProperty Name="RecordServiceMap" Relationship="kskyModel.FK_RecordServiceMap_Records" FromRole="Records" ToRole="RecordServiceMap" />
+        </EntityType>
+        <EntityType Name="RecordServiceMap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_RecordServiceMap_Records" FromRole="RecordServiceMap" ToRole="Records" />
+          <NavigationProperty Name="ServiceItem" Relationship="kskyModel.FK_RecordServiceMap_ServiceItem" FromRole="RecordServiceMap" ToRole="ServiceItem" />
+        </EntityType>
+        <EntityType Name="RecordStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_RecordStatus" FromRole="RecordStatus" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="RecordType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_RecordType" FromRole="RecordType" ToRole="Records" />
+        </EntityType>
+        <EntityType Name="ServiceGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="GroupDesc" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="DispNo" Type="Int32" />
+          <Property Name="DeptID" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ServiceItem" Relationship="kskyModel.FK_ServiceItem_ServiceGroup" FromRole="ServiceGroup" ToRole="ServiceItem" />
+        </EntityType>
+        <EntityType Name="ServiceItem">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="ItemDesc" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="DispNo" Type="Int32" />
+          <Property Name="CRM_ID" Type="Binary" MaxLength="8" FixedLength="false" />
+          <NavigationProperty Name="Records" Relationship="kskyModel.FK_Records_ServiceItem" FromRole="ServiceItem" ToRole="Records" />
+          <NavigationProperty Name="RecordServiceMap" Relationship="kskyModel.FK_RecordServiceMap_ServiceItem" FromRole="ServiceItem" ToRole="RecordServiceMap" />
+          <NavigationProperty Name="ServiceGroup" Relationship="kskyModel.FK_ServiceItem_ServiceGroup" FromRole="ServiceItem" ToRole="ServiceGroup" />
+        </EntityType>
+        <Association Name="FK_EmailDispatchRule_Agent">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent1">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Agent2">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="AgentId3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="InitAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Agent1">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="CurrAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Records">
+          <End Role="Agent" Type="kskyModel.Agent" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_CustomerCategory">
+          <End Role="CustomerCategory" Type="kskyModel.CustomerCategory" Multiplicity="0..1" />
+          <End Role="Customers" Type="kskyModel.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailDispatchRule_Customers">
+          <End Role="Customers" Type="kskyModel.Customers" Multiplicity="0..1" />
+          <End Role="EmailDispatchRule" Type="kskyModel.EmailDispatchRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailDispatchRule">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_Customers">
+          <End Role="Customers" Type="kskyModel.Customers" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRawBody_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="kskyModel.EmailRawHeader" Multiplicity="1" />
+          <End Role="EmailRawBody" Type="kskyModel.EmailRawBody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRawBody">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailRawHeader">
+          <End Role="EmailRawHeader" Type="kskyModel.EmailRawHeader" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailRawHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RawHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_EmailSavedBody">
+          <End Role="EmailSavedBody" Type="kskyModel.EmailSavedBody" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSavedBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="SaveCntIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailRecord_Records">
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="0..1" />
+          <End Role="EmailRecord" Type="kskyModel.EmailRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EmailRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_MailGroup">
+          <End Role="MailGroup" Type="kskyModel.MailGroup" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneRecord_Records">
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhoneRecord" Type="kskyModel.PhoneRecord" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="PhoneRecord">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordCloseApproach">
+          <End Role="RecordCloseApproach" Type="kskyModel.RecordCloseApproach" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordCloseApproach">
+              <PropertyRef Name="ApproachID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="CloseApproachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordStatus">
+          <End Role="RecordStatus" Type="kskyModel.RecordStatus" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_RecordType">
+          <End Role="RecordType" Type="kskyModel.RecordType" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Records_ServiceItem">
+          <End Role="ServiceItem" Type="kskyModel.ServiceItem" Multiplicity="0..1" />
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="ServiceGroupID" />
+              <PropertyRef Name="ServiceItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_Records">
+          <End Role="Records" Type="kskyModel.Records" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="kskyModel.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordServiceMap_ServiceItem">
+          <End Role="ServiceItem" Type="kskyModel.ServiceItem" Multiplicity="1" />
+          <End Role="RecordServiceMap" Type="kskyModel.RecordServiceMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="RecordServiceMap">
+              <PropertyRef Name="GroupID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceItem_ServiceGroup">
+          <End Role="ServiceGroup" Type="kskyModel.ServiceGroup" Multiplicity="1" />
+          <End Role="ServiceItem" Type="kskyModel.ServiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="ServiceItem">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="kskyModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Agent">
+            <EntityTypeMapping TypeName="kskyModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="AgentPWD" ColumnName="AgentPWD" />
+                <ScalarProperty Name="VMPWD" ColumnName="VMPWD" />
+                <ScalarProperty Name="HasVoiceMail" ColumnName="HasVoiceMail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GW32" ColumnName="GW32" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+                <ScalarProperty Name="CTILoginID" ColumnName="CTILoginID" />
+                <ScalarProperty Name="CTILoginPWD" ColumnName="CTILoginPWD" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AutoLogin" ColumnName="AutoLogin" />
+                <ScalarProperty Name="AutoLogout" ColumnName="AutoLogout" />
+                <ScalarProperty Name="DefaultExten" ColumnName="DefaultExten" />
+                <ScalarProperty Name="AutoLoginTime" ColumnName="AutoLoginTime" />
+                <ScalarProperty Name="AutoLogoutTime" ColumnName="AutoLogoutTime" />
+                <ScalarProperty Name="LocalDistance" ColumnName="LocalDistance" />
+                <ScalarProperty Name="LongDistance" ColumnName="LongDistance" />
+                <ScalarProperty Name="Mobil" ColumnName="Mobil" />
+                <ScalarProperty Name="International" ColumnName="International" />
+                <ScalarProperty Name="DialContext" ColumnName="DialContext" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="SMSEnable" ColumnName="SMSEnable" />
+                <ScalarProperty Name="FaxEnable" ColumnName="FaxEnable" />
+                <ScalarProperty Name="EmailEnable" ColumnName="EmailEnable" />
+                <ScalarProperty Name="ChatEnable" ColumnName="ChatEnable" />
+                <ScalarProperty Name="GrpRecBoxEnable" ColumnName="GrpRecBoxEnable" />
+                <ScalarProperty Name="EmailIsLogin" ColumnName="EmailIsLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTIAgentLog">
+            <EntityTypeMapping TypeName="kskyModel.CTIAgentLog">
+              <MappingFragment StoreEntitySet="CTIAgentLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="LogDT" ColumnName="LogDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerCategory">
+            <EntityTypeMapping TypeName="kskyModel.CustomerCategory">
+              <MappingFragment StoreEntitySet="CustomerCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="kskyModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID2" ColumnName="ID2" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Marketer" ColumnName="Marketer" />
+                <ScalarProperty Name="AgentID1" ColumnName="AgentID1" />
+                <ScalarProperty Name="AgentID2" ColumnName="AgentID2" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Contact1_Name" ColumnName="Contact1_Name" />
+                <ScalarProperty Name="Contact1_Title" ColumnName="Contact1_Title" />
+                <ScalarProperty Name="Contact1_Tel1" ColumnName="Contact1_Tel1" />
+                <ScalarProperty Name="Contact1_Tel2" ColumnName="Contact1_Tel2" />
+                <ScalarProperty Name="Contact1_Email1" ColumnName="Contact1_Email1" />
+                <ScalarProperty Name="Contact1_Email2" ColumnName="Contact1_Email2" />
+                <ScalarProperty Name="Contact1_DoSend" ColumnName="Contact1_DoSend" />
+                <ScalarProperty Name="Contact2_Name" ColumnName="Contact2_Name" />
+                <ScalarProperty Name="Contact2_Title" ColumnName="Contact2_Title" />
+                <ScalarProperty Name="Contact2_Tel1" ColumnName="Contact2_Tel1" />
+                <ScalarProperty Name="Contact2_Tel2" ColumnName="Contact2_Tel2" />
+                <ScalarProperty Name="Contact2_Email1" ColumnName="Contact2_Email1" />
+                <ScalarProperty Name="Contact2_Email2" ColumnName="Contact2_Email2" />
+                <ScalarProperty Name="Contact2_DoSend" ColumnName="Contact2_DoSend" />
+                <ScalarProperty Name="Contact3_Name" ColumnName="Contact3_Name" />
+                <ScalarProperty Name="Contact3_Title" ColumnName="Contact3_Title" />
+                <ScalarProperty Name="Contact3_Tel1" ColumnName="Contact3_Tel1" />
+                <ScalarProperty Name="Contact3_Tel2" ColumnName="Contact3_Tel2" />
+                <ScalarProperty Name="Contact3_Email1" ColumnName="Contact3_Email1" />
+                <ScalarProperty Name="Contact3_Email2" ColumnName="Contact3_Email2" />
+                <ScalarProperty Name="Contact3_DoSend" ColumnName="Contact3_DoSend" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedDT" ColumnName="ModifiedDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailAgentWeight">
+            <EntityTypeMapping TypeName="kskyModel.EmailAgentWeight">
+              <MappingFragment StoreEntitySet="EmailAgentWeight">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailContacts">
+            <EntityTypeMapping TypeName="kskyModel.EmailContacts">
+              <MappingFragment StoreEntitySet="EmailContacts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactGroup" ColumnName="ContactGroup" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailDispatchRule">
+            <EntityTypeMapping TypeName="kskyModel.EmailDispatchRule">
+              <MappingFragment StoreEntitySet="EmailDispatchRule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConditionType" ColumnName="ConditionType" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="AgentId1" ColumnName="AgentId1" />
+                <ScalarProperty Name="AgentId2" ColumnName="AgentId2" />
+                <ScalarProperty Name="AgentId3" ColumnName="AgentId3" />
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="AutoDispatch" ColumnName="AutoDispatch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailFilterRule">
+            <EntityTypeMapping TypeName="kskyModel.EmailFilterRule">
+              <MappingFragment StoreEntitySet="EmailFilterRule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MsgSubject" ColumnName="MsgSubject" />
+                <ScalarProperty Name="MsgBody" ColumnName="MsgBody" />
+                <ScalarProperty Name="MsgFrom" ColumnName="MsgFrom" />
+                <ScalarProperty Name="MsgReceivedBy" ColumnName="MsgReceivedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRawBody">
+            <EntityTypeMapping TypeName="kskyModel.EmailRawBody">
+              <MappingFragment StoreEntitySet="EmailRawBody">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RawHeaderId" ColumnName="RawHeaderId" />
+                <ScalarProperty Name="PlaceHolder" ColumnName="PlaceHolder" />
+                <ScalarProperty Name="CntMedia" ColumnName="CntMedia" />
+                <ScalarProperty Name="CodePage" ColumnName="CodePage" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="BinaryCnt" ColumnName="BinaryCnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRawHeader">
+            <EntityTypeMapping TypeName="kskyModel.EmailRawHeader">
+              <MappingFragment StoreEntitySet="EmailRawHeader">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="MsgFrom" ColumnName="MsgFrom" />
+                <ScalarProperty Name="MsgTo" ColumnName="MsgTo" />
+                <ScalarProperty Name="MsgCc" ColumnName="MsgCc" />
+                <ScalarProperty Name="MsgBcc" ColumnName="MsgBcc" />
+                <ScalarProperty Name="MsgReplyTo" ColumnName="MsgReplyTo" />
+                <ScalarProperty Name="MsgReceivedBy" ColumnName="MsgReceivedBy" />
+                <ScalarProperty Name="MsgInReplyTo" ColumnName="MsgInReplyTo" />
+                <ScalarProperty Name="MsgSubject" ColumnName="MsgSubject" />
+                <ScalarProperty Name="MsgSentOn" ColumnName="MsgSentOn" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRecord">
+            <EntityTypeMapping TypeName="kskyModel.EmailRecord">
+              <MappingFragment StoreEntitySet="EmailRecord">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="RawHeaderId" ColumnName="RawHeaderId" />
+                <ScalarProperty Name="ExpireOn" ColumnName="ExpireOn" />
+                <ScalarProperty Name="ReplyOn" ColumnName="ReplyOn" />
+                <ScalarProperty Name="IncomeOn" ColumnName="IncomeOn" />
+                <ScalarProperty Name="AssignOn" ColumnName="AssignOn" />
+                <ScalarProperty Name="InitAgentId" ColumnName="InitAgentId" />
+                <ScalarProperty Name="CurrAgentId" ColumnName="CurrAgentId" />
+                <ScalarProperty Name="AssignCount" ColumnName="AssignCount" />
+                <ScalarProperty Name="Garbage" ColumnName="Garbage" />
+                <ScalarProperty Name="RejectReason" ColumnName="RejectReason" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="SaveCntIn" ColumnName="SaveCntIn" />
+                <ScalarProperty Name="ForwardCount" ColumnName="ForwardCount" />
+                <ScalarProperty Name="UnRead" ColumnName="UnRead" />
+                <ScalarProperty Name="MsgSubjectModifiedBy" ColumnName="MsgSubjectModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailRejectReason">
+            <EntityTypeMapping TypeName="kskyModel.EmailRejectReason">
+              <MappingFragment StoreEntitySet="EmailRejectReason">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailReplyCan">
+            <EntityTypeMapping TypeName="kskyModel.EmailReplyCan">
+              <MappingFragment StoreEntitySet="EmailReplyCan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TempCnt" ColumnName="TempCnt" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSavedAttachment">
+            <EntityTypeMapping TypeName="kskyModel.EmailSavedAttachment">
+              <MappingFragment StoreEntitySet="EmailSavedAttachment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmailRecordId" ColumnName="EmailRecordId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CntMedia" ColumnName="CntMedia" />
+                <ScalarProperty Name="CntBody" ColumnName="CntBody" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSavedBody">
+            <EntityTypeMapping TypeName="kskyModel.EmailSavedBody">
+              <MappingFragment StoreEntitySet="EmailSavedBody">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CodePage" ColumnName="CodePage" />
+                <ScalarProperty Name="BodyCnt" ColumnName="BodyCnt" />
+                <ScalarProperty Name="SendTo" ColumnName="SendTo" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+                <ScalarProperty Name="MailSignature" ColumnName="MailSignature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailScheduleSetting">
+            <EntityTypeMapping TypeName="kskyModel.EmailScheduleSetting">
+              <MappingFragment StoreEntitySet="EmailScheduleSetting">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSentAttachment">
+            <EntityTypeMapping TypeName="kskyModel.EmailSentAttachment">
+              <MappingFragment StoreEntitySet="EmailSentAttachment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmailRecordId" ColumnName="EmailRecordId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CntMedia" ColumnName="CntMedia" />
+                <ScalarProperty Name="CntBody" ColumnName="CntBody" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSentBox">
+            <EntityTypeMapping TypeName="kskyModel.EmailSentBox">
+              <MappingFragment StoreEntitySet="EmailSentBox">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CodePage" ColumnName="CodePage" />
+                <ScalarProperty Name="BodyCnt" ColumnName="BodyCnt" />
+                <ScalarProperty Name="SendTo" ColumnName="SendTo" />
+                <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="MsgSubject" ColumnName="MsgSubject" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailGroup">
+            <EntityTypeMapping TypeName="kskyModel.MailGroup">
+              <MappingFragment StoreEntitySet="MailGroup">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailMember">
+            <EntityTypeMapping TypeName="kskyModel.MailMember">
+              <MappingFragment StoreEntitySet="MailMember">
+                <ScalarProperty Name="CTILoginID" ColumnName="CTILoginID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneRecord">
+            <EntityTypeMapping TypeName="kskyModel.PhoneRecord">
+              <MappingFragment StoreEntitySet="PhoneRecord">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="QueueName" ColumnName="QueueName" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordCloseApproach">
+            <EntityTypeMapping TypeName="kskyModel.RecordCloseApproach">
+              <MappingFragment StoreEntitySet="RecordCloseApproach">
+                <ScalarProperty Name="ApproachID" ColumnName="ApproachID" />
+                <ScalarProperty Name="ApproachName" ColumnName="ApproachName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="kskyModel.Records">
+              <MappingFragment StoreEntitySet="Records">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ServiceGroupID" ColumnName="ServiceGroupID" />
+                <ScalarProperty Name="ServiceItemID" ColumnName="ServiceItemID" />
+                <ScalarProperty Name="CloseApproachID" ColumnName="CloseApproachID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="IncomingDT" ColumnName="IncomingDT" />
+                <ScalarProperty Name="FinishDT" ColumnName="FinishDT" />
+                <ScalarProperty Name="Uniqueid" ColumnName="Uniqueid" />
+                <ScalarProperty Name="QueueName" ColumnName="QueueName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordServiceMap">
+            <EntityTypeMapping TypeName="kskyModel.RecordServiceMap">
+              <MappingFragment StoreEntitySet="RecordServiceMap">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordStatus">
+            <EntityTypeMapping TypeName="kskyModel.RecordStatus">
+              <MappingFragment StoreEntitySet="RecordStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordType">
+            <EntityTypeMapping TypeName="kskyModel.RecordType">
+              <MappingFragment StoreEntitySet="RecordType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceGroup">
+            <EntityTypeMapping TypeName="kskyModel.ServiceGroup">
+              <MappingFragment StoreEntitySet="ServiceGroup">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupDesc" ColumnName="GroupDesc" />
+                <ScalarProperty Name="DispNo" ColumnName="DispNo" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceItem">
+            <EntityTypeMapping TypeName="kskyModel.ServiceItem">
+              <MappingFragment StoreEntitySet="ServiceItem">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="DispNo" ColumnName="DispNo" />
+                <ScalarProperty Name="CRM_ID" ColumnName="CRM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,72 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ERecords
+
+@{
+    TTCS.Areas.EmailSrv.Models.EmailAdmin_SearchCondition searchcondition = (TTCS.Areas.EmailSrv.Models.EmailAdmin_SearchCondition)ViewBag.SearchCondition;
+    string strAction = "Index";
+    if (ViewBag.Source != null)
+    {
+        if ((string)ViewBag.Source == "1")
+        {
+            strAction = "IndexWait";
+        }
+    }
+
+    string strType = "1";
+    if (searchcondition.type != null && searchcondition.type.Length > 0)
+    {
+        strType = searchcondition.type;
+    }
+}
+
+
+@using (Html.BeginForm(strAction, "EmailAdmin", FormMethod.Get))
+{
+    <fieldset>
+        <legend>查詢條件</legend>
+            @Html.RadioButton("searchcondition.type", "1", strType == "1")@Html.DisplayNameFor(model => model.AgentID)
+            @Html.RadioButton("searchcondition.type", "2", strType == "2")@Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().EmailRawHeader.MsgFrom)
+            @Html.RadioButton("searchcondition.type", "3", strType == "3")@Html.DisplayNameFor(model => model.RID)
+
+        @Html.TextBoxFor(x => searchcondition.condition)
+        <input type="submit" id="search" value="查詢" class="button" /><br />
+
+        @if ((string)ViewBag.Source == "0")
+        {
+            @Html.HiddenFor(x => searchcondition.Filter_Record_TypeID)
+            @Html.HiddenFor(x => searchcondition.Filter_Record_StatusID)
+
+            @Html.CheckBox("chkStatus", searchcondition.Filter_Record_StatusID.Contains("1"), new { @value = "1" }) @:未處理
+            @Html.CheckBox("chkStatus", searchcondition.Filter_Record_StatusID.Contains("2"), new { @value = "2" }) @:處理中
+            @Html.CheckBox("chkStatus", searchcondition.Filter_Record_StatusID.Contains("3"), new { @value = "3" }) @:已結案
+                        
+            @Html.CheckBox("chkType", searchcondition.Filter_Record_TypeID.Contains("1"), new { @value = "1" }) @:來電
+            @Html.CheckBox("chkType", searchcondition.Filter_Record_TypeID.Contains("2"), new { @value = "2" }) @:外撥
+            @Html.CheckBox("chkType", searchcondition.Filter_Record_TypeID.Contains("3"), new { @value = "3" }) @:郵件
+        }
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#search').click(function (e) {
+            var chkStatusIDs = "";
+            var chkTypeIDs = "";
+            $('input[name="chkStatus"]:checked').each(function () {
+                chkStatusIDs += "," + this.value;
+            });
+            $('input[name="chkType"]:checked').each(function () {
+                chkTypeIDs += "," + this.value;
+            });
+
+            if (chkStatusIDs.length > 0)
+                chkStatusIDs = chkStatusIDs.substr(1, chkStatusIDs.length - 1);
+
+            if (chkTypeIDs.length > 0)
+                chkTypeIDs = chkTypeIDs.substr(1, chkTypeIDs.length - 1);
+
+            $('#searchcondition_Filter_Record_TypeID').val(chkTypeIDs);
+            $('#searchcondition_Filter_Record_StatusID').val(chkStatusIDs.length < 1? "0": chkStatusIDs);
+            return true;
+        });
+    });
+</script>

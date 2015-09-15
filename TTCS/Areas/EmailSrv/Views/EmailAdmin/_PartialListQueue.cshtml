@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailRecord>
+
+@{
+    SelectList serviceitem = ViewBag.ServiceItem;
+}
+<a href="@Url.Action("DeleteAllGarbage", "EmailAdmin")">
+    <input id="btnDeleteAll" type="button" value="刪除所有標示垃圾郵件" style="float: right;">
+</a>
+<br />
+
+<table class="table_view">
+    <tr>
+        <th>郵件
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailRawHeader.MsgFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailRawHeader.MsgSubject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Garbage)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBegin++;        
+        <tr Class="rows" id="@item.Id">
+            <td>@ViewBag.NumberBegin</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailRawHeader.MsgFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailRawHeader.MsgSubject)
+            </td>
+            <td>
+                @if (item.Garbage != null && item.Garbage.Value > 0)
+                {
+                    @:垃圾
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $(".rows").click(function (e) {
+            window.location = '@Url.Action("DetailQueue", "EmailAdmin")' + '?id=' + escape(e.target.parentElement.id);
+        });
+
+        $("#btnDeleteAll").click(function (e) {
+            var c = confirm("確定刪除所有標示為 '垃圾' 之郵件?");
+            return c;
+        });
+    });
+</script>
+

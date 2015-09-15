@@ -1,0 +1,50 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ERecords
+
+@Html.ActionLink("返回", "Index")
+<table class="table_detail">
+    <tr>
+        <td class="fieldname">@Html.DisplayNameFor(model => model.RID)</td>
+        <td>
+            @Html.DisplayFor(model => model.RID)
+        </td>
+    </tr>
+    <tr>
+        <td class="fieldname">@Html.DisplayNameFor(model => model.IncomingDT)</td>
+        <td>
+            @if (Model.IncomingDT != null)
+            {
+                @Model.IncomingDT.Value.ToString("yyyy/MM/dd HH:mm:ss")
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="fieldname">@Html.DisplayNameFor(model => model.FinishDT)</td>
+        <td>
+            @if (Model.FinishDT != null)
+            {
+                @Model.FinishDT.Value.ToString("yyyy/MM/dd HH:mm:ss")
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="fieldname">處理方式</td>
+        <td>
+            @if (Model.RecordCloseApproach != null)
+            {
+                @Model.RecordCloseApproach.ApproachName
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="fieldname">@Html.DisplayNameFor(model => model.AgentID)</td>
+        <td>
+            @Model.EAgent.AgentName
+        </td>
+    </tr>
+    <tr>
+        <td class="fieldname">@Html.DisplayNameFor(model => model.ServiceItemID)</td>
+        <td colspan="3">
+            <label id="servicenames">@ViewBag.ServiceItemNames</label>
+        </td>
+    </tr>
+</table>

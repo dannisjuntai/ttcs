@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailContacts>
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">序
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.ContactGroup)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.ContactEmail)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBegin++;
+        <tr Class="rows" id="@item.Id">
+            <td>@ViewBag.NumberBegin</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+            <td>
+                @item.ContactEmail
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        ElementsStatus(-1);
+        $(".rows").click(function (e) {
+            ElementsStatus(0);
+            GetDetailInfo(escape(e.target.parentElement.id), e.target.parentElement.firstElementChild.innerHTML)
+        });
+    });
+
+    function GetDetailInfo(ContactID, num) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ContactDetail", "EmailContacts")',
+            data: "id=" + ContactID,
+            datatype: "html",
+            cache: false,
+            success: function (result) {
+                ShowDetail(num, ContactID, result.ContactGroup, result.ContactName, result.ContactEmail);
+            },
+            error: function (jqXHR, statud, msg) {
+                alert("error");
+            }
+        });
+    };
+</script>

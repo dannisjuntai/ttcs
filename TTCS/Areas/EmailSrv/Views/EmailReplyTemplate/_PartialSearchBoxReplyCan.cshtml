@@ -1,0 +1,12 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailReplyCan
+
+@using (Html.BeginForm("Index", "EmailReplyTemplate", FormMethod.Get))
+{
+    <fieldset>
+        <legend>查詢條件</legend>
+        @Html.DisplayNameFor(model => model.Name)
+        @Html.TextBox("condition", (string)ViewBag.ConditionReplyCan)
+        @Html.Hidden("type", "1")
+        <input type="submit" value="查詢" class="button" />
+    </fieldset>
+}

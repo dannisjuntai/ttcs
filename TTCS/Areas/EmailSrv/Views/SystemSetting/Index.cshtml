@@ -1,0 +1,69 @@
+﻿@model TTCS.Areas.EmailSrv.Models.SystemSetting
+
+@{
+    ViewBag.Title = "參數設定";
+}
+<table class="table_div">
+    <tr>
+        <td class="column50_title">退回原因
+        </td>
+        <td class="seperate"></td>
+        <td class="column50" rowspan="5">
+            @Html.Partial("_PartialScheduleSetting", Model.EmailScheduleSetting)
+        </td>
+    </tr>
+    <tr>
+        <td class="column50">
+            @Html.Partial("_PartialRejectReason", Model.EmailRejectReason)
+        </td>
+        <td class="seperate"></td>
+    </tr>
+    <tr style="height: 10px;">
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+        <td class="column50_title">結案處理方式
+        </td>
+        <td class="seperate"></td>
+    </tr>
+    <tr>
+        <td class="column50">
+            @Html.Partial("_PartialCloseApproach", Model.RecordCloseApproach)
+        </td>
+        <td class="seperate"></td>
+    </tr>
+</table>
+
+
+@section Scripts {
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.cleditor.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function () {
+            $('#SystemSetting_Index').addClass('current');
+            $.ajaxSetup({ cache: false });
+        });
+
+        
+        
+        
+
+       
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+            
+    </script>
+}

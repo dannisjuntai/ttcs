@@ -1,0 +1,210 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailFilterRule
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <input type="button" id="new" name="new" class="buttonleft" value="新增" />
+    <input type="submit" id="delete" name="delete" class="buttonright" value="刪除" disabled="disabled" />
+    <input type="button" id="edit" name="edit" class="buttonright" value="編輯" disabled="disabled" />
+    <table class="table_detail">
+        <tr>
+            <td class="fieldname">規則</td>
+            <td>
+                <label id="No"></label>
+                <span id="errmsg" style="color: red;"></span>
+                @Html.Hidden("originalNo", "")
+                @Html.Hidden("NextNo", (object)(ViewBag.NumberMax + 1))
+                @Html.HiddenFor(model => model.Id)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.MsgSubject)</td>
+            <td>
+                @Html.TextBoxFor(model => model.MsgSubject)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.MsgFrom)</td>
+            <td>
+                @Html.TextBoxFor(model => model.MsgFrom)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.MsgReceivedBy)</td>
+            <td>
+                @Html.TextBoxFor(model => model.MsgReceivedBy)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.MsgBody)</td>
+            <td>
+                @Html.TextBoxFor(model => model.MsgBody, new { @disabled = "true" })
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.Active)</td>
+            <td>
+                @Html.CheckBoxFor(model => model.Active)
+                @Html.ValidationMessageFor(model => model.Active)
+            </td>
+        </tr>
+    </table>
+    <div class="center">
+        <input type="submit" id="save" name="save" value="儲存" class="button" style="display: none;" />
+        <input type="button" id="cancel" name="cancel" class="button" value="取消" style="display: none;" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#new").click(function (e) {
+            ElementsStatus(1);
+            ShowDetail($('#NextNo').val(), 0, "", "", "", "", 1);
+        });
+
+        $("#edit").click(function (e) {
+            ElementsStatus(2);
+            $('#save').val("儲存變更");
+        });
+
+        $("#delete").click(function (e) {
+            ElementsStatus(3);
+            var c = confirm("確定要刪除嗎?");
+            if (c == true) {
+                $('#Id').val(0 - $('#Id').val());
+            } else {
+                $("#delete").attr("disabled", false);
+            }
+
+            return c;
+        });
+
+        $("#cancel").click(function (e) {
+            ElementsStatus(4);
+            GetDetailInfo($('#Id').val(), $('#originalNo').val());
+        });
+
+        $("#save").click(function (e) {
+            if ($('#MsgSubject').val().length < 1 &&
+                $('#MsgFrom').val().length < 1 &&
+                $('#MsgReceivedBy').val().length < 1 &&
+                $('#MsgBody').val().length < 1) {
+                $("#errmsg").text("請輸入任一過濾欄位值");
+                return false;
+            }
+            if ($('#No').text() == $('#NextNo').val()) {
+                $('#Id').val(0);
+            }
+            return true;
+        });
+    });
+
+    function EnableAllElements() {
+        $("#new").show();
+        $("#edit").show();
+        $("#delete").show();
+        $("#save").show();
+        $("#cancel").show();
+
+        $("#new").attr("disabled", false);
+        $("#edit").attr("disabled", false);
+        $("#delete").attr("disabled", false);
+        $("#save").attr("disabled", false);
+        $("#cancel").attr("disabled", false);
+
+        $('#MsgSubject').attr("disabled", false);
+        $('#MsgFrom').attr("disabled", false);
+        $('#MsgReceivedBy').attr("disabled", false);
+        $('#MsgBody').attr("disabled", false);
+        $('#Active').attr("disabled", false);
+    };
+
+    function ElementsStatus(nMode) {
+        resetValidation();
+        EnableAllElements();
+        if (nMode == 1) {
+            // New
+            $("#edit").hide();
+            $("#delete").hide();
+            $("#new").attr("disabled", true);
+        } else if (nMode == 2) {
+            // Edit
+            $("#edit").attr("disabled", true);
+        } else if (nMode == 3) {
+            // Delete
+            $("#save").hide();
+            $("#cancel").hide();
+            $("#delete").attr("disabled", true);
+
+            $('#MsgSubject').attr("disabled", true);
+            $('#MsgFrom').attr("disabled", true);
+            $('#MsgReceivedBy').attr("disabled", true);
+            $('#MsgBody').attr("disabled", true);
+            $('#Active').attr("disabled", true);
+        } else if (nMode == 0) {
+            // Click
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $('#MsgSubject').attr("disabled", true);
+            $('#MsgFrom').attr("disabled", true);
+            $('#MsgReceivedBy').attr("disabled", true);
+            $('#MsgBody').attr("disabled", true);
+            $('#Active').attr("disabled", true);
+
+        } else if (nMode == 4 && $('#Id').val().length > 0 && $('#Id').val() != "0") {
+            //Cancel(Edit)
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+
+            $('#MsgSubject').attr("disabled", true);
+            $('#MsgFrom').attr("disabled", true);
+            $('#MsgReceivedBy').attr("disabled", true);
+            $('#MsgBody').attr("disabled", true);
+            $('#Active').attr("disabled", true);
+        } else {
+            // Init, Cancel(New) or Unknown
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+            $("#edit").attr("disabled", true);
+            $("#delete").attr("disabled", true);
+
+            $('#MsgSubject').attr("disabled", true);
+            $('#MsgFrom').attr("disabled", true);
+            $('#MsgReceivedBy').attr("disabled", true);
+            $('#MsgBody').attr("disabled", true);
+            $('#Active').attr("disabled", true);
+        }
+
+    };
+
+    function ShowDetail(nNo, nFilterID, strMsgSubject, strMsgFrom, strMsgReceivedBy, strMsgBody, nActive) {
+        $('#No').text(nNo);
+        if (nFilterID != 0) {
+            $('#originalNo').val(nNo);
+            $('#Id').val(nFilterID);
+        }
+
+        $('#MsgSubject').val(strMsgSubject);
+        $('#MsgFrom').val(strMsgFrom);
+        $('#MsgReceivedBy').val(strMsgReceivedBy);
+        $('#MsgBody').val(strMsgBody);
+
+        if (nActive > 0 || nActive == true) {
+            $('#Active').prop('checked', true);
+        } else {
+            $('#Active').prop('checked', false);
+        }
+    };
+
+    function resetValidation() {
+        $("#errmsg").text("");
+    };
+</script>

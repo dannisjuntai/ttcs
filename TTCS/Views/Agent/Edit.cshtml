@@ -1,0 +1,253 @@
+﻿@model TTCS.Models.Agent
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Agent</legend>
+
+        @Html.HiddenFor(model => model.AgentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgentName)
+            @Html.ValidationMessageFor(model => model.AgentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentPWD)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgentPWD)
+            @Html.ValidationMessageFor(model => model.AgentPWD)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VMPWD)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VMPWD)
+            @Html.ValidationMessageFor(model => model.VMPWD)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HasVoiceMail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HasVoiceMail)
+            @Html.ValidationMessageFor(model => model.HasVoiceMail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GW32)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GW32)
+            @Html.ValidationMessageFor(model => model.GW32)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Authority)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Authority)
+            @Html.ValidationMessageFor(model => model.Authority)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CTILoginID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CTILoginID)
+            @Html.ValidationMessageFor(model => model.CTILoginID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CTILoginPWD)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CTILoginPWD)
+            @Html.ValidationMessageFor(model => model.CTILoginPWD)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AutoLogin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AutoLogin)
+            @Html.ValidationMessageFor(model => model.AutoLogin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AutoLogout)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AutoLogout)
+            @Html.ValidationMessageFor(model => model.AutoLogout)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DefaultExten)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DefaultExten)
+            @Html.ValidationMessageFor(model => model.DefaultExten)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AutoLoginTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AutoLoginTime)
+            @Html.ValidationMessageFor(model => model.AutoLoginTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AutoLogoutTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AutoLogoutTime)
+            @Html.ValidationMessageFor(model => model.AutoLogoutTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LocalDistance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LocalDistance)
+            @Html.ValidationMessageFor(model => model.LocalDistance)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LongDistance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LongDistance)
+            @Html.ValidationMessageFor(model => model.LongDistance)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mobil)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Mobil)
+            @Html.ValidationMessageFor(model => model.Mobil)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.International)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.International)
+            @Html.ValidationMessageFor(model => model.International)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DialContext)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DialContext)
+            @Html.ValidationMessageFor(model => model.DialContext)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DeptID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeptID)
+            @Html.ValidationMessageFor(model => model.DeptID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SMSEnable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SMSEnable)
+            @Html.ValidationMessageFor(model => model.SMSEnable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FaxEnable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FaxEnable)
+            @Html.ValidationMessageFor(model => model.FaxEnable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailEnable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailEnable)
+            @Html.ValidationMessageFor(model => model.EmailEnable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChatEnable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChatEnable)
+            @Html.ValidationMessageFor(model => model.ChatEnable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GrpRecBoxEnable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GrpRecBoxEnable)
+            @Html.ValidationMessageFor(model => model.GrpRecBoxEnable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailIsLogon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailIsLogon)
+            @Html.ValidationMessageFor(model => model.EmailIsLogon)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

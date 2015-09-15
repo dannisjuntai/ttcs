@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/EmailSrvSite.css" rel="stylesheet" />
+    <link href="~/Content/EmailSrvTable.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+</head>
+<body>
+    <div id="body">
+        <div id="container">
+
+            <div id="sitename">
+                <h1>電子郵件管理模組</h1>
+                <div style="float: right;">
+                    @if (HttpContext.Current.User != null &&
+                    HttpContext.Current.User.Identity.IsAuthenticated &&
+                    HttpContext.Current.User.Identity is FormsIdentity)
+                    { 
+                        @:歡迎，@HttpContext.Current.User.Identity.Name.Split('|')[0] @Html.ActionLink("登出", "LogOff", "Account")
+                    }
+                </div>
+            </div>
+
+            <div id="mainmenu">
+                @if (ViewBag.IsLogin == null || (int)ViewBag.IsLogin != 1)
+                {
+                    <ul>
+                        <li>@Html.ActionLink("案件總覽", "Index", "EmailAdmin", null, new { @id = "EmailAdmin_Index" })</li>
+                        <li>@Html.ActionLink("案件(待轉派)", "IndexWait", "EmailAdmin", null, new { @id = "EmailAdmin_IndexWait" })</li>
+                        <li>@Html.ActionLink("案件(未指派)", "IndexQueue", "EmailAdmin", null, new { @id = "EmailAdmin_IndexQueue" })</li>
+                        <li>@Html.ActionLink("客戶派送設定", "Index", "Customers", null, new { @id = "Customers_Index" })</li>
+                        <li>@Html.ActionLink("派送管理", "Index", "EmailDispatchRule", null, new { @id = "EmailDispatchRule_Index" })</li>
+                        <li>@Html.ActionLink("郵件過濾設定", "Index", "EmailFilterRule", null, new { @id = "EmailFilterRule_Index" })</li>
+                        <li>@Html.ActionLink("第三方連絡清單", "Index", "EmailContacts", null, new { @id = "EmailContacts_Index" })</li>
+                        <li>@Html.ActionLink("參數設定", "Index", "SystemSetting", null, new { @id = "SystemSetting_Index" })</li>
+                        <li>@Html.ActionLink("回覆範本設定", "Index", "EmailReplyTemplate", null, new { @id = "EmailReplyTemplate_Index" })</li>
+                        <li>@Html.ActionLink("客戶管理", "Index", "CustomersManagement", null, new { @id = "Customers_Management_Index" })</li>
+                        <li>@Html.ActionLink("等級管理", "Index", "CustomerCategory", null, new { @id = "Customers_Category_Index" })</li>
+                    </ul>
+                }
+            </div>
+
+            <div id="wrap">
+                @RenderBody()
+            </div>
+            <div id="footer">&copy; @DateTime.Now.Year - 言智科技股份有限公司</div>
+        </div>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

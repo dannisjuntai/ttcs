@@ -1,0 +1,18 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailFilterRule
+
+@{
+    int nType = Convert.ToInt32((string)ViewBag.Type);    
+}
+
+@using (Html.BeginForm("Index", "EmailFilterRule", FormMethod.Get))
+{
+    <fieldset>
+        <legend>查詢條件</legend>
+        @Html.RadioButton("type", "1", nType == 1)@Html.DisplayNameFor(model => model.MsgFrom)
+        @Html.RadioButton("type", "2", nType == 2)@Html.DisplayNameFor(model => model.MsgReceivedBy)
+        @Html.RadioButton("type", "3", nType == 3)@Html.DisplayNameFor(model => model.MsgSubject)
+        @Html.RadioButton("type", "4", nType == 4)@Html.DisplayNameFor(model => model.MsgBody)
+        @Html.TextBox("condition", (string)ViewBag.Condition)
+        <input type="submit" value="查詢" class="button" />
+    </fieldset>
+}

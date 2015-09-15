@@ -1,0 +1,135 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailReplyCan>
+@using PagedList.Mvc;
+
+<input id="variables" name="variables" type="button" class="buttonright" value="範本變數" />
+<input type="button" id="newReplyCan" class="buttonright" value="新增範本" />
+
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">編號
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.TempCnt)
+        </th>
+        <th class="zhlen2">
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBeginReplyCan++;
+        <tr Class="rowsReply" id="@item.Id">
+            <td>
+                @ViewBag.NumberBeginReplyCan
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.TmpContent.Length > 10)
+                {
+                    @item.TmpContent.Substring(0, 10) @:...
+                }
+                else
+                {
+                    @item.TmpContent
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="div_center">
+    @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { page = page, type = "1", condition = ViewBag.ConditionReplyCan }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+</div>
+
+<div id="dialog-modal-variable" title="範本變數設定" style="text-align: left;"></div>
+<div id="dialog-modal-reply" title="回覆範本設定" style="text-align: left;"></div>
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.cleditor.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/jqueryui")
+
+<script type="text/javascript">
+    $(function () {
+        $("#dialog-modal-variable").dialog({
+            autoOpen: false,
+            width: 400,
+            height: 350,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $("#variables").click(function (e) {
+            $.ajax({
+                url: '@Url.Action("_PartialTemplateVariable", "EmailReplyTemplate")',
+                type: 'Get',
+                data: "",
+                datatype: "html",
+                cache: false,
+                success: function (data) {
+                    $("#dialog-modal-variable").dialog("open");
+                    $("#dialog-modal-variable").empty().append(data);
+                },
+                error: function () {
+                    alert("something seems wrong");
+                }
+            });
+        });
+
+        //----------------------------------------------------
+        $("#dialog-modal-reply").dialog({
+            autoOpen: false,
+            width: 800,
+            height: 550
+        });
+
+        $(".rowsReply").click(function (e) {
+            OpenReplyDialog(escape(e.target.parentElement.id));
+        });
+
+        //-----------------------------------
+        $("#newReplyCan").click(function () {
+            OpenReplyDialog("0");
+        });
+    });
+
+    function OpenReplyDialog(ReplyId) {
+        $.ajax({
+            url: '@Url.Action("_PartialOpenPopupReply", "EmailReplyTemplate")',
+            type: 'Get',
+            data: "id=" + ReplyId,
+            datatype: "html",
+            cache: false,
+            success: function (data) {                
+                $("#dialog-modal-reply").dialog("open");
+                $("#dialog-modal-reply").empty().append(data);
+                $.validator.unobtrusive.parse("#dialog-modal-reply");
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+    };
+</script>

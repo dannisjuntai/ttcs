@@ -1,0 +1,64 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailAgentWeight
+
+<fieldset>
+    <legend></legend>
+
+    <div class="editor-label">
+        @Html.HiddenFor(model => model.AgentId)
+    </div>
+    <div class="editor-field">
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.AgentName)：
+        @Html.EditorFor(model => model.Weight)
+        <span id="erragentweight" style="color: red;"></span>
+    </div>
+    <div class="editor-field">
+    </div>
+    <p>
+        <input id="saveagentweight" type="submit" value="儲存" />
+    </p>
+</fieldset>
+<script type="text/javascript">
+    $("#saveagentweight").click(function (e) {
+        if ($("#Weight").val() < 1) {
+            $("#erragentweight").text("權重必需大於等於1");
+            return false;
+        }
+        $("#dialog-modal-agentweightdetail").dialog("close");
+
+        $.ajax({
+            url: '@Url.Action("_PartialOpenPopupAgentWeightDetail", "SystemSetting")',
+            type: 'POST',
+            data: "id=" + escape($('#AgentId').val()) + "&weight=" + escape($('#Weight').val()),
+            datatype: "html",
+            cache: false,
+            success: function (data) {
+                $("#dialog-modal-agentweight").empty().append(data);
+                $(".rowsAgentWeight").click(function (e) {
+                    $.ajax({
+                        url: '@Url.Action("_PartialOpenPopupAgentWeightDetail", "SystemSetting")',
+                        type: 'Get',
+                        data: "id=" + escape(e.target.parentElement.id),
+                        datatype: "html",
+                        cache: false,
+                        success: function (data) {
+                            $("#dialog-modal-agentweightdetail").dialog("open");
+                            $("#dialog-modal-agentweightdetail").empty().append(data);
+                        },
+                        error: function () {
+                            alert("something seems wrong");
+                        }
+                    });
+
+                });
+
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+        return true;
+    });
+</script>

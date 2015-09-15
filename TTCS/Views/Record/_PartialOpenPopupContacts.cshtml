@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TTCS.Models.EmailContacts>
+
+@{
+    int nNumber = 0;
+    string group = "";
+}
+
+@foreach (var item in Model)
+{
+
+    if (nNumber < 1)
+    {
+        @Html.DisplayFor(modelitem => item.ContactGroup) <br />
+        @Html.RadioButton("contacts", item.ContactEmail, true) @Html.DisplayFor(modelitem => item.ContactName)@:：@Html.DisplayFor(modelitem => item.ContactEmail)<br />
+        nNumber++;
+    }
+    else
+    {
+        if (!String.IsNullOrEmpty(item.ContactGroup) &&!group.Equals(item.ContactGroup))
+        {
+            @Html.DisplayFor(modelitem => item.ContactGroup) <br />
+        }
+        
+        @Html.RadioButton("contacts", item.ContactEmail) @Html.DisplayFor(modelitem => item.ContactName)@:：@Html.DisplayFor(modelitem => item.ContactEmail)<br />
+    }
+    group = item.ContactGroup?? "";
+}
+<br />
+<input id="savecontacts" type="submit" value="確認" />

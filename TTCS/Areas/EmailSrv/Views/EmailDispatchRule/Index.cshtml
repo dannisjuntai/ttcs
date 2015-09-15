@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailDispatchRule>
+
+@{
+    ViewBag.Title = "派送管理";
+}
+
+<table class="table_div">
+    <tr>
+        <td class="column70_title">郵件派送規則清單
+        </td>
+        <td class="seperate"></td>
+        <td class="column30_title">郵件派送規則詳細內容
+        </td>
+    </tr>
+    <tr>
+        <td class="column70">
+            @Html.Partial("_PartialList", Model)
+        </td>
+        <td class="seperate"></td>
+        <td class="column30">
+            @Html.Partial("_PartialDetail", new TTCS.Areas.EmailSrv.Models.EEmailDispatchRule())
+        </td>
+    </tr>
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailDispatchRule_Index').addClass('current');
+        });
+    </script>
+}

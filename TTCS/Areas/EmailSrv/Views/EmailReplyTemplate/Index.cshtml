@@ -1,0 +1,22 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EmailReplyTemplate
+
+@{
+    ViewBag.Title = "回覆範本設定";
+}
+<table class="table_div">
+    <tr>
+        <td class="onecolumn">
+            @Html.Partial("_PartialSearchBoxReplyCan", new TTCS.Areas.EmailSrv.Models.EEmailReplyCan())
+            <br />
+            @Html.Partial("_PartialReplyCan", Model.EmailReplyCan)
+        </td>
+    </tr>
+</table>
+
+@section Scripts {    
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailReplyTemplate_Index').addClass('current');
+        });
+    </script>
+}

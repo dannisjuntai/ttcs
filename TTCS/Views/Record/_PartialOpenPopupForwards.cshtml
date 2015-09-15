@@ -1,0 +1,143 @@
+﻿@model IEnumerable<TTCS.Models.EmailRecord>
+
+@{
+    int nNumber = 0;
+    int nNumberSent = 0;
+    IEnumerable<TTCS.Models.EmailSentBox> emailsentboxes = ViewBag.SentBoxes;
+}
+<link href="~/Content/EmailSrvTable.css" rel="stylesheet" />
+
+<table class="table_bcase">
+    <tr>
+        <th>郵件
+        </th>
+        <th>
+            案件編號
+        </th>
+        <th>
+            順序
+        </th>
+        <th>
+            主旨
+        </th>
+        <th>
+            進件時間
+        </th>
+        <th>
+            寄件者
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        nNumber++;
+        string key = item.Id + "|0";
+        <tr Class="rows" id="@key">
+            <td>@nNumber</td>
+            <td>@Html.DisplayFor(modelItem => item.RID)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailRawHeader.MsgSubject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncomeOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailRawHeader.MsgFrom)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />寄件備份：<br />
+<table class="table_bcase">
+    <tr>
+        <th>郵件
+        </th>
+        <th>
+            案件編號
+        </th>
+        <th>
+            順序
+        </th>
+        <th>
+            主旨
+        </th>
+        <th>
+            寄件時間
+        </th>
+        <th>
+            寄件者
+        </th>
+        <th>
+            收件者
+        </th>
+    </tr>
+    @foreach (var item in emailsentboxes)
+    {
+        nNumberSent++;
+        string keySent = item.Id + "|1";
+        <tr Class="rows" id="@keySent">
+            <td>@nNumberSent</td>
+            <td>@Html.DisplayFor(modelItem => item.RID)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MsgSubject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SentOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SentBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendTo)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="dialog-modal-forwarddetail" title="郵件" style="text-align: left;"></div>
+<script type="text/ecmascript">
+    $(function () {
+        $("#dialog-modal-forwarddetail").dialog({
+            autoOpen: false,
+            width: 800,
+            height: 400,
+            show: {
+                effect: "blind",
+                position: ['right center', 'right top'],
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+        $(".rows").click(
+                    function (e) {
+                        var arr = e.target.parentElement.id.split("|");
+                        $.ajax({
+                            url: doc_root + "Record/_PartialOpenPopupForwardDetail",
+                            type: 'Get',
+                            data: "id=" + escape(arr[0]) + "&source=" + escape(arr[1]),
+                            datatype: "html",
+                            cache: false,
+                            success: function (data) {
+                                $("#dialog-modal-forwarddetail").dialog("open");
+                                $("#dialog-modal-forwarddetail").empty().append(data);
+                            },
+                            error: function () {
+                                alert("something seems wrong");
+                            }
+                        });
+                    }
+                  );
+    });
+</script>

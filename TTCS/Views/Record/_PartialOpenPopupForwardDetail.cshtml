@@ -1,0 +1,16 @@
+﻿@model TTCS.Models.EmailRawHeader
+
+
+寄件者：@Html.DisplayFor(model => model.MsgFrom)<br />
+副&nbsp;&nbsp;&nbsp;本：@Html.DisplayFor(model => model.MsgCc)<br />
+主&nbsp;&nbsp;&nbsp;旨：@Html.DisplayFor(model => model.MsgSubject)<br />
+日&nbsp;&nbsp;&nbsp;期：@Html.DisplayFor(model => model.MsgSentOn)<br />
+內&nbsp;&nbsp;&nbsp;容：<br />
+<div>
+    @Html.Raw(ViewBag.MsgReplyBody)
+</div>
+附&nbsp;&nbsp;&nbsp;件：
+@foreach (var attachment in (List<SelectListItem>)ViewBag.Attachments)
+{ 
+    @Html.ActionLink(attachment.Text, "Download", new { id = attachment.Value }) <br />
+}

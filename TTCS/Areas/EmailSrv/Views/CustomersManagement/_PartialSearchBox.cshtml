@@ -1,0 +1,31 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ECustomers
+
+<table>
+    <tr>
+        <td style="width:30%">
+            @using (Html.BeginForm("", "", FormMethod.Get))
+            {
+                <fieldset>
+                    <legend>新增客戶</legend>
+                    <input type="button" value="建立新客戶" onclick="window.location.href='Create';" />
+                </fieldset>
+            }
+        </td>
+        <td>
+            @using (Html.BeginForm("Index", "CustomersManagement", FormMethod.Get))
+            {
+                <fieldset>
+                    <legend>查詢條件</legend>
+                    @Html.RadioButton("type", "1", true)證號
+                    @Html.RadioButton("type", "2")電話
+                    @Html.RadioButton("type", "3")郵件
+                    @Html.TextBox("condition")
+                    <input type="submit" value="查詢" class="button" />
+                </fieldset>
+            }
+        </td>
+    </tr>
+</table>
+
+
+

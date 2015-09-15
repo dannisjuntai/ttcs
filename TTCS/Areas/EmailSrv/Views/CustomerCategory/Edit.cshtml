@@ -1,0 +1,48 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ECustomerCategory
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    #Address {
+        width: 100%;
+    }
+
+    #Comment {
+        width: 100%;
+        height: 80px;
+    }
+</style>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>編輯分類</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <table>
+            <tr><td colspan="6">分類資料</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Desc)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Desc)
+                        @Html.ValidationMessageFor(model => model.Desc)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <p>
+            <input type="submit" value="儲存" />&nbsp;or&nbsp;@Html.ActionLink("回上頁", "Index")
+        </p>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

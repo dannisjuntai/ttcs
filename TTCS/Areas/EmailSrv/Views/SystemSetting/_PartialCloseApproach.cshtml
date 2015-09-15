@@ -1,0 +1,84 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.ERecordCloseApproach>
+@using PagedList.Mvc;
+
+<input type="button" id="newApproach" name="newApproach" class="buttonright" value="新增" />
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">編號
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.ApproachName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBeginCloseApproach++;
+        <tr Class="rowsApproach" id="@item.ApproachID">
+            <td>@ViewBag.NumberBeginCloseApproach</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApproachName)
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="div_center">
+    @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { page = page, type = "1", condition = ViewBag.ConditionCloseApproach }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+</div>
+
+<div id="dialog-modal-approach" title="結案處理方式編輯"></div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#dialog-modal-approach").dialog({
+            autoOpen: false,
+            width: 600,
+            height: 250,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $(".rowsApproach").click(function (e) {
+            OpenApproachDialog(escape(e.target.parentElement.id));
+        });
+
+        $("#newApproach").click(function () {
+            alert("hello");
+            OpenApproachDialog("0");
+        });
+    });
+
+    function OpenApproachDialog(ApproachId) {
+        $.ajax({
+            url: '@Url.Action("_PartialOpenPopupApproach", "SystemSetting")',
+            type: 'Get',
+            data: "id=" + ApproachId,
+            datatype: "html",
+            cache: false,
+            success: function (data) {
+                $("#dialog-modal-approach").dialog("open");
+                $("#dialog-modal-approach").empty().append(data);
+                $.validator.unobtrusive.parse("#dialog-modal-approach");
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+    };
+
+</script>

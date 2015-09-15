@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<TTCS.Areas.EmailSrv.Models.CustomersView>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "客戶派送設定";
+    TTCS.Areas.EmailSrv.Models.ECustomers customers = new TTCS.Areas.EmailSrv.Models.ECustomers();
+}
+
+<div id="_PartialList">
+    <table class="table_div">
+        <tr>
+            <td class="onecolumn_title">客戶派送設定
+            </td>
+        </tr>
+        <tr>
+            <td class="onecolumn">
+                @Html.Partial("_PartialSearchBox", customers)
+                <br />
+
+                @Html.Partial("_PartialList", Model)
+                <div id="div_center">
+                    @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { page = page, type = ViewBag.Type, condition = ViewBag.Condition }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+            $('#Customers_Index').addClass('current');
+        });
+    </script>
+}

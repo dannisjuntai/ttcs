@@ -1,0 +1,9 @@
+﻿@{
+    if (ViewBag.msg != null)
+    {
+        <p>刪除錯誤： @ViewBag.msg</p>
+        @Html.ActionLink("回到客戶列表", "Index")
+    }
+    
+    
+}

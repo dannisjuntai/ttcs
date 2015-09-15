@@ -1,0 +1,55 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ERecords
+
+@{
+    bool isCreatedERecord = false;
+    TTCS.Areas.EmailSrv.Models.EEmailRecord erecordfirst = Model.EmailRecord.OrderBy(e => e.OrderNo).FirstOrDefault();
+    if (erecordfirst == null)
+    {
+        erecordfirst = new TTCS.Areas.EmailSrv.Models.EEmailRecord();
+        erecordfirst.EmailRawHeader = new TTCS.Areas.EmailSrv.Models.EEmailRawHeader();
+    }
+        
+@* 新增郵件案件 *@
+    if (erecordfirst.RawHeaderId == null || erecordfirst.RawHeaderId.Value < 1)
+    {
+        if (Model.EmailRecord.Count > 1)
+        {
+            erecordfirst = Model.EmailRecord.Where(e => e.OrderNo != 0).OrderBy(e => e.OrderNo).FirstOrDefault();
+        }
+        else
+        {
+            isCreatedERecord = true;
+        }
+    }
+
+    if (isCreatedERecord == false)
+    {
+        erecordfirst = Model.EmailRecord.Where(e => e.RawHeaderId != null && e.RawHeaderId.Value > 0 && e.EmailRawHeader.MsgFrom == erecordfirst.EmailRawHeader.MsgFrom).OrderByDescending(e => e.OrderNo).FirstOrDefault();
+        if (erecordfirst == null)
+        {
+            erecordfirst = new TTCS.Areas.EmailSrv.Models.EEmailRecord();
+            erecordfirst.EmailRawHeader = new TTCS.Areas.EmailSrv.Models.EEmailRawHeader();
+        }
+    }
+}
+<table>
+    <tr>
+        <td class="fieldname">內容</td>
+        <td class="fieldvalue">
+            @Html.Raw(erecordfirst.EmailRawHeader.MsgReplyBody)
+        </td>
+    </tr>
+    <tr>
+        <td class="seperate"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="fieldname">附件</td>
+        <td class="fieldvalue">
+            @foreach (var attachment in (List<SelectListItem>)ViewBag.Attachments)
+            { 
+                @Html.ActionLink(attachment.Text, "Download", new { id = attachment.Value })<br />
+            }
+        </td>
+    </tr>
+</table>

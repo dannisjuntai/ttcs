@@ -1,0 +1,32 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailRecord
+
+@{
+    ViewBag.Title = "案件(未指派)";
+}
+
+<table class="table_div">
+    <tr>
+        <td class="column60_title">郵件詳細內容
+        </td>
+        <td class="seperate"></td>
+        <td class="column40_title">郵件管理設定
+        </td>
+    </tr>
+    <tr>
+        <td class="column60">
+            @Html.Partial("_PartialEmailContentQueue")
+        </td>
+        <td class="seperate"></td>
+        <td class="column40">
+            @Html.Partial("_PartialDetailQueue")
+        </td>
+    </tr>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailAdmin_IndexQueue').addClass('current');
+        });
+    </script>
+}

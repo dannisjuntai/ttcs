@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailDispatchRule>
+
+@{
+    List<SelectListItem> radiochoices = ViewBag.RadioChoices;
+    int nNumber = 0;
+}
+
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">規則
+        </th>
+        <th class="zhlen5">
+            @Html.DisplayNameFor(model => model.ConditionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DispatchCondition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentId1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentId2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentId3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifyBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifyOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoDispatch)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        nNumber++;
+        <tr Class="rows" id="@item.Id">
+            <td>@nNumber</td>
+            <td>
+                @Html.DisplayFor(modelItem => radiochoices.FirstOrDefault(s => s.Value == item.ConditionType.Value.ToString()).Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispatchCondition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent1.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent2.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifyBy)
+            </td>
+            <td>
+                @item.ModifyOn.Value.ToString("yyyy/MM/dd HH:mm:ss")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoDispatch)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        ElementsStatus(-1);
+        $(".rows").click(function (e) {
+            ElementsStatus(0);
+            GetDetailInfo(escape(e.target.parentElement.id), e.target.parentElement.firstElementChild.innerHTML)
+        });
+    });
+
+    function GetDetailInfo(DispatchID, num) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("DispatchDetail", "EmailDispatchRule")',
+            data: "id=" + DispatchID,
+            datatype: "html",
+            cache: false,
+            success: function (result) {
+                resetValidation();
+                ShowDetail(num, DispatchID, result.ConditionType, result.CustomerId, result.Condition, result.AgentId1, result.AgentId2, result.AgentId3, result.Active);
+            },
+            error: function (jqXHR, statud, msg) {
+                alert("error");
+            }
+        });
+    };
+</script>

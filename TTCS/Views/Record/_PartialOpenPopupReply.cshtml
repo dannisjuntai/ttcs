@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TTCS.Models.EmailReplyCan>
+
+@{
+    int nNumber = 0;
+    if (Model.Count() < 1)
+    {
+    <span style="color: red">請連絡管理員, 新增回覆範本!!</span>
+    }
+}
+
+@foreach (var item in Model)
+{
+    if (item.Active)
+    {
+        if (nNumber < 1)
+        {
+            @Html.RadioButton("replycan", item.Name, true) @Html.DisplayFor(modelitem => item.Name)<br />            
+        }
+        else
+        {
+            @Html.RadioButton("replycan", item.Name) @Html.DisplayFor(modelitem => item.Name)<br />
+        }
+        nNumber++;
+    }
+
+}
+@{
+    nNumber = 0;
+}
+@foreach (var item in Model)
+{
+    if (item.Active)
+    {        
+        @Html.Hidden(nNumber.ToString(), item.TmpContent, new {@id=nNumber })
+        nNumber++;
+        nNumber++;
+    }
+
+}
+<br />
+@if (Model.Count() > 0)
+{
+<input id="saveReplyCan" type="submit" value="確認" />
+}

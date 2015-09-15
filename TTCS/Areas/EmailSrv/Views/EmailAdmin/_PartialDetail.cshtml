@@ -1,0 +1,322 @@
+﻿@using TTCS.Helpers
+@model TTCS.Areas.EmailSrv.Models.ERecords
+
+@using (Html.BeginForm("Detail", "EmailAdmin"))
+{    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    bool isCreatedERecord = false;
+    TTCS.Areas.EmailSrv.Models.EEmailRecord erecordfirst = Model.EmailRecord.OrderBy(e => e.OrderNo).FirstOrDefault();
+    if (erecordfirst == null)
+    {
+        erecordfirst = new TTCS.Areas.EmailSrv.Models.EEmailRecord();
+        erecordfirst.EmailRawHeader = new TTCS.Areas.EmailSrv.Models.EEmailRawHeader();
+    }
+        
+@* 新增郵件案件 *@
+    if (erecordfirst.RawHeaderId == null || erecordfirst.RawHeaderId.Value < 1)
+    {
+        if (Model.EmailRecord.Count > 1)
+        {
+            erecordfirst = Model.EmailRecord.Where(e => e.OrderNo != 0).OrderBy(e => e.OrderNo).FirstOrDefault();
+        }
+        else
+        {
+            isCreatedERecord = true;
+        }
+    }
+
+    if (isCreatedERecord == false)
+    {
+        erecordfirst = Model.EmailRecord.Where(e => e.RawHeaderId != null && e.RawHeaderId.Value > 0 && e.EmailRawHeader.MsgFrom == erecordfirst.EmailRawHeader.MsgFrom).OrderByDescending(e => e.OrderNo).FirstOrDefault();
+        if (erecordfirst == null)
+        {
+            erecordfirst = new TTCS.Areas.EmailSrv.Models.EEmailRecord();
+            erecordfirst.EmailRawHeader = new TTCS.Areas.EmailSrv.Models.EEmailRawHeader();
+        }
+    }
+
+    if (ViewBag.Source == "0")
+    {
+    @Html.ActionLink("返回", "Index")
+    }
+    else
+    {
+    @Html.ActionLink("返回", "IndexWait")
+    }
+
+    if (isCreatedERecord == false)
+    {
+    <input type="button" id="edit" name="edit" class="buttonright" value="編輯" />
+    }
+    if (erecordfirst.Garbage != null)
+    {
+    @:[垃圾]
+    }
+    
+    @Html.Hidden("InitDisabled", (int)ViewBag.Disabled)
+    @Html.Hidden("EID", erecordfirst.Id)
+    @Html.Hidden("Source", (string)ViewBag.Source)
+    <table class="table_detail">
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.RID)</td>
+            <td>
+                @Html.DisplayFor(model => model.RID)
+                @Html.HiddenFor(model => model.RID)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">
+                @if (isCreatedERecord == true)
+                {
+                    @:客戶信箱 
+                }
+                else
+                {
+                    @Html.DisplayNameFor(model => erecordfirst.EmailRawHeader.MsgFrom)
+                }
+                </td>
+            <td>
+                @if (isCreatedERecord == true)
+                {
+                    @erecordfirst.EmailSavedBody.SendTo 
+                }
+                else
+                {
+                    @erecordfirst.EmailRawHeader.MsgFrom
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.EmailRawHeader.MsgSubject)</td>
+            <td>
+                @if (isCreatedERecord == true)
+                {
+                    @erecordfirst.EmailSavedBody.FileName
+                }
+                else
+                {
+                    @erecordfirst.EmailRawHeader.MsgSubject
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.EmailRawHeader.MsgSentOn)</td>
+            <td>
+                @if (isCreatedERecord == true)
+                {
+                    @:N/A 
+                }
+                else
+                {
+                    @erecordfirst.EmailRawHeader.MsgSentOn.ToString("yyyy/MM/dd HH:mm:ss")
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.IncomeOn)</td>
+            <td>
+                @if (erecordfirst.IncomeOn != null)
+                {
+                    @erecordfirst.IncomeOn.Value.ToString("yyyy/MM/dd HH:mm:ss")
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.ExpireOn)</td>
+            <td>
+                @if (erecordfirst.ExpireOn != null)
+                {
+                    @Html.Label(@erecordfirst.ExpireOn.Value.ToString("yyyy/MM/dd HH:mm:ss"), new { id = "ExpireOn" })
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.AssignCount)</td>
+            <td>
+                @if (erecordfirst.AssignCount != null)
+                {
+                    @Html.Label(erecordfirst.AssignCount.ToString(), new { id = "AssignCount" })
+                }
+                else
+                {
+                    @Html.Label("0", new { id = "AssignCount" })
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => erecordfirst.CurrAgentId)</td>
+            <td>
+                @if (Model.AgentID == null && erecordfirst.Agent1 != null)
+                {
+                    @erecordfirst.Agent1.AgentName
+                    @:,
+                    if (erecordfirst.RejectReason != null)
+                    {
+                    @erecordfirst.RejectReason
+                    }
+
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.AgentID)</td>
+            <td>
+                @if (ViewBag.AgentsSuper != null)
+                {
+                    @Html.OptSelectList("AgentID", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+                    @Html.ValidationMessageFor(model => model.AgentID)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">處理方式</td>
+            <td>
+                @if (Model.RecordCloseApproach != null)
+                {
+                    @Model.RecordCloseApproach.ApproachName
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.StatusID)</td>
+            <td>
+                @Html.Label(Model.RecordStatus.Name, new { id = "Status" })
+                @Html.HiddenFor(model => model.StatusID)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.ServiceItemID)</td>
+            <td>
+                <label id="servicenames">@ViewBag.ServiceItemNames</label>
+                <input type="button" id="RecordServiceItemPicker" value="選擇" />
+            </td>
+        </tr>
+    </table>
+    <div class="center">
+        <input type="submit" id="save" name="save" value="儲存" class="button" />
+        <input type="button" id="cancel" name="cancel" class="button" value="取消" />
+    </div>
+    
+    @Html.Hidden("itemIDs", "")
+    @Html.Hidden("groupIDs", "")
+
+}
+
+<script type="text/javascript">
+    $(function () {
+        if($('#InitDisabled').val() == "1"){
+            ElementsStatus(4);
+        } else {
+            ElementsStatus(2);
+            $('#InitDisabled').val('1');
+        }
+        ShowDetail('@Model.AgentID',$("#ExpireOn").text(),$("#AssignCount").text(),$("#Status").text(),$('#servicenames').text());
+
+        $("#edit").click(function (e) {
+            ElementsStatus(2);
+        });
+
+        $("#cancel").click(function (e) {
+            ElementsStatus(4);
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("RecordDetail", "EmailAdmin")',
+                data: "id=" + $('#EID').val(),
+                datatype: "html",
+                cache: false,
+                success: function (result) {
+                    ShowDetail(result.AgentID, result.ExpireOn, result.AssignCount, result.Status, result.ServiceItemNames);
+                },
+                error: function (jqXHR, statud, msg) {
+                    alert("error" + msg);
+                }
+
+            });
+        });        
+    });
+
+    function EnableAllElements() {
+        $("#edit").show();
+        $("#save").show();
+        $("#cancel").show();
+
+        $("#edit").attr("disabled", false);
+        $("#save").attr("disabled", false);
+        $("#cancel").attr("disabled", false);
+
+        $("#AgentID").attr("disabled", false);
+        $("#RecordServiceItemPicker").attr("disabled", false);
+    };
+
+    function ElementsStatus(nMode) {
+        if ($('#InitDisabled').val() == "1") {
+            resetValidation();
+        };
+        
+        EnableAllElements();
+        if (nMode == 1) {
+            // New
+        } else if (nMode == 2) {
+            // Edit
+            $("#edit").attr("disabled", true);
+            if ($('#StatusID').val() == "3") {
+                $("#AgentID").attr("disabled", true);
+            };
+        } else if (nMode == 3) {
+            // Delete
+        } else if (nMode == 0) {
+            // Click
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#AgentID").attr("disabled", true);
+            $("#RecordServiceItemPicker").attr("disabled", true);
+        } else if (nMode == 4 && $('#EID').val().length > 0 && $('#EID').val() != "0") {
+            //Cancel(Edit)
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+
+            $("#AgentID").attr("disabled", true);
+            $("#RecordServiceItemPicker").attr("disabled", true);
+        } else {
+            // Init, Cancel(New) or Unknown
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+            $("#edit").attr("disabled", true);
+
+            $("#AgentID").attr("disabled", true);
+            $("#RecordServiceItemPicker").attr("disabled", true);
+        }
+    };
+
+    function resetValidation() {
+        //Removes validation from input-fields
+        $('.input-validation-error').addClass('input-validation-valid');
+        $('.input-validation-error').removeClass('input-validation-error');
+        //Removes validation message after input-fields
+        $('.field-validation-error').addClass('field-validation-valid');
+        $('.field-validation-error').removeClass('field-validation-error');
+        //Removes validation summary 
+        $('.validation-summary-errors').addClass('validation-summary-valid');
+        $('.validation-summary-errors').removeClass('validation-summary-errors');
+    };
+
+    function ShowDetail(AgentID, ExpireOn, AssignCount, Status, ServiceItemNames) {
+        $('#AgentID option:selected').removeAttr('selected');
+        $('#AgentID option[value=' + AgentID + ']').attr('selected', true);
+
+        $("#ExpireOn").text(ExpireOn);
+        $("#AssignCount").text(AssignCount);
+        $("#Status").text(Status);
+        $('#servicenames').text(ServiceItemNames);
+    };
+</script>

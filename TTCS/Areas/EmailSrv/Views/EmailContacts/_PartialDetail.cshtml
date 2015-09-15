@@ -1,0 +1,184 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailContacts
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <input type="button" id="new" name="new" class="buttonleft" value="新增" />
+    <input type="submit" id="delete" name="delete" class="buttonright" value="刪除" disabled="disabled" />
+    <input type="button" id="edit" name="edit" class="buttonright" value="編輯" disabled="disabled" />
+    <table class="table_detail">
+        <tr>
+            <td class="fieldname">序</td>
+            <td>
+                <label id="No"></label>
+                @Html.Hidden("originalNo", "")
+                @Html.Hidden("NextNo", (object)(ViewBag.NumberMax + 1))
+                @Html.HiddenFor(model => model.Id)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.ContactGroup)</td>
+            <td>
+                @Html.TextBoxFor(model => model.ContactGroup)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.ContactName)</td>
+            <td>
+                @Html.TextBoxFor(model => model.ContactName)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.ContactEmail)</td>
+            <td>
+                @Html.EditorFor(model => model.ContactEmail)
+                @Html.ValidationMessageFor(model => model.ContactEmail)
+            </td>
+        </tr>
+    </table>
+    <div class="center">
+        <input type="submit" id="save" name="save" value="儲存" class="button" style="display: none;" />
+        <input type="button" id="cancel" name="cancel" class="button" value="取消" style="display: none;" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#new").click(function (e) {
+            ElementsStatus(1);
+            $('#No').text($('#NextNo').val());
+
+            $('#ContactGroup').val("")
+            $('#ContactName').val("");
+            $('#ContactEmail').val("");
+        });
+
+        $("#edit").click(function (e) {
+            ElementsStatus(2);
+            $('#save').val("儲存變更");
+        });
+
+        $("#delete").click(function (e) {
+            ElementsStatus(3);
+            var c = confirm("確定要刪除嗎?");
+            if (c == true) {
+                $('#Id').val(0 - $('#Id').val());
+            } else {
+                $("#delete").attr("disabled", false);
+            }
+
+            return c;
+        });
+
+        $("#cancel").click(function (e) {
+            ElementsStatus(4);
+            GetDetailInfo($('#Id').val(), $('#originalNo').val());
+        });
+
+        $("#save").click(function (e) {
+            if ($('#No').text() == $('#NextNo').val()) {
+                $('#Id').val(0);
+            }
+            return true;
+        });        
+    });
+
+    function EnableAllElements() {
+        $("#new").show();
+        $("#edit").show();
+        $("#delete").show();
+        $("#save").show();
+        $("#cancel").show();
+
+        $("#new").attr("disabled", false);
+        $("#edit").attr("disabled", false);
+        $("#delete").attr("disabled", false);
+        $("#save").attr("disabled", false);
+        $("#cancel").attr("disabled", false);
+
+        $('#ContactGroup').removeAttr("disabled");
+        $('#ContactName').removeAttr("disabled");
+        $('#ContactEmail').removeAttr("disabled");
+    };
+
+    function ElementsStatus(nMode) {
+        resetValidation();
+        EnableAllElements();
+        if (nMode == 1) {
+            // New
+            $("#edit").hide();
+            $("#delete").hide();
+            $("#new").attr("disabled", true);
+        } else if (nMode == 2) {
+            // Edit
+            $("#edit").attr("disabled", true);
+        } else if (nMode == 3) {
+            // Delete
+            $("#save").hide();
+            $("#cancel").hide();
+            $("#delete").attr("disabled", true);
+
+            $('#ContactGroup').attr("disabled", 'disabled');
+            $('#ContactName').attr("disabled", 'disabled');
+            $('#ContactEmail').attr("disabled", 'disabled');
+        } else if (nMode == 0) {
+            // Click
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $('#ContactGroup').attr("disabled", 'disabled');
+            $('#ContactName').attr("disabled", 'disabled');
+            $('#ContactEmail').attr("disabled", 'disabled');
+
+        } else if (nMode == 4 && $('#Id').val().length > 0 && $('#Id').val() != "0") {
+            //Cancel(Edit)
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+
+            $('#ContactGroup').attr("disabled", 'disabled');
+            $('#ContactName').attr("disabled", 'disabled');
+            $('#ContactEmail').attr("disabled", 'disabled');
+        }else{
+            // Init, Cancel(New) or Unknown
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+            $("#edit").attr("disabled", true);
+            $("#delete").attr("disabled", true);
+
+            $('#ContactGroup').attr("disabled", 'disabled');
+            $('#ContactName').attr("disabled", 'disabled');
+            $('#ContactEmail').attr("disabled", 'disabled');
+        }
+
+    };
+
+    function ShowDetail(nNo, nContactId, strContactGroup, strContactName, strContactEmail) {
+        $('#No').text(nNo);
+        $('#originalNo').val(nNo);
+        $('#Id').val(nContactId);
+
+        $('#ContactGroup').val(strContactGroup);
+        $('#ContactName').val(strContactName);
+        $('#ContactEmail').val(strContactEmail);
+    };
+
+    function resetValidation() {
+        //Removes validation from input-fields
+        $('.input-validation-error').addClass('input-validation-valid');
+        $('.input-validation-error').removeClass('input-validation-error');
+        //Removes validation message after input-fields
+        $('.field-validation-error').addClass('field-validation-valid');
+        $('.field-validation-error').removeClass('field-validation-error');
+        //Removes validation summary 
+        $('.validation-summary-errors').addClass('validation-summary-valid');
+        $('.validation-summary-errors').removeClass('validation-summary-errors');
+
+    };
+</script>

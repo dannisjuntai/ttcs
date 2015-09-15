@@ -1,0 +1,45 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailRejectReason
+
+@using (Html.BeginForm("_PartialOpenPopupReject", "SystemSetting"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.Id)
+            @Html.Hidden("deleteId", 0)
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reason)：
+            @Html.EditorFor(model => model.Reason)
+            @Html.ValidationMessageFor(model => model.Reason)
+        </div>
+        <div class="editor-field">
+        </div>
+        <p>
+            <input id="saveRejectReason" type="submit" value="儲存" />
+            @if (Model.Id > 0)
+            {
+                <input id="deleteRejectReason" type="submit" value="刪除" />
+            }
+        </p>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#deleteRejectReason").click(function (e) {
+            var c = confirm("確定刪除?");
+            if (c == false) {
+            } else {
+                $("#deleteId").val(1);
+            }
+            return c;
+        });
+    });
+</script>

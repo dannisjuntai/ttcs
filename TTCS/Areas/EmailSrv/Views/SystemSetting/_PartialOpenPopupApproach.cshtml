@@ -1,0 +1,45 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ERecordCloseApproach
+
+@using (Html.BeginForm("_PartialOpenPopupApproach", "SystemSetting"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.ApproachID)
+            @Html.Hidden("deleteApproachId", 0)
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ApproachName)：
+            @Html.EditorFor(model => model.ApproachName)
+            @Html.ValidationMessageFor(model => model.ApproachName)
+        </div>
+        <div class="editor-field">
+        </div>
+        <p>
+            <input id="saveApproach" type="submit" value="儲存" />
+            @if (Model.ApproachID > 0)
+            {
+                <input id="deleteApproach" type="submit" value="刪除" />
+            }
+        </p>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#deleteApproach").click(function (e) {
+            var c = confirm("確定刪除?");
+            if (c == false) {
+            } else {
+                $("#deleteApproachId").val(1);
+            }
+            return c;
+        });
+    });
+</script>

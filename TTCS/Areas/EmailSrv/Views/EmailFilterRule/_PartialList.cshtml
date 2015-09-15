@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailFilterRule>
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">規則
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.MsgFrom)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.MsgReceivedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsgSubject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsgBody)
+        </th>
+        <th class="zhlen2">
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBegin++;
+        <tr Class="rows" id="@item.Id">
+            <td>@ViewBag.NumberBegin</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MsgFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MsgReceivedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MsgSubject)
+            </td>
+            <td>
+                @if (item.MsgBody != null && item.MsgBody.Length > 5)
+                {
+                    @item.MsgBody.Substring(0, 5)}
+                else
+                {
+                    @item.MsgBody
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        ElementsStatus(-1);
+        $(".rows").click(function (e) {
+            ElementsStatus(0);
+            GetDetailInfo(escape(e.target.parentElement.id), e.target.parentElement.firstElementChild.innerHTML)
+        });
+    });
+
+    function GetDetailInfo(FilterID, num) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("FilterDetail", "EmailFilterRule")',
+            data: "id=" + FilterID,
+            datatype: "html",
+            cache: false,
+            success: function (result) {
+                ShowDetail(num, FilterID, result.MsgSubject, result.MsgFrom, result.MsgReceivedBy, result.MsgBody, result.Active);
+            },
+            error: function (jqXHR, statud, msg) {
+                alert("error");
+            }
+        });
+    };
+</script>

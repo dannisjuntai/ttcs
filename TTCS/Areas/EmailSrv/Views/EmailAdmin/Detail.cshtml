@@ -1,0 +1,110 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ERecords
+
+@{
+    ViewBag.Title = "案件總覽";
+}
+
+<table class="table_div">
+    @if (Model.TypeID == 3)
+    {
+        <tr>
+            <td class="column60_title">郵件詳細內容
+            </td>
+            <td class="seperate"></td>
+            <td class="column40_title">郵件管理設定
+            </td>
+        </tr>
+        <tr>
+            <td class="column60">
+                @Html.Partial("_PartialEmailContent")
+            </td>
+            <td class="seperate"></td>
+            <td class="column40">
+                @Html.Partial("_PartialDetail")
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td class="onecolumn_title">電話案件內容
+            </td>
+        </tr>
+        <tr>
+            <td class="onecolumn">
+                @Html.Partial("_PartialDetailTelphone")
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="dialog-modal-serviceitem" title="小結選擇" style="text-align: left;"></div>
+
+@section Scripts{
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function () {
+            @if (ViewBag.Source == "0")
+            {
+                @:$('#EmailAdmin_Index').addClass('current');
+            }
+            else if (ViewBag.Source == "1")
+            {
+                @:$('#EmailAdmin_IndexWait').addClass('current');
+            }
+
+            $("#dialog-modal-serviceitem").dialog({
+                autoOpen: false,
+                width: 800,
+                height: 350,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
+
+            $("#RecordServiceItemPicker").click(function () {
+                $.ajax({
+                    url: '@Url.Action("_PartialServiceMap", "EmailAdmin")',
+                    type: 'Get',
+                    data: "id=" + escape($('#RID').val()),
+                    datatype: "html",
+                    cache: false,
+                    success: function (data) {
+
+                        $("#dialog-modal-serviceitem").dialog("open");
+                        $("#dialog-modal-serviceitem").empty().append(data);
+
+                        $("#saveService").click(function (e) {
+                            var chkItemIDs = "";
+                            var chkGroupIDs = "";
+                            var chkNames = "";
+                            $('input[name="chkservice"]:checked').each(function () {
+                                chkGroupIDs += "," + this.id;
+                                chkItemIDs += "," + this.value;
+                                chkNames += "," + $('#chk' + this.id + this.value).val();
+                            });
+                            $('#itemIDs').val(chkItemIDs);
+                            $('#groupIDs').val(chkGroupIDs);
+
+                            if (chkNames.length > 0)
+                                chkNames = chkNames.substr(1, chkNames.length - 1);
+
+                            $('#servicenames').text(chkNames);
+                            $("#dialog-modal-serviceitem").dialog("close");
+                        });
+                    },
+                    error: function () {
+                        alert("something seems wrong");
+                    }
+                });
+            });
+        });
+    </script>
+}

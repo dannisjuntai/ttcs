@@ -1,0 +1,46 @@
+﻿@model PagedList.IPagedList<TTCS.Areas.EmailSrv.Models.EEmailContacts>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "第三方連絡清單";
+}
+
+<table class="table_div">
+    <tr>
+        <td class="column70_title">第三方連絡清單
+        </td>
+        <td class="seperate"></td>
+        <td class="column30_title">第三方連絡信箱詳細內容
+        </td>
+    </tr>
+    <tr>
+        <td class="column70">
+            @Html.Partial("_PartialSearchBox", new TTCS.Areas.EmailSrv.Models.EEmailContacts())
+            <br />
+            @Html.Partial("_PartialList", Model)
+            <div id="div_center">
+                @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { page = page, type = ViewBag.Type, condition = ViewBag.Condition }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+            </div>
+        </td>
+        <td class="seperate"></td>
+        <td class="column30">
+            @Html.Partial("_PartialDetail", new TTCS.Areas.EmailSrv.Models.EEmailContacts())
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailContacts_Index').addClass('current');
+          }
+        )
+    </script>
+}

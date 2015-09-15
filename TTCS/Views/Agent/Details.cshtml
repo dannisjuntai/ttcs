@@ -1,0 +1,211 @@
+﻿@model TTCS.Models.Agent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Agent</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AgentPWD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AgentPWD)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VMPWD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VMPWD)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HasVoiceMail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HasVoiceMail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GW32)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GW32)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Authority)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Authority)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CTILoginID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CTILoginID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CTILoginPWD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CTILoginPWD)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AutoLogin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AutoLogin)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AutoLogout)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AutoLogout)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DefaultExten)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DefaultExten)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AutoLoginTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AutoLoginTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AutoLogoutTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AutoLogoutTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LocalDistance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocalDistance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LongDistance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LongDistance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Mobil)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Mobil)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.International)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.International)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DialContext)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DialContext)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeptID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeptID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SMSEnable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SMSEnable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FaxEnable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FaxEnable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailEnable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailEnable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChatEnable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChatEnable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GrpRecBoxEnable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GrpRecBoxEnable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailIsLogon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailIsLogon)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AgentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

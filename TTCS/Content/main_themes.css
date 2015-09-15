@@ -1,0 +1,128 @@
+﻿body {
+    /*font-size: 12px;*/
+}
+
+#ServiceItemPicker {
+    display: none;
+}
+
+#CusomterSearchResult {
+    display: none;
+}
+
+#RecordQueryResult {
+    display: none;
+}
+
+#QueryRecordResult {
+    width: 59%;
+    float: left;
+}
+
+#QueryRecordContent {
+    width: 100%
+}
+
+.HorizontalContainer::after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.Horizontal {
+    float: left;
+    /*border: solid 1px red;*/
+}
+
+.data_pair {
+    white-space:nowrap;
+    margin-left: 0.5em;
+}
+
+.block {
+    border: 1px solid #aeaeae;
+    margin: 5px 0px 5px 0px;
+}
+
+.RecordInfo,
+.CustomerInfo {
+    margin: 5px;
+    /*height: 650px;*/
+}
+
+.RecordInfo {
+    float: right;
+    width: 58%;
+}
+
+.CustomerInfo {
+    float: left;
+    width: 39%;
+}
+
+input.CustomerFiled {
+    width: 120px;
+}
+
+select.CustomerFiled {
+    width: 120px;
+}
+
+.block_title {
+    background-color: #1E4DA9;
+    color: white;
+    text-align: center;
+}
+
+.inner_block {
+    border: 1px solid #aeaeae;
+    border-radius: 5px;
+    margin: 0.5em;
+}
+
+.inner_block_title {
+    background-color: #B1CAF2;
+}
+
+table {
+    border:1px solid #888888;
+    width:100%;
+}
+
+table caption {
+    background-color: #1E4DA9;
+    color: white;
+}
+
+table tr:nth-child(even) {
+}
+
+table tr:nth-child(odd) {
+    background-color: #cccccc;
+}
+
+table th {
+    background-color: #B1CAF2;
+    text-align: left;
+    border-bottom: 1px solid black;
+    font-weight: normal;
+}
+
+table td {
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+
+table.pagination {
+    margin: 0px; border: solid 0px white;
+}
+
+tr.pagination {
+    background-color: white; border: solid 0px white;
+}
+td.pagination {
+    margin: 0px; border: solid 0px white;
+    background-color: white; border: solid 0px white;
+}

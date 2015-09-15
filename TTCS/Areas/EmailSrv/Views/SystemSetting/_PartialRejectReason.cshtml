@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailRejectReason>
+@using PagedList.Mvc;
+
+<input type="button" id="newRejectReason" name="new" class="buttonright" value="新增" />
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">編號
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBeginRejectReason++;
+        <tr Class="rows" id="@item.Id">
+            <td>@ViewBag.NumberBeginRejectReason</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="div_center">
+    @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { page = page, type = "0", condition = ViewBag.ConditionRejectReason }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+</div>
+
+<div id="dialog-modal" title="退回原因設定"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#dialog-modal").dialog({
+            autoOpen: false,
+            width: 600,
+            height: 250,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $(".rows").click(function (e) {
+            OpenRejectDialog(escape(e.target.parentElement.id));
+        });
+
+        $("#newRejectReason").click(function () {
+            OpenRejectDialog("0");
+        });
+    });
+
+    function OpenRejectDialog(RejectId) {
+        $.ajax({
+            url: '@Url.Action("_PartialOpenPopupReject", "SystemSetting")',
+            type: 'Get',
+            data: "id=" + RejectId,
+            datatype: "html",
+            cache: false,
+            success: function (data) {
+                $("#dialog-modal").dialog("open");
+                $("#dialog-modal").empty().append(data);
+                $.validator.unobtrusive.parse("#dialog-modal");
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+    };
+</script>

@@ -1,0 +1,378 @@
+﻿@using TTCS.Helpers
+
+@model TTCS.Areas.EmailSrv.Models.EEmailDispatchRule
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+  
+    <input type="button" id="new" name="new" class="buttonleft" value="新增" />
+    <input type="submit" id="delete" name="delete" class="buttonright" value="刪除" disabled="disabled" />
+    <input type="button" id="edit" name="edit" class="buttonright" value="編輯" disabled="disabled" />
+  
+    <table class="table_detail">
+        <tr>
+            <td class="fieldname">規則</td>
+            <td>
+                <label id="No"></label>
+                <span id='err' style='color: red;'>@ViewBag.ErrMsg</span>
+                @Html.Hidden("originalNo", "")
+                @Html.Hidden("NextNo", (object)(ViewBag.NumberMax + 1))
+                @Html.HiddenFor(model => model.Id)
+                @Html.Hidden("ModifyBy", HttpContext.Current.User.Identity.Name.Split('|')[1])
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.ConditionType)</td>
+            <td>
+                @foreach (var item in (List<SelectListItem>)ViewBag.RadioChoices)
+                {
+                    @Html.RadioButtonFor(model => model.ConditionType, item.Value, new { @style = "width:15px" }) @item.Text
+                    @Html.ValidationMessageFor(model => model.ConditionType)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.DispatchCondition)</td>
+            <td>
+                @Html.DropDownListFor(model => model.CustomerId, (SelectList)ViewBag.Customers, "--請選擇--")
+                @Html.TextBoxFor(model => model.Condition, new { @disabled = "true" })
+                <span id='errmsg' style='color: red;'></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.AgentId1)</td>
+            <td>
+                @if (ViewBag.AgentsSuper != null)
+                {
+                    @Html.DropDownListFor(model => model.AgentId1, new List<SelectListItem>(), "--請選擇--")
+                    @Html.ValidationMessageFor(model => model.AgentId1)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.AgentId2)</td>
+            <td>
+                @if (ViewBag.AgentsSuper != null)
+                {
+                    @Html.OptSelectList("AgentId2", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.AgentId3)</td>
+            <td>
+                @if (ViewBag.AgentsSuper != null)
+                {
+                    @Html.OptSelectList("AgentId3", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.AutoDispatch)</td>
+            <td>
+                @Html.CheckBoxFor(model => model.AutoDispatch)
+                @Html.ValidationMessageFor(model => model.AutoDispatch)
+            </td>
+        </tr>
+    </table>
+    <div class="center">
+        <input type="submit" id="save" name="save" value="儲存" class="button" />
+        <input type="button" id="cancel" name="cancel" class="button" value="取消" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        GetAgentList(null);
+        ShowDetail("", 0, "1", "", "", "", "", "", 1);
+        $('input[name="ConditionType"]:radio').change(function () {
+            resetValidation();
+            DisplaybyDispatchMode();
+            GetAgentList(null);
+        });
+
+        $('#CustomerId').change(function () { ChangeAgentList(); });
+
+        $("#new").click(function (e) {
+            ElementsStatus(1);
+            ShowDetail($('#NextNo').val(), 0, "1", "", "", "", "", "", 1);
+        });
+
+        $("#edit").click(function (e) {
+            ElementsStatus(2);
+            $('#save').val("儲存變更");
+        });
+
+        $("#delete").click(function (e) {
+            ElementsStatus(3);
+            var c = confirm("確定要刪除嗎?");
+            if (c == true) {
+                $('#Id').val(0 - $('#Id').val());
+            } else {
+                $("#delete").attr("disabled", false);
+            }
+
+            return c;
+        });
+
+        $("#cancel").click(function (e) {
+            ElementsStatus(4);
+            GetDetailInfo($('#Id').val(), $('#originalNo').val());
+        });
+
+        $("#save").click(function (e) {
+            var dispatchmode = $("input[name=ConditionType]:checked").val();
+
+            if (dispatchmode == "1") {
+                if ($('#CustomerId option:selected').index() == 0) {
+                    $("#errmsg").text("請選擇分派條件(公司)");
+                    return false;
+                }
+            }
+            else if (dispatchmode == "2") {
+                if ($('#Condition').val().length < 1) {
+                    $("#errmsg").text("請輸入郵件信箱");
+                    return false;
+                } else {
+                    if (!isValidEmailAddress($('#Condition').val())) {
+                        $("#errmsg").text("請輸入正確郵件信箱格式");
+                        return false;
+                    }
+                }
+            }
+            else if (dispatchmode == "3") {
+                if ($('#Condition').val().length < 1) {
+                    $("#errmsg").text("請輸入網域");
+                    return false;
+                }
+            }
+            else if (dispatchmode == "4") {
+                if ($('#Condition').val().length < 1) {
+                    $("#errmsg").text("請輸入郵件主旨");
+                    return false;
+                }
+            }
+
+            if ($('#No').text() == $('#NextNo').val()) {
+                $('#Id').val(0);
+            }
+            return true;
+        });
+    });
+
+    function EnableAllElements() {
+        $("#new").show();
+        $("#edit").show();
+        $("#delete").show();
+        $("#save").show();
+        $("#cancel").show();
+
+        $("#new").attr("disabled", false);
+        $("#edit").attr("disabled", false);
+        $("#delete").attr("disabled", false);
+        $("#save").attr("disabled", false);
+        $("#cancel").attr("disabled", false);
+
+        $('input[name="ConditionType"]:radio').attr("disabled", false);
+        $("#CustomerId").attr("disabled", false);
+        $("#Condition").attr("disabled", false);
+
+        $("#AgentId1").attr("disabled", false);
+        $('#AgentId2').attr("disabled", false);
+        $('#AgentId3').attr("disabled", false);
+
+        $('#AutoDispatch').attr("disabled", false);
+    };
+
+    function ElementsStatus(nMode) {
+        if (nMode > 0) {
+            resetValidation();
+        }
+        EnableAllElements();
+        if (nMode == 1) {
+            // New
+            $("#edit").hide();
+            $("#delete").hide();
+            $("#new").attr("disabled", true);
+        } else if (nMode == 2) {
+            // Edit
+            $("#edit").attr("disabled", true);
+        } else if (nMode == 3) {
+            // Delete
+            $("#save").hide();
+            $("#cancel").hide();
+            $("#delete").attr("disabled", true);
+
+            $('input[name="ConditionType"]:radio').attr("disabled", true);
+            $("#CustomerId").attr("disabled", true);
+            $("#Condition").attr("disabled", true);
+
+            $("#AgentId1").attr("disabled", true);
+            $('#AgentId2').attr("disabled", true);
+            $('#AgentId3').attr("disabled", true);
+
+            $('#AutoDispatch').attr("disabled", true);
+        } else if (nMode == 0) {
+            // Click
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $('input[name="ConditionType"]:radio').attr("disabled", true);
+            $("#CustomerId").attr("disabled", true);
+            $("#Condition").attr("disabled", true);
+
+            $("#AgentId1").attr("disabled", true);
+            $('#AgentId2').attr("disabled", true);
+            $('#AgentId3').attr("disabled", true);
+
+            $('#AutoDispatch').attr("disabled", true);
+
+        } else if (nMode == 4 && $('#Id').val().length > 0 && $('#Id').val() != "0") {
+            //Cancel(Edit)
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+
+            $('input[name="ConditionType"]:radio').attr("disabled", true);
+            $("#CustomerId").attr("disabled", true);
+            $("#Condition").attr("disabled", true);
+
+            $("#AgentId1").attr("disabled", true);
+            $('#AgentId2').attr("disabled", true);
+            $('#AgentId3').attr("disabled", true);
+
+            $('#AutoDispatch').attr("disabled", true);
+        } else {
+            // Init, Cancel(New) or Unknown
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+            $("#edit").attr("disabled", true);
+            $("#delete").attr("disabled", true);
+
+            $('input[name="ConditionType"]:radio').attr("disabled", true);
+            $("#CustomerId").attr("disabled", true);
+            $("#Condition").attr("disabled", true);
+
+            $("#AgentId1").attr("disabled", true);
+            $('#AgentId2').attr("disabled", true);
+            $('#AgentId3').attr("disabled", true);
+
+            $('#AutoDispatch').attr("disabled", true);
+        }
+
+    };
+
+    function ShowDetail(nNo, nDispatchID, ConditionType, CustomerId, Condition, AgentId1, AgentId2, AgentId3, AutoDispatch) {
+        $('#No').text(nNo);
+        if (nDispatchID != 0) {
+            $('#originalNo').val(nNo);
+            $('#Id').val(nDispatchID);
+        }
+
+        $("#ConditionType").prop('checked', false);
+        $("input[name=ConditionType][value=" + ConditionType + "]").prop('checked', true);
+
+        $('#CustomerId option:selected').removeAttr('selected');
+        $('#CustomerId option[value=' + CustomerId + ']').attr('selected', true);
+
+        $("#Condition").val(Condition);
+
+        $('#AgentId1 option:selected').removeAttr('selected');
+        $('#AgentId1 option[value=' + AgentId1 + ']').attr('selected', true);
+
+        $('#AgentId2 option:selected').removeAttr('selected');
+        $('#AgentId2 option[value=' + AgentId2 + ']').attr('selected', true);
+
+        $('#AgentId3 option:selected').removeAttr('selected');
+        $('#AgentId3 option[value=' + AgentId3 + ']').attr('selected', true);
+
+        if (AutoDispatch > 0 || AutoDispatch == true) {
+            $('#AutoDispatch').prop('checked', true);
+        } else {
+            $('#AutoDispatch').prop('checked', false);
+        }
+        DisplaybyDispatchMode();
+    };
+
+    function resetValidation() {
+        $('#errmsg').text("");
+        $("#err").text("");
+
+        //Removes validation from input-fields
+        $('.input-validation-error').addClass('input-validation-valid');
+        $('.input-validation-error').removeClass('input-validation-error');
+        //Removes validation message after input-fields
+        $('.field-validation-error').addClass('field-validation-valid');
+        $('.field-validation-error').removeClass('field-validation-error');
+        //Removes validation summary 
+        $('.validation-summary-errors').addClass('validation-summary-valid');
+        $('.validation-summary-errors').removeClass('validation-summary-errors');
+    };
+
+    function DisplaybyDispatchMode() {
+        var radiovalue = $('input[name="ConditionType"]:checked').val();
+        if (radiovalue == '1') {
+            $('#CustomerId').show();
+            $('#Condition').hide();
+        }
+        else if (radiovalue != '1') {
+            $('#CustomerId').hide();
+            $('#Condition').show();
+        }
+        return true;
+    }
+
+    function isValidEmailAddress(emailAddress) {
+        var pattern = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+        if (pattern.test(emailAddress)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    function ChangeAgentList() {
+        var selectedValue = $('#CustomerId option:selected').val();
+        if ($.trim(selectedValue).length > 0) {
+            GetAgentList(selectedValue);
+        }
+    };
+
+    function GetAgentList(CustomerID) {
+        $.ajax({
+            url: '@Url.Action("GetAgentList", "EmailDispatchRule")',
+            data: { cid: CustomerID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#AgentId1').empty();
+                    $('#AgentId2').empty();
+                    $('#AgentId3').empty();
+
+                    if (CustomerID != null) {
+                        $.each(data, function (i, item) {
+                            $('#AgentId1').append($('<option></option>').val(item.Key).text(item.Value));
+                            $('#AgentId2').append($('<option></option>').val(item.Key).text(item.Value));
+                            $('#AgentId3').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    } else {
+                        $('#AgentId1').append(data);
+                        $('#AgentId2').append(data);
+                        $('#AgentId3').append(data);
+                    }
+                }
+            }
+        });
+    };
+</script>

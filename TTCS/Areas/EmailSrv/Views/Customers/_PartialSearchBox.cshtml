@@ -1,0 +1,29 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ECustomers
+
+@{    
+    int nType = Convert.ToInt32((string)ViewBag.Type);    
+}
+
+@using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+{
+    <fieldset>
+        <legend>查詢條件</legend>
+        @Html.RadioButton("type", "1", nType == 1)@Html.DisplayNameFor(model => model.CName)
+        @Html.RadioButton("type", "3", nType == 3) 連絡人電話
+        @Html.RadioButton("type", "2", nType == 2) 連絡人信箱
+        @Html.TextBox("condition", (string)ViewBag.Condition)
+        @Html.CheckBox("checkassign")@Html.DisplayNameFor(model => model.IsAssignRule)
+        @Html.Hidden("isAssignRule", (int)ViewBag.IsAssignRule > 0)
+        <input type="submit" value="查詢" class="button" />
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#checkassign').prop("checked", $('#isAssignRule').val() == "1");
+
+        $('#checkassign').click(function () {
+            $('#isAssignRule').val($(this).prop('checked') ? "1" : "0");
+        });
+    });
+</script>

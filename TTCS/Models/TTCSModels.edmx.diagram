@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17cce252125b425a8a9eb55dd11281ce" Name="圖表1">
+        <EntityTypeShape EntityType="kskyModel.Agent" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.CTIAgentLog" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.CustomerCategory" Width="1.5" PointX="1.5" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.Customers" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailAgentWeight" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailContacts" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailDispatchRule" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailFilterRule" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailRawBody" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailRawHeader" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailRecord" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailRejectReason" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailReplyCan" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailSavedAttachment" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailSavedBody" Width="1.5" PointX="3.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailScheduleSetting" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailSentAttachment" Width="1.5" PointX="11.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.EmailSentBox" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.MailGroup" Width="1.5" PointX="0.75" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.MailMember" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.PhoneRecord" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.RecordCloseApproach" Width="1.5" PointX="0.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.Records" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.RecordServiceMap" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.RecordStatus" Width="1.5" PointX="0.75" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.RecordType" Width="1.5" PointX="0.75" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.ServiceGroup" Width="1.5" PointX="1.5" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kskyModel.ServiceItem" Width="1.5" PointX="0.75" PointY="38" IsExpanded="true" />
+        <AssociationConnector Association="kskyModel.FK_EmailDispatchRule_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailDispatchRule_Agent1" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailDispatchRule_Agent2" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRecord_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRecord_Agent1" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_Records" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Customers_CustomerCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailDispatchRule_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRawBody_EmailRawHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRecord_EmailRawHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRecord_EmailSavedBody" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_EmailRecord_Records" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_MailGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_PhoneRecord_Records" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_RecordCloseApproach" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_RecordStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_RecordType" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_Records_ServiceItem" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_RecordServiceMap_Records" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_RecordServiceMap_ServiceItem" ManuallyRouted="false" />
+        <AssociationConnector Association="kskyModel.FK_ServiceItem_ServiceGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

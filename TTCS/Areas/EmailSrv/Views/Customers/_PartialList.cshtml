@@ -1,0 +1,146 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.CustomersView>
+
+<table class="table_view">
+    <tr>
+        <th class="zhlen2">編號
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.CName)*@
+            客戶名稱
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact1_Tel1)*@
+            連絡人1電話
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact1_Email1)*@
+            連絡人1郵件
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact2_Tel1)*@
+            連絡人2電話
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact2_Email1)*@
+            連絡人2郵件
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact3_Tel1)*@
+            連絡人3電話
+        </th>
+        <th class="zhlen20">
+            @*@Html.DisplayNameFor(model => model.Customers.Contact3_Email1)*@
+            連絡人3郵件
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.AgentId1)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.AgentId2)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.AgentId3)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.ModifyBy)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.ModifyOn)
+        </th>
+        <th class="zhlen20">
+            @Html.DisplayNameFor(model => model.EmailDispatchRule.AutoDispatch)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBegin++;
+        <tr Class="rows" id="@item.Customers.ID">
+            <td>@ViewBag.NumberBegin</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.CName)/@Html.DisplayFor(modelItem => item.Customers.EName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact1_Tel1)/@Html.DisplayFor(modelItem => item.Customers.Contact1_Tel2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact1_Email1)/@Html.DisplayFor(modelItem => item.Customers.Contact1_Email2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact2_Tel1)/@Html.DisplayFor(modelItem => item.Customers.Contact2_Tel2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact2_Email1)/@Html.DisplayFor(modelItem => item.Customers.Contact2_Email2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact3_Tel1)/@Html.DisplayFor(modelItem => item.Customers.Contact3_Tel2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Contact3_Email1)/@Html.DisplayFor(modelItem => item.Customers.Contact3_Email2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.Agent.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.Agent1.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.Agent2.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.ModifyBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.ModifyOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDispatchRule.AutoDispatch)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="dialog-modal" title="客戶派送設定" style="text-align: left;"></div>
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $("#dialog-modal").dialog({
+                autoOpen: false,
+                width: 450,
+                height: 300,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
+            $(".rows").click(function (e) {
+                OpenCustomerDispatchDialog(escape(e.target.parentElement.id));
+            });
+        });
+
+        function OpenCustomerDispatchDialog(CustomerID) {
+            $.ajax({
+                url: '@Url.Action("_PartialOpenPopup", "Customers")',
+            type: 'Get',
+            data: "id=" + CustomerID,
+            datatype: "html",
+            cache: false,
+            success: function (data) {
+                $("#dialog-modal").dialog("open");
+                $("#dialog-modal").empty().append(data);
+            },
+            error: function () {
+                alert("something seems wrong");
+            }
+        });
+    };
+    </script>

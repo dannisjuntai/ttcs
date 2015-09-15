@@ -1,0 +1,29 @@
+﻿@model PagedList.IPagedList<TTCS.Areas.EmailSrv.Models.ERecords>
+
+@{
+    ViewBag.Title = "案件總覽";
+    Response.AddHeader("Refresh", "60");
+}
+
+<table class="table_div">
+    <tr>
+        <td class="onecolumn_title">郵件管理清單
+        </td>
+    </tr>
+    <tr>
+        <td class="onecolumn">
+            @Html.Partial("_PartialSearchBox", new TTCS.Areas.EmailSrv.Models.ERecords())
+            <br />
+            @Html.Partial("_PartialList", Model)            
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailAdmin_Index').addClass('current');
+        });
+    </script>
+}
+

@@ -1,0 +1,345 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.ERecords>
+@using PagedList.Mvc;
+
+@{
+    string retAction = "Index";
+    if (ViewBag.Source == "1")
+    {
+        retAction = "IndexWait";
+    }
+    string sconditionStr = TTCS.Areas.EmailSrv.Models.EmailAdmin_SearchCondition.Serialize((TTCS.Areas.EmailSrv.Models.EmailAdmin_SearchCondition)ViewBag.SearchCondition);
+}
+<table class="table_view">
+    <tr>
+        <th style="width:4%;">郵件
+        </th>
+        <th style="width:6%">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.RID).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "RID", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        @if (ViewBag.Source == "0")
+        {
+            <th style="width:6%;">
+                @Html.ActionLink(Html.DisplayNameFor(model => model.TypeID).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "TypeID", Desc = ViewBag.Desc, page = ViewBag.Page })
+            </th>
+        }
+        <th style="width:10%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().EmailRawHeader.MsgFrom).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "MsgFrom", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:10%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().EmailRawHeader.MsgSubject).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "MsgSubject", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().IncomeOn).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "IncomeOn", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().ExpireOn).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "ExpireOn", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().AssignCount).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "AssignCount", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.AgentID).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "AgentID", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.StatusID).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "EmailStatus", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().ProcessStatus).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "ProcessStatus", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().RejectReason).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "RejectReason", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:8%;">
+            @Html.ActionLink(Html.DisplayNameFor(model => model.EmailRecord.OrderByDescending(e => e.OrderNo).FirstOrDefault().CurrAgentId).ToString(), retAction, new { searchconditionStr = sconditionStr, sortOrder = "CurrAgentId", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        <th style="width:6%;">
+            @Html.ActionLink("處理方式", retAction, new { searchconditionStr = sconditionStr, sortOrder = "CloseApproachID", Desc = ViewBag.Desc, page = ViewBag.Page })
+        </th>
+        @if (ViewBag.Source == "0")
+        {
+            <th style="width:8%;">                
+                @Html.DisplayNameFor(model => model.ServiceItemID)
+            </th>
+        }
+        else
+        {
+            <th style="width:14%;">
+                @Html.DisplayNameFor(model => model.ServiceItemID)
+            </th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.NumberBegin++;
+
+        if (item.TypeID == 3)
+        {
+            string strStyle = "";
+            bool isCreatedERecord = false;
+
+            TTCS.Areas.EmailSrv.Models.EEmailRecord erecordfirst = item.EmailRecord.OrderBy(e => e.OrderNo).FirstOrDefault();
+            if (erecordfirst == null)
+            {
+                continue;
+            }
+        
+            @* 新增郵件案件 *@
+            if (erecordfirst.RawHeaderId == null || erecordfirst.RawHeaderId.Value < 1)
+            {
+                if (item.EmailRecord.Count > 1)
+                {
+                    erecordfirst = item.EmailRecord.Where(e => e.OrderNo != 0).OrderBy(e => e.OrderNo).FirstOrDefault();
+                }
+                else
+                {
+                    isCreatedERecord = true;
+                }
+            }
+
+            if (isCreatedERecord == false)
+            {
+                erecordfirst = item.EmailRecord.Where(e => e.RawHeaderId != null && e.RawHeaderId.Value > 0 && e.EmailRawHeader.MsgFrom == erecordfirst.EmailRawHeader.MsgFrom).OrderByDescending(e => e.OrderNo).FirstOrDefault();
+                if (erecordfirst == null)
+                {
+                    continue;
+                }
+            }
+
+            @*還未被閱讀為粗體*@
+            if (erecordfirst.UnRead != null && erecordfirst.UnRead.Value > 0)
+            {
+                strStyle = "font-weight: bold;";
+            }
+
+            @*超過一個小時未處理為紅色*@
+            if (item.AgentID != null && item.AgentID.Length > 0 && item.StatusID == 1)
+            {
+                if (erecordfirst.AssignOn != null && erecordfirst.AssignOn.Value.AddHours(1) < DateTime.Now)
+                {
+                    strStyle = strStyle + "color:red;";
+                }
+            }
+
+            strStyle += "font-size:small;";
+            <tr Class="rows" id="@erecordfirst.Id" style ="@strStyle">
+            <td>@ViewBag.NumberBegin</td>
+            <td>@Html.DisplayFor(modelItem => item.RID)</td>
+            @if (ViewBag.Source == "0")
+            {
+                <td>@Html.DisplayFor(modelItem => item.RecordType.Name)</td>
+            }
+            <td>
+                @if (isCreatedERecord == true)
+                {
+                    @:N/A 
+                }
+                else
+                {
+                    string msgFrom = erecordfirst.EmailRawHeader.MsgFrom;
+                    if (msgFrom.Length > 10)
+                    {
+                        msgFrom = msgFrom.Substring(0, 10);
+                    }
+                    <span title="@erecordfirst.EmailRawHeader.MsgFrom">@msgFrom</span>
+                }
+            </td>
+            <td>
+                @if (isCreatedERecord == true)
+                {
+                    if (erecordfirst.EmailSavedBody != null && erecordfirst.EmailSavedBody.FileName != null)
+                    {
+                        string msgSubject = erecordfirst.EmailSavedBody.FileName;
+                        if (msgSubject.Length > 8)
+                        {
+                            msgSubject = msgSubject.Substring(0, 8);
+                        }
+                        <span title="@erecordfirst.EmailSavedBody.FileName">@msgSubject</span>
+                    }
+                }
+                else
+                {
+                    string msgSubject = erecordfirst.EmailRawHeader.MsgSubject;
+                    if (msgSubject.Length > 8)
+                    {
+                        msgSubject = msgSubject.Substring(0, 8);
+                    }
+                    <span title="@erecordfirst.EmailRawHeader.MsgSubject">@msgSubject</span>
+                }
+            </td>
+            <td>
+                @if (erecordfirst.IncomeOn != null)
+                {
+                    <span title="@erecordfirst.IncomeOn.Value.ToString("yyyy/MM/dd HH:mm:ss")">@erecordfirst.IncomeOn.Value.ToString("HH:mm:ss")</span>
+                }
+            </td>
+            <td>
+                @if (erecordfirst.ExpireOn != null)
+                {
+                    <span title="@erecordfirst.ExpireOn.Value.ToString("yyyy/MM/dd HH:mm:ss")">@erecordfirst.ExpireOn.Value.ToString("HH:mm:ss")</span>
+                }
+            </td>
+            <td>
+                @erecordfirst.AssignCount
+            </td>
+            <td>
+                @if (item.EAgent != null)
+                {
+                    string agentName = item.EAgent.AgentName;
+                    if (agentName.Length > 7)
+                    {
+                        agentName = agentName.Substring(0, 7);
+                    }
+                    <span title="@item.EAgent.AgentName">@agentName</span>
+                }
+            </td>
+            <td>
+                @if (item.RecordStatus != null)
+                {
+                    @item.RecordStatus.Name
+                }
+            </td>
+            <td>
+                @if (erecordfirst.ProcessStatus != null)
+                {
+                    string processStatus = erecordfirst.ProcessStatus;
+                    if (processStatus.Length > 4)
+                    {
+                        processStatus = processStatus.Substring(0, 4);
+                    }
+                    <span title="@erecordfirst.ProcessStatus">@processStatus</span>
+                }
+            </td>
+            <td>
+                @if (erecordfirst.RejectReason != null)
+                {
+                    string rejectReason = erecordfirst.RejectReason;
+                    if (rejectReason.Length > 4)
+                    {
+                        rejectReason = rejectReason.Substring(0, 4);
+                    }
+                    <span title="@erecordfirst.RejectReason">@rejectReason</span>
+                }
+            </td>
+            <td>
+                @if (item.AgentID == null && erecordfirst.Agent1 != null)
+                {
+                    string agentName = erecordfirst.Agent1.AgentName;
+                    if (agentName.Length > 7)
+                    {
+                        agentName = agentName.Substring(0, 7);
+                    }
+                    <span title="@erecordfirst.Agent1.AgentName">@agentName</span>
+                }
+            </td>
+            <td>
+                @if (item.RecordCloseApproach != null)
+                {
+                    @item.RecordCloseApproach.ApproachName
+                }
+            </td>
+            <td>
+                @if(item.ServiceItemNames != null && item.ServiceItemNames.Length > 6)
+                {
+                    string serviceItemNames = item.ServiceItemNames.Substring(0,6);
+                    <span title="@item.ServiceItemNames">@serviceItemNames</span>
+                }
+                else
+                {
+                    @item.ServiceItemNames
+                }
+            </td>
+        </tr>
+        }
+        else
+        {            
+        <tr Class="rows" id="@("T" + item.RID)" style="font-size:small;">
+            <td>@ViewBag.NumberBegin</td>
+            <td>@Html.DisplayFor(modelItem => item.RID)</td>
+            @if (ViewBag.Source == "0")
+            {
+                <td>@Html.DisplayFor(modelItem => item.RecordType.Name)</td>
+            }
+            <td>N/A 
+            </td>
+            <td>N/A 
+            </td>
+            <td>
+                @if (item.IncomingDT != null)
+                {
+                    <span title="@item.IncomingDT.Value.ToString("yyyy/MM/dd HH:mm:ss")">@item.IncomingDT.Value.ToString("HH:mm:ss")</span>
+                }
+            </td>
+            <td>N/A 
+            </td>
+            <td>N/A 
+            </td>
+            <td>
+                @if (item.EAgent != null)
+                {
+                    string agentName = item.EAgent.AgentName;
+                    if (agentName.Length > 7)
+                    {
+                        agentName = agentName.Substring(0, 7);
+                    }
+                    <span title="@item.EAgent.AgentName">@agentName</span>
+                }
+            </td>
+            <td>
+                @if (item.RecordStatus != null)
+                {
+                    @item.RecordStatus.Name
+                }
+            </td>
+            <td>N/A 
+            </td>
+            <td>N/A 
+            </td>
+            <td>N/A 
+            </td>
+            <td>
+                @if (item.RecordCloseApproach != null)
+                {
+                    @item.RecordCloseApproach.ApproachName
+                }
+            </td>
+            <td>
+                @if(item.ServiceItemNames != null && item.ServiceItemNames.Length > 6)
+                {
+                    string serviceItemNames = item.ServiceItemNames.Substring(0,6);
+                    <span title="@item.ServiceItemNames">@serviceItemNames</span>
+                }
+                else
+                {
+                    @item.ServiceItemNames
+                }
+            </td>
+        </tr>
+        }
+    }
+
+</table>
+<div id="div_center">
+                @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("Index",
+                                new { searchconditionStr = sconditionStr, sortOrder = ViewBag.Order, Desc = ViewBag.Desc, page = page }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+            </div>
+<script type="text/javascript">
+    $(function () {
+        $(".rows").click(function (e) {
+            @if (ViewBag.Source == "0")
+            {
+                @:window.location = '@Url.Action("Detail", "EmailAdmin")' + '?id=' + escape(this.id) + '&Source=0';
+            }
+            else if (ViewBag.Source == "1")
+            {
+                @:window.location = '@Url.Action("Detail", "EmailAdmin")' + '?id=' + escape(this.id) + '&Source=1';
+            }
+        });
+    });
+</script>

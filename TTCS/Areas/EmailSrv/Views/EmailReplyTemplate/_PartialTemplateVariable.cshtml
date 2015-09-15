@@ -1,0 +1,8 @@
+﻿@model TTCS.Areas.EmailSrv.Models.TemplateVariables
+
+@using (Html.BeginForm("_PartialTemplateVariable", "EmailReplyTemplate"))
+{
+       
+    @Html.LabelFor(model => model.AgentID)@:：@Html.EditorFor(model => model.AgentID)<br />
+    <input type="submit" name="saveVariables" id="saveVariables" value="儲存" />
+}

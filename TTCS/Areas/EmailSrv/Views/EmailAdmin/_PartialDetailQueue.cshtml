@@ -1,0 +1,165 @@
+﻿@using TTCS.Helpers
+@model TTCS.Areas.EmailSrv.Models.EEmailRecord
+
+@using (Html.BeginForm("_PartialDetailQueue", "EmailAdmin"))
+{
+    @Html.Hidden("InitDisabled", (int)ViewBag.Disabled)
+    @Html.ActionLink("返回", "IndexQueue")
+    
+    if(Model.UnRead != 1)
+    {
+    <input type="button" id="edit" name="edit" class="buttonright" value="指派" />
+    <input type="submit" id="delete" name="delete" class="buttonright" value="刪除" />
+    }
+    
+    if (Model.Garbage != null)
+    {
+        @:[垃圾]
+    }
+    
+    @Html.HiddenFor(model => model.Id)
+    <br />
+    <table class="table_detail">
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.EmailRawHeader.MsgFrom)</td>
+            <td>
+                @Html.DisplayFor(model => model.EmailRawHeader.MsgFrom)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.EmailRawHeader.MsgSubject)</td>
+            <td>
+                @Html.DisplayFor(model => model.EmailRawHeader.MsgSubject)
+            </td>
+        </tr>
+        <tr>
+            <td class="fieldname">@Html.DisplayNameFor(model => model.EmailRawHeader.MsgSentOn)</td>
+            <td>
+                @Model.EmailRawHeader.MsgSentOn.ToString("yyyy/MM/dd HH:mm:ss")
+            </td>
+        </tr>
+
+       @if(Model.UnRead != 1)
+        {
+        <tr>
+            <td class="fieldname">客服人員</td>
+            <td>
+                @if (ViewBag.AgentsSuper != null)
+                {
+                    @Html.OptSelectList("AgentID", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+                }
+                @Html.ValidationMessageFor(model => model.CurrAgentId)
+            </td>
+        </tr>
+        }
+    </table>
+    <div class="center">
+        <input type="submit" id="save" name="save" value="儲存" class="button" />
+        <input type="button" id="cancel" name="cancel" class="button" value="取消" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        if($('#InitDisabled').val() == "1"){
+            ElementsStatus(4);
+        } else {
+            ElementsStatus(2);
+            $('#InitDisabled').val('1');
+        }
+
+        $("#edit").click(function (e) {
+            ElementsStatus(2);
+        });
+
+        $("#cancel").click(function (e) {
+            ElementsStatus(4);
+            $('#AgentID option[value=""]').attr('selected', true);
+        });        
+
+        $("#delete").click(function (e) {
+            ElementsStatus(3);
+            var c = confirm("確定要刪除嗎?");
+            if (c == true) {
+                $('#Id').val(0 - $('#Id').val());
+            } else {
+                $("#delete").attr("disabled", false);
+            }
+
+            return c;
+        });
+    });
+
+    function EnableAllElements() {
+        $("#edit").show();
+        $("#delete").show();
+        $("#save").show();
+        $("#cancel").show();
+
+        $("#edit").attr("disabled", false);
+        $("#delete").attr("disabled", false);
+        $("#save").attr("disabled", false);
+        $("#cancel").attr("disabled", false);
+
+        $("#AgentID").attr("disabled", false);
+    };
+
+    function ElementsStatus(nMode) {
+        if ($('#InitDisabled').val() == "1") {
+            resetValidation();
+        };
+        
+        EnableAllElements();
+        if (nMode == 1) {
+            // New
+        } else if (nMode == 2) {
+            // Edit
+            $("#edit").attr("disabled", true);
+        } else if (nMode == 3) {
+            // Delete
+            $("#save").hide();
+            $("#cancel").hide();
+            $("#delete").attr("disabled", true);
+
+            $("#AgentID").attr("disabled", true);
+        } else if (nMode == 0) {
+            // Click
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#AgentID").attr("disabled", true);
+        } else if (nMode == 4 && $('#Id').val().length > 0 && $('#Id').val() != "0") {
+            //Cancel(Edit)
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+
+            $("#AgentID").attr("disabled", true);
+        } else {
+            // Init, Cancel(New) or Unknown
+            $("#save").hide();
+            $("#cancel").hide();
+
+            $("#save").attr("disabled", true);
+            $("#cancel").attr("disabled", true);
+            $("#edit").attr("disabled", true);
+            $("#delete").attr("disabled", true);
+
+            $("#AgentID").attr("disabled", true);
+        }
+    };
+
+    function resetValidation() {
+        //Removes validation from input-fields
+        $('.input-validation-error').addClass('input-validation-valid');
+        $('.input-validation-error').removeClass('input-validation-error');
+        //Removes validation message after input-fields
+        $('.field-validation-error').addClass('field-validation-valid');
+        $('.field-validation-error').removeClass('field-validation-error');
+        //Removes validation summary 
+        $('.validation-summary-errors').addClass('validation-summary-valid');
+        $('.validation-summary-errors').removeClass('validation-summary-errors');
+    };
+</script>

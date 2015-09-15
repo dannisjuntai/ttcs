@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EServiceItem>
+
+@{
+    string GroupName = "";
+}
+
+<div style="overflow: auto;">
+    <input id="saveService" type="button" value="確定" /><br />
+    @foreach (var item in Model)
+    {
+        if (item.GroupID.ToString() != GroupName)
+        {
+        @Html.DisplayFor(modelitem => item.GroupName)
+            GroupName = item.GroupID.ToString();
+        <br />
+        }
+
+        if (item.Checked == 1)
+        {
+        @Html.CheckBox("chkservice", true, new { @id = item.GroupID, @value = item.ItemID })@:：@item.ItemDesc
+    }
+        else
+        {
+        @Html.CheckBox("chkservice", false, new { @id = item.GroupID, @value = item.ItemID })@:：@item.ItemDesc
+    }
+        @Html.Hidden("chk" + item.GroupID.ToString() + item.ItemID.ToString(), item.ItemDesc);
+        <br />
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TTCS.Areas.EmailSrv.Models.EEmailAgentWeight>
+
+<table class="table_view">
+    @foreach (var item in Model)
+    {   
+        <tr Class="rowsAgentWeight" id="@item.AgentId">
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="dialog-modal-agentweightdetail" title="權重設定" style="text-align: left;"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#dialog-modal-agentweightdetail").dialog({
+            autoOpen: false,
+            width: 300,
+            height: 250,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $(".rowsAgentWeight").click(function (e) {
+            $.ajax({
+                url: '@Url.Action("_PartialOpenPopupAgentWeightDetail", "SystemSetting")',
+                type: 'Get',
+                data: "id=" + escape(e.target.parentElement.id),
+                datatype: "html",
+                cache: false,
+                success: function (data) {
+                    $("#dialog-modal-agentweightdetail").dialog("open");
+                    $("#dialog-modal-agentweightdetail").empty().append(data);
+                },
+                error: function () {
+                    alert("something seems wrong");
+                }
+            });
+        });
+    });
+</script>
+

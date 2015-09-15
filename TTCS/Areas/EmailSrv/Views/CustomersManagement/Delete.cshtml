@@ -1,0 +1,18 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ECustomers
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<fieldset>
+    <legend>刪除客戶</legend>
+    <h3>確定刪除客戶 @Model.CName ?</h3>
+    @using (Html.BeginForm()) {
+    <p>
+        @Html.Hidden("id", (object)Model.ID)
+        <input type="submit" value="刪除" /> or 
+        @Html.ActionLink("取消刪除", "Index")
+    </p>
+    }
+</fieldset>

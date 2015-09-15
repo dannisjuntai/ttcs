@@ -1,0 +1,28 @@
+﻿@model PagedList.IPagedList<TTCS.Areas.EmailSrv.Models.ECustomerCategory>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table_div">
+    <tr>
+        <td class="onecolumn_title">客戶類型清單</td>
+    </tr>
+    <tr>
+        <td class="onecolumn">
+            @Html.Partial("_PartialSearchBox", new TTCS.Areas.EmailSrv.Models.ECustomerCategory())
+            <br />
+            @Html.Partial("_PartialList", Model)
+            <div id="div_center">
+                @Html.PagedListPager((PagedList.IPagedList)Model, page => Url.Action(
+                                "Index",
+                                new { page = page }),
+                                new PagedListRenderOptions{
+                                    LinkToPreviousPageFormat = "上一頁",
+                                    LinkToNextPageFormat = "下一頁"
+                                })
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,195 @@
+﻿@model IEnumerable<TTCS.Models.Agent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentPWD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VMPWD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasVoiceMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GW32)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Authority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CTILoginID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CTILoginPWD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoLogin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoLogout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultExten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoLoginTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoLogoutTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocalDistance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongDistance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.International)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DialContext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeptID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SMSEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaxEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrpRecBoxEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailIsLogon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentPWD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VMPWD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasVoiceMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GW32)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Authority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CTILoginID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CTILoginPWD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoLogin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoLogout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultExten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoLoginTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoLogoutTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocalDistance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongDistance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.International)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DialContext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeptID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SMSEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FaxEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrpRecBoxEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailIsLogon)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AgentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AgentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AgentID })
+        </td>
+    </tr>
+}
+
+</table>

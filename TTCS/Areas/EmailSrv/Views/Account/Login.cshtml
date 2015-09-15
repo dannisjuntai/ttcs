@@ -1,0 +1,82 @@
+﻿@model TTCS.Areas.EmailSrv.Models.LoginModel
+
+@{
+    ViewBag.Title = "電子郵件管理模組";
+    ViewBag.IsLogin = 1;
+}
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 25%;"></td>
+            <td style="font-size: 19px; width: 50%;" colspan="2">歡迎使用電子郵件管理模組，請於下方登入您的帳號及密碼
+            </td>
+            <td style="width: 25%;"></td>
+        </tr>
+        <tr style="height: 20px;">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-size: 16px; vertical-align: central; width: 50px;">
+                @Html.LabelFor(m => m.UserName)：
+            </td>
+            <td style="font-size: 16px; vertical-align: central;">
+                @Html.EditorFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </td>
+            <td></td>
+        </tr>
+        <tr style="height: 16px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-size: 16px; vertical-align: central;">
+                @Html.LabelFor(m => m.Password)：
+            </td>
+            <td style="font-size: 16px; vertical-align: central;">
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </td>
+            <td></td>
+        </tr>
+        <tr style="height: 16px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="font-size: 16px; vertical-align: central;">
+                <input type="submit" value="登入" />
+            </td>
+            <td></td>
+        </tr>
+        <tr style="height: 16px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#UserName').focus();
+        });
+    </script>
+}

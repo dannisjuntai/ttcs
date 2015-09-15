@@ -1,0 +1,39 @@
+﻿@model PagedList.IPagedList<TTCS.Areas.EmailSrv.Models.ERecords>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "案件(待轉派)";
+    Response.AddHeader("Refresh", "60");
+}
+<table class="table_div">
+    <tr>
+        <td class="onecolumn_title">郵件管理清單
+        </td>
+    </tr>
+    <tr>
+        <td class="onecolumn">
+            @Html.Partial("_PartialSearchBox", new TTCS.Areas.EmailSrv.Models.ERecords())
+            <br />
+            @Html.Partial("_PartialList", Model)
+            <div id="div_center">
+                @Html.PagedListPager((PagedList.IPagedList)Model,
+                            page => Url.Action("IndexWait",
+                                new { type = ViewBag.Type, condition = ViewBag.Condition, sortOrder = ViewBag.Order, Desc = ViewBag.Desc, page = page }),
+                                new PagedListRenderOptions
+                                    {
+                                        LinkToPreviousPageFormat = "上一頁",
+                                        LinkToNextPageFormat = "下一頁"
+                                    })
+            </div>
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#EmailAdmin_IndexWait').addClass('current');
+        });
+    </script>
+}
+

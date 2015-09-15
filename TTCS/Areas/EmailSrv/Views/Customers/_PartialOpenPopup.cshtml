@@ -1,0 +1,107 @@
+﻿@using TTCS.Helpers
+@model TTCS.Areas.EmailSrv.Models.EEmailDispatchRule
+
+@{
+    ViewBag.Title = "客戶派送設定";
+}
+
+@using (Html.BeginForm("_PartialOpenPopup", "Customers"))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-label">
+            @Html.Hidden("DispatchId", Model.Id)
+            @Html.Hidden("ModifyBy", HttpContext.Current.User.Identity.Name.Split('|')[1])
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.ConditionType)
+            @Html.HiddenFor(model => model.CustomerId)
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Customers.CName)：@Html.DisplayFor(model => model.Customers.CName)
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentId1)：
+             @if (ViewBag.AgentsSuper != null)
+             {
+                 @Html.OptSelectList("AgentId1", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+             }
+            <span id="errMsg" style="color: red;"></span>
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentId2)：
+             @if (ViewBag.AgentsSuper != null)
+             {
+                 @Html.OptSelectList("AgentId2", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+             }
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentId3)：
+             @if (ViewBag.AgentsSuper != null)
+             {
+                 @Html.OptSelectList("AgentId3", (List<SelectListItem>)ViewBag.AgentsSuper, "--請選擇--", false)
+             }
+        </div>
+        <div class="editor-field">
+        </div>
+
+        <div class="editor-label">
+            @Html.CheckBoxFor(model => model.AutoDispatch)：@Html.DisplayNameFor(model => model.AutoDispatch)
+        </div>
+        <div class="editor-field">
+        </div>
+        <p>
+            <input id="save" name="save" type="submit" value="儲存" />
+        </p>
+    </fieldset>
+}
+<script type="text/javascript">
+    $(function () {
+        $('#AgentId1 option:selected').removeAttr('selected');
+        $('#AgentId1 option[value=' + @Model.AgentId1 + ']').attr('selected', true);
+
+        $('#AgentId2 option:selected').removeAttr('selected');
+        $('#AgentId2 option[value=' + @Model.AgentId2 + ']').attr('selected', true);
+
+        $('#AgentId3 option:selected').removeAttr('selected');
+        $('#AgentId3 option[value=' + @Model.AgentId3 + ']').attr('selected', true);
+
+        $("#save").click(function (e) {
+            var select = $('#AgentId1 option:selected').val();
+            var select2 = $('#AgentId2 option:selected').val();
+            var select3 = $('#AgentId3 option:selected').val();
+
+            if (select == "") {
+                if (select2 != "" || select3 != "") {
+                    $('#errMsg').text("請優先選擇客服順位1");
+                    return false;
+                }
+                if ($('#DispatchId').val() == "0") {
+                    $("#dialog-modal").dialog("close");
+                    return false;
+                }                
+            }
+
+            $("#dialog-modal").dialog("close");
+            return true;
+
+        });
+    });
+</script>

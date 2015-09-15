@@ -1,0 +1,79 @@
+﻿@model TTCS.Areas.EmailSrv.Models.EEmailReplyCan
+
+@{
+    object htmlAttr = null;
+    if (Model.Id == 1 || Model.Id == 2)
+    {
+        htmlAttr = new { @disabled = "true" };
+    }
+}
+
+@using (Html.BeginForm("_PartialOpenPopupReply", "EmailReplyTemplate", FormMethod.Post, new { @id="ReplyForm"}))
+{       
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.Id)
+            @Html.Hidden("deleteReply", 0)
+        </div>
+        <div class="editor-field">
+        </div>
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Active) ： 
+            @Html.CheckBoxFor(model => model.Active, htmlAttr)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name) ： 
+            @if(htmlAttr == null)
+            {
+                @Html.EditorFor(model => model.Name) 
+                @Html.ValidationMessageFor(model => model.Name)
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Name)
+                @Html.HiddenFor(model => model.Name)
+            }
+            <span id="errReply" style="color: red;"></span>
+        </div>
+        <div class="editor-field">
+        </div>
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.TempCnt) ：
+        </div>
+        <br />
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.TmpContent)
+        </div>
+
+        <p style="text-align: center;">
+            <input id="saveReplyCan" type="submit" value="儲存" />
+            @if (Model.Id != 1 && Model.Id != 2 && Model.Id != 0)
+            {
+                <input id="deleteReplyCan" type="submit" value="刪除" />
+            }
+        </p>
+
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#TmpContent").cleditor();
+
+        $("#deleteReplyCan").click(function (e) {
+            var c = confirm("確定刪除?");
+            if (c == false) {
+            } else {
+                $("#deleteReply").val(1);
+            }
+            return c;
+        });
+    });
+</script>

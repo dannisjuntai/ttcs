@@ -1,0 +1,424 @@
+﻿@model TTCS.Areas.EmailSrv.Models.ECustomers
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    #Address {
+        width: 100%;
+    }
+
+    #Comment {
+        width: 100%;
+        height: 80px;
+    }
+</style>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>新增客戶</legend>
+
+        <table>
+            <tr><td colspan="6">客戶基本資料</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CName)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CName)
+                        @Html.ValidationMessageFor(model => model.CName)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EName)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EName)
+                        @Html.ValidationMessageFor(model => model.EName)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Category)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Category,  (SelectList)ViewBag.CustomerCategory, "--請選擇--")
+                        @*@Html.EditorFor(model => model.Category)
+                        @Html.ValidationMessageFor(model => model.Category)*@
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ID2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ID2)
+                        @Html.ValidationMessageFor(model => model.ID2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Region)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Region)
+                        @Html.ValidationMessageFor(model => model.Region)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.City)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.City)
+                        @Html.ValidationMessageFor(model => model.City)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Address)
+                    </div>
+                </td>
+                <td colspan="5">
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Address)
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Comment)
+                    </div>
+                </td>
+                <td colspan="5">
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Comment)
+                        @Html.ValidationMessageFor(model => model.Comment)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+        <table>
+            <tr><td colspan="6">客戶銷售資訊</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Marketer)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Marketer)
+                        @Html.ValidationMessageFor(model => model.Marketer)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.AgentID1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.AgentID1)
+                        @Html.ValidationMessageFor(model => model.AgentID1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.AgentID2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.AgentID2)
+                        @Html.ValidationMessageFor(model => model.AgentID2)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.GroupID)
+                    </div>
+                </td>
+                <td colspan="5">
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.GroupID)
+                        @Html.ValidationMessageFor(model => model.GroupID)
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <br /><br />
+        <table>
+            <tr><td colspan="4">聯絡人1</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Name)
+                        @Html.ValidationMessageFor(model => model.Contact1_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Title)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Title)
+                        @Html.ValidationMessageFor(model => model.Contact1_Title)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Tel1)
+                        @Html.ValidationMessageFor(model => model.Contact1_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Tel2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Tel2)
+                        @Html.ValidationMessageFor(model => model.Contact1_Tel2)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Email1)
+                        @Html.ValidationMessageFor(model => model.Contact1_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact1_Email2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact1_Email2)
+                        @Html.ValidationMessageFor(model => model.Contact1_Email2)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+        <table>
+            <tr><td colspan="4">聯絡人2</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Name)
+                        @Html.ValidationMessageFor(model => model.Contact2_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Title)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Title)
+                        @Html.ValidationMessageFor(model => model.Contact2_Title)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Tel1)
+                        @Html.ValidationMessageFor(model => model.Contact2_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Tel2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Tel2)
+                        @Html.ValidationMessageFor(model => model.Contact2_Tel2)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Email1)
+                        @Html.ValidationMessageFor(model => model.Contact2_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact2_Email2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact2_Email2)
+                        @Html.ValidationMessageFor(model => model.Contact2_Email2)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+        <table>
+            <tr><td colspan="4">聯絡人3</td></tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Name)
+                        @Html.ValidationMessageFor(model => model.Contact3_Name)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Title)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Title)
+                        @Html.ValidationMessageFor(model => model.Contact3_Title)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Tel1)
+                        @Html.ValidationMessageFor(model => model.Contact3_Tel1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Tel2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Tel2)
+                        @Html.ValidationMessageFor(model => model.Contact3_Tel2)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Email1)
+                        @Html.ValidationMessageFor(model => model.Contact3_Email1)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Contact3_Email2)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Contact3_Email2)
+                        @Html.ValidationMessageFor(model => model.Contact3_Email2)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsAssignRule)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.IsAssignRule, 1) 是
+            @Html.RadioButtonFor(model => model.IsAssignRule, 0) 否
+            @Html.ValidationMessageFor(model => model.IsAssignRule)
+        </div>
+
+        <p>
+            <input type="submit" value="新增" />&nbsp;or&nbsp;@Html.ActionLink("回上頁", "Index")
+        </p>
+    </fieldset>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

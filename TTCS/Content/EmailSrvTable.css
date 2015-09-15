@@ -1,0 +1,280 @@
+﻿
+/*** Table for View ***/
+.table_view {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    color: #666666;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.table_view tr {
+    border: 1px solid #000;
+    line-height: 25px;
+}
+
+    .table_view tr.rows:hover {
+        background-color: #ccc;
+        cursor:pointer;
+    }
+    .table_view tr.rowsReply:hover {
+        background-color: #ccc;
+        cursor:pointer;
+    }
+    .table_view tr.rowsAgentWeight:hover {
+        background-color: #ccc;
+        cursor:pointer;
+    }
+    .table_view tr.rowsApproach:hover {
+        background-color: #ccc;
+        cursor:pointer;
+    }
+
+.table_view th {
+    background-color: #B1C3CC;
+    color: #000;
+    font-size: 13px;
+    text-align: left;
+}
+
+.table_view th, .table_view td {
+    padding-left: 5px;
+}
+
+.table_view th.zhlen2, .table_view td.zhlen2 {
+    width: 34px;
+}
+
+/* width=(len*12) + 10*/
+.table_view th.zhlen5, .table_view td.zhlen5 {
+    width: 70px;
+}
+
+.table_view th.zhlen10, .table_view td.zhlen10 {
+    width: 130px;
+}
+
+.table_view th.zhlen20, .table_view td.zhlen20 {
+    width: 250px;
+}
+
+.table_bcase tr:hover {
+        background-color: #ccc;
+        cursor:pointer;
+    }
+/********************************************************/
+
+/*** Table for Detail ***/
+.table_detail {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    color: #666666;
+    width: 100%;
+    margin-bottom:5px;
+}
+
+.table_detail tr {
+    border: 1px solid #000;
+    line-height: 25px;
+}
+
+.table_detail th {
+    background-color: #B1C3CC;
+    color: #000;
+    font-size: 13px;
+    text-align: left;
+}
+
+.table_detail th, .table_detail td {
+    padding-left: 5px;
+    border: 1px solid #000
+}
+
+.table_detail th.fieldname, .table_detail td.fieldname {
+    width: 90px;
+    background: #99FFFF;
+    color: #000;
+    text-align:right;
+}
+
+/********************************************************/
+
+/*** Table for Div ***/
+.table_div {
+    width: 98%;
+    margin:1%;
+    border-collapse:collapse;
+}
+
+.table_div td.seperate {
+    width:1%;
+    border:none;
+}
+
+.table_div td.column75 {
+    width:75%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.column25 {
+    width:25%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.column75_title {
+    width:75%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+}
+
+.table_div td.column25_title {
+    width:25%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+}
+
+.table_div td.column70 {
+    width:70%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column30 {
+    width:30%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column70_title {
+    width:70%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column30_title {
+    width:30%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column60 {
+    width:60%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.column40 {
+    width:40%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.column60_title {
+    width:60%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column40_title {
+    width:40%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.onecolumn {
+    width:100%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.onecolumn_title {
+    width:100%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+    font-size:large;
+}
+
+.table_div td.column50 {
+    width:50%;
+    vertical-align:top;
+    background-color: #fafcff;
+    border: 1px solid #909090;
+    color: #2a2a2a;
+    padding: 5px;
+}
+
+.table_div td.column50_title {
+    width:50%;
+    text-align:center;
+    background-color: #3333ff;
+    border: 1px solid #909090;
+    color: #ffffff;
+    padding: 5px;
+}
+
+table td.fieldname {
+    background: #99FFFF;
+    color: #000;
+    width:20px;
+    font-size:large;
+}
+
+table td.fieldvalue {
+    background: #F0F0F0  ;
+    text-align:left;
+    font-size:large;
+}
+
+table td.seperate {
+    height:2px;
+}
